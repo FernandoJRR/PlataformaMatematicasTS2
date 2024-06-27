@@ -18,15 +18,13 @@ export async function getUsuario(username: string) {
 }
 
 export async function validateUsuario(username: string, password: string) {
-  console.log("aqui");
-  console.log(username);
   const usuario = await Usuario.query()
     .where('username', username)
     .first();
 
   if (usuario === undefined) {
     throw new Error("El usuario no existe");
-  } else if (encriptarComparar(password, usuario.password!)) {
+  } else if (!encriptarComparar(password, usuario.password!)) {
     throw new Error("La password es incorrecta");
   }
 

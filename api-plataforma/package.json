@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "migrate": "npx ts-node ./node_modules/.bin/knex migrate:latest",
-    "migrate-down": "npx ts-node ./node_modules/.bin/knex migrate:rollback --all"
+    "migrate-down": "npx ts-node ./node_modules/.bin/knex migrate:rollback --all",
+    "migrate-refresh": "npm run migrate-down && npm run migrate"
   },
   "keywords": [],
   "author": "",

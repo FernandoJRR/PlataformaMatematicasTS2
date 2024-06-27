@@ -6,7 +6,7 @@ import * as crypto from "crypto";
  * @returns {string}
  */
 export const encriptar = (input: string) => {
-    return crypto.createHash('sha256').digest('base64');
+    return crypto.createHash('sha256').update(input).digest('base64');
 }
 
 /**
@@ -16,7 +16,7 @@ export const encriptar = (input: string) => {
  * @returns {boolean}
  */
 export const encriptarComparar = (input: string, comparacionEncriptado: string) => {
-    const inputEncriptado = crypto.createHash('sha256').digest('base64');
+    const inputEncriptado = crypto.createHash('sha256').update(input).digest('base64');
     
     return inputEncriptado === comparacionEncriptado;
 }
