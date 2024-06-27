@@ -1,0 +1,41 @@
+/* Ajusta el CSS para mejorar la separación y alineación */
+.mat-list-icon {
+    margin-right: 16px; /* Aumenta el espacio entre el icono y el texto */
+    font-size: 24px;    /* Ajusta el tamaño del icono si es necesario */
+  }
+  
+  .mat-list-item .mat-list-icon {
+    display: inline-block;
+    vertical-align: middle; /* Alinea verticalmente los iconos */
+  }
+  
+  .mat-list-item .mat-list-text {
+    display: inline-block;
+    vertical-align: middle; /* Alinea verticalmente el texto */
+  }
+  
+  .mat-list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px; /* Ajusta el espacio alrededor de los elementos */
+  }
+  
+  .nav-text {
+    vertical-align: middle; /* Alinea verticalmente el texto */
+    line-height: 24px;      /* Alinea con el tamaño del icono */
+  }
+  
+  /* Opcional: mejora del estilo del toolbar */
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
