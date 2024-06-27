@@ -2,15 +2,14 @@ import type { Knex } from "knex";
 
 
 export async function up(knex: Knex): Promise<void> {
-    return knex.schema.createTable('logro', (t)=>{
+    return knex.schema.createTable("modo_juego",(t) =>{
         t.increments('id').primary();
-        t.string('titulo').notNullable();
-        t.string('descripcion').notNullable();
+        t.string('codigo').notNullable();
     })
 }
 
 
 export async function down(knex: Knex): Promise<void> {
-    return knex.schema.dropTable('logro');
+    return knex.schema.dropTable('modo_juego');
 }
 
