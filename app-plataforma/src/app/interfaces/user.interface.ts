@@ -2,10 +2,10 @@ export interface User {
     id?: number ;
     nombre: string;
     username: string;
+    email: string;
     password:string;
-    dinero_real: number;
-    moneda_virtual: number;
-    rol: string;
+    edad: number;
+    tipo: string;
     estado: string;
     
   }

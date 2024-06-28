@@ -25,10 +25,5 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, body);
   }
 
-  cargardinero(id:number, dinero_real:number, moneda_virtual:number){
-    return this.http.put(`${this.baseUrl}/cargar-dinero/${id}/${dinero_real}/${moneda_virtual}`,null  );
-  }
-  descontardinero(id:number, dinero_real:number, moneda_virtual:number){
-    return this.http.put(`${this.baseUrl}/descontar-dinero/${id}/${dinero_real}/${moneda_virtual}`,null  );
-  }
+  
 }

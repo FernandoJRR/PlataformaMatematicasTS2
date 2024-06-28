@@ -19,18 +19,15 @@ export class RegisterComponent {
   nombre!:string;
   username!: string;
   password!: string;
-  confirmar_password!: string;
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
 
-  fullName!: string;
   email!: string;
-  
   confirmPassword!: string;
-  phone!: string;
+  edad!: number;
   userType: string = 'alumno'; // Valor predeterminado
 
   registrar() {
@@ -38,31 +35,28 @@ export class RegisterComponent {
       alert('Las contraseñas no coinciden');
       return;
     }
-    const user = {
-      fullName: this.fullName,
-      email: this.email,
-      username: this.username,
-      password: this.password,
-      phone: this.phone,
-      userType: this.userType
-    };
-    console.log('Usuario registrado:', user);
-    // Aquí puedes agregar la lógica para registrar el usuario, como hacer una llamada HTTP
-  }
-
-  /*registrar(){
-    console.log("ingresando a metodo "+this.nombreElement)
     const userNew: User ={
       nombre:  this.nombre ,
       username:this.username,
       password:this.password,
-      rol: 'No admin',
+      tipo: 'userType',
       estado: 'No activo',
-      dinero_real: 0,
-      moneda_virtual: 0
+      edad: this.edad,
+      email: this.email,
+
+      
     };
-    if (this.password == this.confirmar_password) {
-      this.authService.singup(userNew)
+    const user = {
+      email: this.email,
+      username: this.username,
+      password: this.password,
+      edad: this.edad,
+      userType: this.userType
+    };
+    console.log('Usuario registrado:', user);
+    // Aquí puedes agregar la lógica para registrar el usuario, como hacer una llamada HTTP
+    if (this.password == this.confirmPassword) {
+      this.authService.singup(this.newUser)
     .subscribe((data)=>{
         console.log('Registrado con exito');
         Swal.fire({
@@ -90,8 +84,7 @@ export class RegisterComponent {
         footer: '<a href="#">Why do I have this issue?</a>'
       });
     }
-    
-    }*/
+  }
 
 
 }
