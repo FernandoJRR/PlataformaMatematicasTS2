@@ -15,7 +15,7 @@ export class Usuario extends Model {
     
     static get relationMappings(): RelationMappings | RelationMappingsThunk {
         return {
-          career: {
+          rol: {
             relation: Model.BelongsToOneRelation,
             modelClass: Rol,
             join: {
