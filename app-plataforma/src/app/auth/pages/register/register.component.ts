@@ -28,7 +28,7 @@ export class RegisterComponent {
   email!: string;
   confirmPassword!: string;
   edad!: number;
-  userType: string = 'alumno'; // Valor predeterminado
+  userType: number = 1; // Valor predeterminado
 
   registrar() {
     if (this.password !== this.confirmPassword) {
@@ -39,24 +39,26 @@ export class RegisterComponent {
       nombre:  this.nombre ,
       username:this.username,
       password:this.password,
-      tipo: 'userType',
-      estado: 'No activo',
-      edad: this.edad,
-      email: this.email,
+      id_rol: this.userType,
+      //estado: 'No activo',
+      //edad: this.edad,
+      correo: this.email,
 
       
     };
     const user = {
-      email: this.email,
-      username: this.username,
-      password: this.password,
-      edad: this.edad,
-      userType: this.userType
+      nombre:  this.nombre ,
+      username:this.username,
+      password:this.password,
+      id_rol: this.userType,
+      //estado: 'No activo',
+      //edad: this.edad,
+      correo: this.email,
     };
     console.log('Usuario registrado:', user);
     // Aquí puedes agregar la lógica para registrar el usuario, como hacer una llamada HTTP
     if (this.password == this.confirmPassword) {
-      this.authService.singup(this.newUser)
+      this.authService.singup(user)
     .subscribe((data)=>{
         console.log('Registrado con exito');
         Swal.fire({

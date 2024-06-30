@@ -39,11 +39,15 @@ export class LoginComponent {
         });
         this.user.password = '';
         localStorage.setItem('actualUser', JSON.stringify(this.user));
-        console.log(this.user.tipo);
-        if (this.user.tipo == 'admin') {
+        console.log(this.user.id_rol);
+        if (this.user.id_rol == 1) {
+          this.router.navigate(['/estudiante']);
+          localStorage.setItem('tipoUser', '/estudiante');
+        } else if (this.user.id_rol == 3){
           this.router.navigate(['/admin']);
           localStorage.setItem('tipoUser', '/admin');
-        } else {
+
+        }else {
           this.router.navigate(['/productos']);
           localStorage.setItem('tipoUser', '/empleado');
         }

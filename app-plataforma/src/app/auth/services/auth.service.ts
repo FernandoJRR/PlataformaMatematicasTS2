@@ -8,7 +8,7 @@ import { User } from '../../interfaces/user.interface';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -17,12 +17,12 @@ export class AuthService {
   singup(user: User) {
     console.log(" a guardar "+user)
     console.log(user)
-    return this.http.post(`${this.baseUrl}/new-user`, user);
+    return this.http.post(`${this.baseUrl}/usuario`, user);
   }
 
   login(username: string, password: string) {
     const body = { username, password };
-    return this.http.post(`${this.baseUrl}/login`, body);
+    return this.http.post(`${this.baseUrl}/usuario/validate`, body);
   }
 
   
