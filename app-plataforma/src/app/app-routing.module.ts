@@ -14,12 +14,11 @@ const routes: Routes = [
     path: 'estudiante',
     loadChildren: () => import('./estudiante/estudiante.module').then(m => m.EstudianteModule)  
   },
-  /*{
-    path: 'productos',
-    loadChildren: () => import('./productos/productos.module').then(m => m.ProductosModule)  
-  },
-  */
   {
+    path: 'profe',
+    loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule)  
+  },
+    {
     path: '**',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)  
   }

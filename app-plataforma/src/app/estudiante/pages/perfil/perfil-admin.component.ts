@@ -4,10 +4,10 @@ import { User } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-perfil-admin',
-  templateUrl: './perfil-admin.component.html',
-  styleUrl: './perfil-admin.component.css'
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.css'
 })
-export class PerfilAdminComponent {
+export class PerfilComponent {
   userName: string = 'John Doe';
   nombre: string = '';
   email: string = '0';

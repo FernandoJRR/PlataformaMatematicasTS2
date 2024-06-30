@@ -14,7 +14,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: 'perfil-estudiante', 
+        path: 'perfil-profesor', 
         component: PerfilComponent
       },
       
@@ -33,4 +33,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AdminRoutingModule { }
+export class ProfesorRoutingModule { }
