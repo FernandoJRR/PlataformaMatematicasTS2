@@ -4,14 +4,14 @@ import { User } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-perfil-admin',
-  templateUrl: './perfil-admin.component.html',
-  styleUrl: './perfil-admin.component.css'
+  templateUrl: './perfil.component.html',
+  styleUrl: './perfil.component.css'
 })
-export class PerfilAdminComponent {
+export class PerfilComponent {
   userName: string = 'John Doe';
   nombre: string = '';
   email: string = '0';
-  role: string = 'Administrador'; 
+  role: string = this.globals.getTipoUser(); 
   systemSettings: string = 'Configuraciones del sistema'; // Definir la propiedad
   globalStats: string = 'Estadísticas globales'; // Definir la propiedad
   isEditing: boolean = false;
