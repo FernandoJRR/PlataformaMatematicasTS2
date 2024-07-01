@@ -12,7 +12,12 @@ export async function up(knex: Knex): Promise<void> {
             .notNullable()
             .references('id')
             .inTable('tema');
+        p.integer('id_dificultad')
+            .notNullable()
+            .references('id')
+            .inTable('dificultad');
         p.date('fecha_creacion').notNullable();
+        p.date('fecha_modificacion').notNullable();
     })
 }
 
