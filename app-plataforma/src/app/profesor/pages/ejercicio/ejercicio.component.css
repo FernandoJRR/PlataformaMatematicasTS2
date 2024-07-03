@@ -1,0 +1,46 @@
+.form-container {
+    background-color: #1e1e1e;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .main-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    text-align: left;
+  }
+  
+  select {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+  }
+  

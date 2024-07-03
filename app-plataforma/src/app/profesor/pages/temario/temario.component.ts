@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './temario.component.css'
 })
 export class TemarioComponent {
-
+  temas: Array<{ titulo: string, descripcion: string }> = [];
   titulo!: string;
   descripcion!: string;
   
@@ -18,7 +18,9 @@ export class TemarioComponent {
     private router: Router
   ) {}
 
-  agregarTema(){}
+  agregarTema() {
+    this.temas.push({ titulo: '', descripcion: '' });
+  }
 
   crearTemario(){}
 

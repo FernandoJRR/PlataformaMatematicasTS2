@@ -1,0 +1,37 @@
+.opcion-multiple-container {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .opciones-group {
+    margin-top: 20px;
+  }
+  
+  input[type="text"], select {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    text-align: left;
+  }
+  
+  input[type="radio"] {
+    margin-left: 10px;
+  }
+  
