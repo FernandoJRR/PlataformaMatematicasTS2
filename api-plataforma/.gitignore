@@ -1,8 +1,8 @@
 # Dependencias npm
-node_modules/
+/node_modules
+
+# Dependencias VS Code
+.vscode/*
 
 # Configuracion de Postgres Local
 .env
-
-# package.json para Windows (Luis)
-package.json.txt

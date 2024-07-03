@@ -7,6 +7,7 @@ dotenv.config();
 module.exports = {
   client: process.env.DB_CONNECTION,
   connection: {
+    host: 'localhost',
     database: process.env.DB_DATABASE,
     user:     process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD
