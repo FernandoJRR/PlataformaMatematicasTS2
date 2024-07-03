@@ -15,11 +15,13 @@ import {MatInputModule } from "@angular/material/input";
 import {MatSelectModule} from '@angular/material/select';
 import { MatLineModule } from '@angular/material/core';
 
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     ReactiveFormsModule,

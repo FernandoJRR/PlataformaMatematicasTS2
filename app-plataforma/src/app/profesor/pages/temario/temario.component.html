@@ -1,0 +1,25 @@
+<div class="form-container">
+  <p class="main-title">Creacion Temario</p>
+
+  <form class="form">
+
+    <div class="title-group">
+      <div class="title">
+        <label for="title">Titulo de Temario</label>
+        <input type="text" name="title-input" [(ngModel)]="titulo" id="title" placeholder="Temario X" required>
+      </div>
+      <div class="description">
+        <label for="description">Descripción del Temario</label>
+        <input type="text" name="description-input" [(ngModel)]="descripcion" id="description"
+          placeholder="Descripción..." required>
+      </div>
+    </div>
+
+    <div class="temas-group">
+      <label for="new-tema" class="temas-label">Temas</label>
+      <button class="new-tema-button" (click)="agregarTema()">+ Tema</button>
+    </div>
+
+    <button class="create-temario-button" (click)="crearTemario()">Guardar</button>
+  </form>
+</div>

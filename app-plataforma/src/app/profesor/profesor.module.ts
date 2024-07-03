@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material/material.module';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProfesorRoutingModule } from './profesor-routing.module';
+import { TemarioComponent } from './pages/temario/temario.component';
 
 
 
@@ -14,7 +15,8 @@ import { ProfesorRoutingModule } from './profesor-routing.module';
   declarations: [
     HomeComponent,
     PerfilComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    TemarioComponent
   ],
   imports: [
     CommonModule,

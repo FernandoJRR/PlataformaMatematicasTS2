@@ -1,0 +1,66 @@
+ 
+
+  body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .main-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title-group, .temas-group {
+    margin-bottom: 20px;
+  }
+  
+  .title, .description {
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    background-color: #333;
+    border: 1px solid #ccc;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .temas-label {
+    margin-bottom: 5px;
+  }
+  
+  .new-tema-button, .create-temario-button {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .new-tema-button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .create-temario-button {
+    margin-top: 20px;
+  }
+  
