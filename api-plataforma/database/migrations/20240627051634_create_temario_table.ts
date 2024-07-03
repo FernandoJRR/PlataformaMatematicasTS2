@@ -6,7 +6,7 @@ export async function up(knex: Knex): Promise<void> {
         p.increments('id').primary();
         p.string('titulo').notNullable;
         p.string('descripcion').notNullable();
-        p.string('username_creado')
+        p.string('username_creador')
             .notNullable()
             .references('username')
             .inTable('usuario');

@@ -1,22 +1,22 @@
 import { Model, RelationMappings, RelationMappingsThunk } from "objection";
-import { logro } from "./logro";
+import { Logro } from "./logro";
 
-export class logroUsuario extends Model {
+export class LogroUsuario extends Model {
     static tableName = 'logro_usuario';
 
-    id_logro?: string;
-    udername_usaurio?: string;
-    fehca_conseguido?: string;
+    id_logro?: number;
+    username_usuario?: string;
+    fecha_conseguido?: Date;
 
     static get idColumn() {
-      return 'id_logro';
+      return ['id_logro', 'username_usuario'];
     }
     
     static get relationMappings(): RelationMappings | RelationMappingsThunk {
         return {
           logro_usuario: {
             relation: Model.BelongsToOneRelation,
-            modelClass: logroUsuario,
+            modelClass: Logro,
             join: {
               from: 'id_logro',
               to: 'logro.id',
