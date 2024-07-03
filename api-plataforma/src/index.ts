@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import usuarioRoutes from "./routes/usuario";
+import temarioRoutes from "./routes/temario";
+
 import * as Knex from "knex";
 import { Model } from "objection";
 import bodyParser from "body-parser";
@@ -35,6 +37,7 @@ Model.knex(knex);
 app.use(cors(corsConfig));
 
 app.use('/usuario', usuarioRoutes);
+app.use('/temario', temarioRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at port:${port}`);

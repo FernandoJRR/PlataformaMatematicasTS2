@@ -1,6 +1,6 @@
 import { Model } from "objection";
 
-export class logro extends Model {
+export class Logro extends Model {
     static tableName = 'logro';
 
     id?: string;
