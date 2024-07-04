@@ -9,7 +9,7 @@ const db = knex({
     host: process.env.DB_HOST || 'localhost',
     database: process.env.DB_DATABASE || 'plataforma_matematicas',
     user: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || ''
+    password: process.env.DB_PASSWORD || 'postgres'
   }
 });
 
