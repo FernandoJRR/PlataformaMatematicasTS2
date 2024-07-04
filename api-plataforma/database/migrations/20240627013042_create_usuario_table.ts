@@ -7,6 +7,7 @@ export async function up(knex: Knex): Promise<void> {
         t.string('nombre').notNullable();
         t.string('password').notNullable();
         t.string('correo').notNullable();
+        t.integer('edad');
         t.integer('id_rol')
             .notNullable()
             .references('id')

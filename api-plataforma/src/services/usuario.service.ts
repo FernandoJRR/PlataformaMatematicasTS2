@@ -65,7 +65,7 @@ export async function cambiarPassword(input: any) {
 
   const resultado = await Usuario.query()
     .findById(input.username)
-    .patch({ password: input.password });
+    .patch({ password: encriptar(input.password) });
   
   if (resultado === 0) {
     throw new Error("Hubo un error al modificar el password");

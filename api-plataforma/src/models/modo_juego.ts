@@ -1,7 +1,7 @@
 import { Model } from "objection";
 
-export class Rol extends Model {
-    static tableName = 'rol';
+export class ModoJuego extends Model {
+    static tableName = 'modo_juego';
 
     id?: number;
     codigo?: string;
