@@ -44,7 +44,7 @@ export class TemarioComponent {
       ejercicios: []
     };
     this.temas.push(nuevoTema);
-    console.log(nuevoTema);
+    
   }
 
   // Funcion para crear el temario con toda la data
@@ -63,6 +63,7 @@ export class TemarioComponent {
       fecha_creacion: new Date().toISOString(),
       temas: this.temas,
     };
+    console.log(nuevoTemario);
 
     this.temarioService.crearTemario(nuevoTemario).subscribe(
       (response) => {

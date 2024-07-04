@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pregunta-respuesta',
@@ -6,7 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './pregunta-respuesta.component.css'
 })
 export class PreguntaRespuestaComponent {
-  pregunta: string = '';
-  respuesta: string = '';
+  @Input() ejercicioJson!: { pregunta: string; respuesta: string; } ;
+  
+  
+  ngOnInit() {
+    if (!this.ejercicioJson) {
+      this.ejercicioJson = { pregunta: '', respuesta: '' };
+    }
+  }
+
 
 }

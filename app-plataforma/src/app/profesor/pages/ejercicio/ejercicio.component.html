@@ -11,11 +11,11 @@
       </select>
     </div>
   </form>
-  <div *ngIf="tipoEjercicio === 'opcion-multiple'">
-    <app-opcion-multiple></app-opcion-multiple>
+  <div *ngIf="tipoEjercicio === 'opcion-multiple'" >
+    <app-opcion-multiple ></app-opcion-multiple>
   </div>
   <div *ngIf="tipoEjercicio === 'pregunta-respuesta'">
-    <app-pregunta-respuesta></app-pregunta-respuesta>
+    <app-pregunta-respuesta [ejercicioJson]="ejercicioJson"></app-pregunta-respuesta>
   </div>
   <div *ngIf="tipoEjercicio === 'unir-parejas'">
     <app-unir-parejas></app-unir-parejas>
