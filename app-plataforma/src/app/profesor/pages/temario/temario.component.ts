@@ -10,7 +10,7 @@ import { Tema } from '../../../interfaces/tema.interface';
 @Component({
   selector: 'app-temario',
   templateUrl: './temario.component.html',
-  styleUrl: './temario.component.css'
+  styleUrl: './temario.component.css',
 })
 export class TemarioComponent {
   /*
@@ -33,7 +33,21 @@ export class TemarioComponent {
   }
 
   //Funciones
-  /*
+  // Función para agregar un tema al temario
+  agregarTema() {
+    const nuevoTema: Tema = {
+      titulo: '',
+      descripcion: '',
+      id_temario: 0, // Asignar un valor temporal, será actualizado al guardar el temario
+      id_tema_previo: this.temas.length > 0 ? this.temas[this.temas.length - 1].id! : 0, // Asignar el ID del tema previo si existe
+      fecha_creacion: new Date().toISOString(),
+      ejercicios: []
+    };
+    this.temas.push(nuevoTema);
+    console.log(nuevoTema);
+  }
+
+  // Funcion para crear el temario con toda la data
   crearTemario() {
     if (!this.titulo || !this.descripcion) {
       // Validar que el título y la descripción no estén vacíos
@@ -47,26 +61,18 @@ export class TemarioComponent {
       descripcion: this.descripcion,
       username_creador: this.usuario_creador.username,
       fecha_creacion: new Date().toISOString(),
-      temas: this.temas
+      temas: this.temas,
     };
 
-
     this.temarioService.crearTemario(nuevoTemario).subscribe(
-      response => {
+      (response) => {
         alert('Temario creado con éxito');
         this.router.navigate(['/']);
       },
-      error => {
+      (error) => {
         console.error('Error al crear el temario', error);
         alert('Ocurrió un error al crear el temario.');
       }
     );
-  }
-    */
-
-  // Función para agregar un tema al temario
-  
-  agregarTema() {
-    this.temas.push({ titulo: '', descripcion: '', ejercicios: [] });
   }
 }

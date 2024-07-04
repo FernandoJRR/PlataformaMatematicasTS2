@@ -3,20 +3,15 @@ import { Injectable } from '@angular/core';
 import { Temario } from '../../interfaces/temario.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TemarioService {
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http:HttpClient
-  ) {}
+  private baseUrl: string = 'http://localhost:3000';
 
-  private baseUrl:string = 'http://localhost:3000';
-
-  /*
-  const crearTemario(nuevoTemario: Temario){ 
-    return this.http.post(this.baseUrl);
+  //Peticiones
+  crearTemario(nuevoTemario: Temario) {
+    return this.http.post(`${this.baseUrl}/temario`, nuevoTemario);
   }
-    */
-
 }
