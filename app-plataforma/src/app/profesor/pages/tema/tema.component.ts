@@ -12,6 +12,7 @@ export class TemaComponent {
   @Output() eliminar = new EventEmitter<number>();
   mostrarEjercicio: boolean = false;
   ejercicio!: Ejercicio;
+  ejercicios!: Ejercicio[];
 
   agregarEjercicio() {
     const nuevoEjercicio: Ejercicio = {
@@ -25,6 +26,7 @@ export class TemaComponent {
     };
     this.tema.ejercicios.push(nuevoEjercicio);
     this.ejercicio = nuevoEjercicio;
+    //this.ejercicios.push(nuevoEjercicio);
   }
 
   mostrarEjercicioComponent() {

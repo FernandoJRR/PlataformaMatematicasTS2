@@ -7,11 +7,12 @@
     <label for="tema-description">Descripción del Tema</label>
     <input type="text" [(ngModel)]="tema.descripcion" id="tema-description" placeholder="Descripción del Tema" required>
 
-    <button type="button" class="show-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
-
+    
     <div *ngIf="mostrarEjercicio">
-      <app-ejercicio [ejercicio]="ejercicio" [index]="index"></app-ejercicio>
+      <app-ejercicio *ngFor="let ejercicio of tema.ejercicios; let i = index" [ejercicio]="ejercicio" [index]="index"></app-ejercicio>
       <button type="button" class="hide-ejercicio-button" (click)="ocultarEjercicioComponent()">Cerrar Ejercicio</button>
     </div>
+    <button type="button" class="show-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
+
   </div>
 </div>
