@@ -8,6 +8,7 @@ export class Usuario extends Model {
     nombre?: string;
     password?: string;
     id_rol?: number;
+    edad?: number;
   
     static get idColumn() {
       return 'username';

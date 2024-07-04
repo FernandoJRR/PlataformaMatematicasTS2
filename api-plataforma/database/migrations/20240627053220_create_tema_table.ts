@@ -10,8 +10,7 @@ export async function up(knex: Knex): Promise<void> {
             .notNullable()
             .references('id')
             .inTable('temario');
-        p.integer('id_tema_anterior')
-            .notNullable()
+        p.integer('id_tema_previo')
             .references('id')
             .inTable('tema');
         p.date('fecha_creacion').notNullable();
