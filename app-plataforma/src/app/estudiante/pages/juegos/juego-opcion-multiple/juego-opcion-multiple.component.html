@@ -1,0 +1,11 @@
+<div class="opcion-multiple-container" *ngIf="ejercicio">
+  <h3>{{ pregunta }}</h3>
+  <div class="opciones">
+    <div class="opcion-item" *ngFor="let opcion of opciones; let i = index" 
+         [ngStyle]="{'background-color': getColor(i)}"
+         [class.selected]="respuestaSeleccionada === opcion" 
+         (click)="seleccionarRespuesta(opcion)">
+      {{ opcion }}
+    </div>
+  </div>
+</div>

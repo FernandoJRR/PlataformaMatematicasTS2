@@ -7,6 +7,10 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil-admin.component';
+import { JuegoPreguntaRespuestaComponent } from './pages/juegos/juego-pregunta-respuesta/juego-pregunta-respuesta.component';
+import { JuegoUnirParejasComponent } from './pages/juegos/juego-unir-parejas/juego-unir-parejas.component';
+import { JuegoComponent } from './pages/juegos/juego/juego.component';
+import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 
 
 
@@ -14,7 +18,11 @@ import { PerfilComponent } from './pages/perfil/perfil-admin.component';
   declarations: [
     HomeComponent,
     WelcomeComponent,
-    PerfilComponent
+    PerfilComponent,
+    JuegoPreguntaRespuestaComponent,
+    JuegoUnirParejasComponent,
+    JuegoOpcionMultipleComponent,
+    JuegoComponent,
     
   ],
   imports: [

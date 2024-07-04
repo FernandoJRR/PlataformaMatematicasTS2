@@ -1,0 +1,16 @@
+<div class="juego-container" *ngIf="ejercicios && ejercicios.length > 0">
+  <div *ngIf="currentEjercicio?.id_tipo_ejercicio === 1">
+    <app-juego-pregunta-respuesta *ngIf="currentEjercicio" [ejercicio]="currentEjercicio" (next)="siguienteEjercicio()"></app-juego-pregunta-respuesta>
+  </div>
+  <div *ngIf="currentEjercicio?.id_tipo_ejercicio === 2">
+    <app-juego-unir-parejas *ngIf="currentEjercicio" [ejercicio]="currentEjercicio" (next)="siguienteEjercicio()"></app-juego-unir-parejas>
+  </div>
+  <div *ngIf="currentEjercicio?.id_tipo_ejercicio === 3">
+    <app-juego-opcion-multiple *ngIf="currentEjercicio" [ejercicio]="currentEjercicio" (next)="siguienteEjercicio()"></app-juego-opcion-multiple>
+  </div>
+  <button (click)="anteriorEjercicio()" [disabled]="currentEjercicioIndex === 0">Anterior</button>
+  <button (click)="siguienteEjercicio()" [disabled]="currentEjercicioIndex === ejercicios.length - 1">Siguiente</button>
+</div>
+<div *ngIf="!ejercicios || ejercicios.length === 0">
+  <p>No hay ejercicios disponibles.</p>
+</div>
