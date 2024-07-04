@@ -17,7 +17,7 @@
       
     </div>
     <app-tema *ngFor="let tema of temas; let i = index" [tema]="tema" [index]="i" ></app-tema>
-    <button type="button" class="new-tema-button">+ Tema</button>
+    <button type="button" class="new-tema-button" (click)="agregarTema()">+ Tema</button>
     <!-- (click)="agregarTema()"" -->
     <button type="submit" class="create-temario-button">Guardar</button>
     <!-- (click)="crearTemario()" -->

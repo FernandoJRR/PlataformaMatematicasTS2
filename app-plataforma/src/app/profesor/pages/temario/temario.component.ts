@@ -19,7 +19,7 @@ export class TemarioComponent {
   descripcion!: string;
   usuario_creador: User = this.globals.getUser();
   */
-  temas: Array<Tema> = [];
+  temas: Array<any> = [];
   titulo!: string;
   descripcion!: string;
   usuario_creador: User;
@@ -65,9 +65,8 @@ export class TemarioComponent {
     */
 
   // Función para agregar un tema al temario
-  /*
+  
   agregarTema() {
     this.temas.push({ titulo: '', descripcion: '', ejercicios: [] });
   }
-  */
 }
