@@ -5,8 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil-admin.component';
-import { JuegoPreguntaRespuestaComponent } from './pages/juegos/juego-pregunta-respuesta/juego-pregunta-respuesta.component';
-import { JuegoComponent } from './pages/juegos/juego/juego.component';
+import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 
 
 
@@ -20,12 +19,8 @@ const routes: Routes = [
         component: PerfilComponent
       },
       {
-        path: 'juego-pregunta', 
-        component: JuegoPreguntaRespuestaComponent
-      },
-      {
-        path: 'juego', 
-        component: JuegoComponent
+        path: 'eleccion-juego', 
+        component: EleccionJuegoComponent
       },
       
       {

@@ -11,6 +11,7 @@ import { JuegoPreguntaRespuestaComponent } from './pages/juegos/juego-pregunta-r
 import { JuegoUnirParejasComponent } from './pages/juegos/juego-unir-parejas/juego-unir-parejas.component';
 import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
+import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 
 
 
@@ -18,11 +19,7 @@ import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multip
   declarations: [
     HomeComponent,
     WelcomeComponent,
-    PerfilComponent,
-    JuegoPreguntaRespuestaComponent,
-    JuegoUnirParejasComponent,
-    JuegoOpcionMultipleComponent,
-    JuegoComponent,
+    PerfilComponent
     
   ],
   imports: [

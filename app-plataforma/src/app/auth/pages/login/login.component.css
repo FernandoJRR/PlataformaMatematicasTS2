@@ -3,9 +3,10 @@
   width: 100%;
   border-radius: 0.75rem;
   background-color: rgb(57, 58, 60);
-  padding: 1rem 0.25rem 1rem 0.25rem;
+  padding: 1rem 0rem 1rem 0rem;
   color: rgba(243, 244, 246, 1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* margin: 0 auto; /* Centro horizontal */
 }
 
 .title {
