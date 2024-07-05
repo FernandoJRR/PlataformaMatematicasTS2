@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 
 @Component({
@@ -7,21 +7,39 @@ import { Ejercicio } from '../../../../interfaces/ejercicio';
   styleUrl: './juego-pregunta-respuesta.component.css'
 })
 export class JuegoPreguntaRespuestaComponent {
-
   @Input() ejercicio!: Ejercicio;
-  @Output() next = new EventEmitter<void>();
-  @ViewChild('respuestaInput') respuestaInput!: ElementRef;
+  @Output() next = new EventEmitter<{ correcta: boolean }>();
 
-  respuesta: string = '';
+  pregunta: string = '';
+  respuestaCorrecta: string = '';
+  respuestaUsuario: string = '';
+
+  ngOnInit() {
+    this.actualizarEjercicio();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['ejercicio']) {
+      this.actualizarEjercicio();
+    }
+  }
+
+  actualizarEjercicio() {
+    if (this.ejercicio.data_json) {
+      this.pregunta = this.ejercicio.data_json.pregunta;
+      this.respuestaCorrecta = this.ejercicio.data_json.respuesta;
+      this.respuestaUsuario = ''; // Limpiar el campo de entrada
+    }
+  }
 
   verificarRespuesta() {
-    if (this.respuesta.toLowerCase() === this.ejercicio.data_json.respuesta.toLowerCase()) {
-      alert('Respuesta correcta!');
+    const correcta = this.respuestaUsuario.trim().toLowerCase() === this.respuestaCorrecta.trim().toLowerCase();
+    if (correcta) {
+      alert('¡Respuesta correcta!');
     } else {
-      alert('Respuesta incorrecta!');
+      alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
     }
-    this.respuesta = '';
-    this.next.emit();
-    this.respuestaInput.nativeElement.focus(); // Enfocar el input después de verificar la respuesta
+    this.next.emit({ correcta });
   }
-}
+
+  }
