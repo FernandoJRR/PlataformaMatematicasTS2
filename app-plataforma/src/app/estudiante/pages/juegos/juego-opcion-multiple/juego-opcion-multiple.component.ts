@@ -8,7 +8,8 @@ import { Ejercicio } from '../../../../interfaces/ejercicio';
 })
 export class JuegoOpcionMultipleComponent {
   @Input() ejercicio!: Ejercicio;
-  @Output() next = new EventEmitter<void>();
+  @Input() correctas!: number;
+  @Output() next = new EventEmitter<{ correcta: boolean }>();
 
   pregunta: string = '';
   opciones: string[] = [];
@@ -38,13 +39,16 @@ export class JuegoOpcionMultipleComponent {
   }
 
   verificarRespuesta() {
-    if (this.respuestaSeleccionada === this.respuestaCorrecta) {
+    const correcta = this.respuestaSeleccionada === this.respuestaCorrecta;
+    if (correcta) {
       alert('¡Respuesta correcta!');
     } else {
       alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
     }
     this.respuestaSeleccionada = null;
-    this.next.emit();
+    console.log('Evento emitido desde JuegoOpcionMultipleComponent:', { correcta }); // Añadir traza
+    this.next.emit({ correcta });
+    this.correctas++;
   }
 
   getColor(index: number): string {

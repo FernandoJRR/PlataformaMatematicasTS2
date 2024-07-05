@@ -8,8 +8,8 @@ import { Ejercicio } from '../../../../interfaces/ejercicio';
 })
 export class JuegoUnirParejasComponent implements OnInit {
   @Input() ejercicio!: Ejercicio;
+  @Input() correctas!: number;
   @Output() next = new EventEmitter<{ correcta: boolean }>();
-
   parejasIzquierda: string[] = [];
   parejasDerecha: string[] = [];
   parejasDerechaOriginal: string[] = [];

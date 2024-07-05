@@ -14,8 +14,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
   juegoIniciado: boolean = false;
   modoContrarreloj: boolean = false;
   modoSeleccionado: string = 'normal';
-  correctas: number = 0;
-  incorrectas: number = 0;
+  correctas!: number ;
+  incorrectas!: number ;
   puntaje: number = 0;
 
   ngOnInit() {
@@ -56,10 +56,13 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
   siguienteEjercicio(event?: { correcta: boolean }) {
     if (event) {
+      alert('event')
       if (event.correcta) {
         this.correctas++;
+        alert("sumando correcta");
       } else {
         this.incorrectas++;
+        alert("sumando incorrecta");
       }
     }
     if (this.currentEjercicioIndex < this.ejercicios.length - 1) {
