@@ -1,20 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Ejercicio } from '../../../interfaces/ejercicio';
+import { Tema } from '../../../interfaces/tema.interface';
 
 @Component({
   selector: 'app-ejercicio',
   templateUrl: './ejercicio.component.html',
-  styleUrl: './ejercicio.component.css'
+  styleUrls: ['./ejercicio.component.css']
 })
 export class EjercicioComponent {
-  @Input() ejercicio!: Ejercicio;
+  @Input() tema!: Tema;
   @Input() index!: number;
   tipoEjercicio: string = '';
-  ejercicioJson!:{pregunta: string, respuesta: string};
+  
+  ngOnInit(){
+    this.tema.ejercicios[this.index]
+  }
+
 
   seleccionarTipo(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.tipoEjercicio = selectElement.value;
   }
-
 }

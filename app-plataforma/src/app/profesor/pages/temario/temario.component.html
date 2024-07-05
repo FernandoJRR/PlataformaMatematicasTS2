@@ -13,13 +13,9 @@
     </div>
     <div class="temas-group">
       <label for="new-tema" class="temas-label">Temas</label>
-      
-      
+      <app-tema *ngFor="let tema of newTemario.temas; let i = index" [tema]="newTemario" [index]="i"></app-tema>
+      <button type="button" class="new-tema-button" (click)="agregarTema()">+ Tema</button>
     </div>
-    <app-tema *ngFor="let tema of temas; let i = index" [tema]="tema" [index]="i" ></app-tema>
-    <button type="button" class="new-tema-button" (click)="agregarTema()">+ Tema</button>
     <button type="submit" class="create-temario-button" (click)="crearTemario()">Guardar</button>
-    <!-- " -->
-    
   </form>
 </div>

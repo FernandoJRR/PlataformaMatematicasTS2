@@ -1,17 +1,18 @@
 <div class="tema-container">
-    <h3>Agregar Tema</h3>
-    <div class="tema-form">
-      <label for="tema-title">Titulo del Tema</label>
-      <input type="text" [(ngModel)]="tema.titulo" id="tema-title" placeholder="Titulo del Tema" required>
+  <h3>Agregar Tema</h3>
+  <div class="tema-form">
+    <label for="tema-title">Titulo del Tema</label>
+    <input type="text" [(ngModel)]="titulo" id="tema-title" placeholder="Titulo del Tema" required>
+
+    <label for="tema-description">Descripción del Tema</label>
+    <input type="text" [(ngModel)]="descripcion" id="tema-description" placeholder="Descripción del Tema" required>
+
     
-      <label for="tema-description">Descripción del Tema</label>
-      <input type="text" [(ngModel)]="tema.descripcion" id="tema-description" placeholder="Descripción del Tema" required>
-    
-      
-      <div *ngIf="mostrarEjercicio">
-        <app-ejercicio *ngFor="let ejercicio of ejercicios; let i = index" [ejercicio]="ejercicio" [index]="i"></app-ejercicio>
-        <button type="button" class="hide-ejercicio-button" (click)="ocultarEjercicioComponent()">Cerrar Ejercicio</button>
-      </div>
-      <button type="button" class="show-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
-    
+    <div *ngIf="mostrarEjercicio">
+      <app-ejercicio *ngFor="let ejercicio of newtema.ejercicios; let i = index" [tema]="newtema" [index]="index"></app-ejercicio>
+      <button type="button" class="hide-ejercicio-button" (click)="ocultarEjercicioComponent()">Cerrar Ejercicio</button>
     </div>
+    <button type="button" class="show-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
+
+  </div>
+</div>

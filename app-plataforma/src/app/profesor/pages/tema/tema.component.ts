@@ -1,50 +1,42 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ejercicio } from '../../../interfaces/ejercicio';
+import { Tema } from '../../../interfaces/tema.interface';
+import { Temario } from '../../../interfaces/temario.interface';
 
 @Component({
   selector: 'app-tema',
   templateUrl: './tema.component.html',
-  styleUrl: './tema.component.css'
+  styleUrls: ['./tema.component.css']
 })
 export class TemaComponent {
-  @Input() tema!: { titulo: string; descripcion: string; ejercicios:Ejercicio[] } ;
+  @Input() tema!:Temario;
   @Input() index!: number;
   @Output() eliminar = new EventEmitter<number>();
   mostrarEjercicio: boolean = false;
+  ejercicio!: Ejercicio;
+  titulo!:string;
+  descripcion!:string;
+  newtema!:Tema;
 
-
-  ejercicios: Ejercicio[] = [];
-
-  eliminarTema() {
-    this.eliminar.emit(this.index);
+  constructor(){
+    
+  }
+  ngOnInit(){
+   this.newtema = this.tema.temas[this.index];
   }
 
-  agregarTema(){
-
+  agregarEjercicio() {
+    this.newtema.titulo = this.titulo;
+    this.newtema.descripcion = this.descripcion;
+    this.newtema.ejercicios.push(this.ejercicio)
   }
 
   mostrarEjercicioComponent() {
     this.mostrarEjercicio = true;
-    this.agregarEjercio();
+    this.agregarEjercicio();
   }
 
   ocultarEjercicioComponent() {
     this.mostrarEjercicio = false;
   }
-
-  agregarEjercio() {
-    const nuevoEjercicio: Ejercicio = {
-      id_tipo_ejercicio: 0,
-      id_dificultad: 1,
-      anotacion: "",
-      id_tema: 0,   
-      data_json: JSON, 
-      fecha_creacion: new Date().toISOString(),
-      fecha_modificacion: new Date().toISOString()
-    };
-    this.ejercicios.push(nuevoEjercicio);
-    //this.tema.ejercicios=this.ejercicios;
-    
-  }
-
 }

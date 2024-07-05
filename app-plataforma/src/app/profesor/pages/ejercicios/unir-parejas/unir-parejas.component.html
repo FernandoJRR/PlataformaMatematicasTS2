@@ -1,12 +1,11 @@
 <div class="unir-parejas-container">
-    <h3>Unir Parejas</h3>
-    <div class="parejas-group">
-      <div *ngFor="let pareja of parejas; let i = index" class="pareja">
-        <input type="text" [(ngModel)]="parejas[i].izquierda" (input)="actualizarPareja(i, 'izquierda', $any($event.target).value)" placeholder="Izquierda" required>
-        <input type="text" [(ngModel)]="parejas[i].derecha" (input)="actualizarPareja(i, 'derecha', $any($event.target).value)" placeholder="Derecha" required>
-        <button type="button" class="remove-pareja-button" (click)="eliminarPareja(i)">Eliminar</button>
-      </div>
+  <h3>Unir Parejas</h3>
+  <div class="parejas-group">
+    <div *ngFor="let pareja of parejas; let i = index" class="pareja">
+      <input type="text" [(ngModel)]="parejas[i].izquierda" (input)="actualizarPareja(i, 'izquierda', $any($event.target).value)" placeholder="Izquierda" required>
+      <input type="text" [(ngModel)]="parejas[i].derecha" (input)="actualizarPareja(i, 'derecha', $any($event.target).value)" placeholder="Derecha" required>
+      <button type="button" class="remove-pareja-button" (click)="eliminarPareja(i)">Eliminar</button>
     </div>
-    <button type="button" class="new-pareja-button" (click)="agregarPareja()">Agregar Pareja</button>
   </div>
-  
+  <button type="button" class="new-pareja-button" (click)="agregarPareja()">Agregar Pareja</button>
+</div>

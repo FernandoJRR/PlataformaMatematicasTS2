@@ -1,19 +1,32 @@
 import { Component, Input } from '@angular/core';
+import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { Tema } from '../../../../interfaces/tema.interface';
 
 @Component({
   selector: 'app-pregunta-respuesta',
   templateUrl: './pregunta-respuesta.component.html',
-  styleUrl: './pregunta-respuesta.component.css'
+  styleUrls: ['./pregunta-respuesta.component.css']
 })
 export class PreguntaRespuestaComponent {
-  @Input() ejercicioJson!: { pregunta: string; respuesta: string; } ;
-  
-  
-  ngOnInit() {
-    if (!this.ejercicioJson) {
-      this.ejercicioJson = { pregunta: '', respuesta: '' };
+  @Input() tema!:Tema;
+  @Input() index!:number;
+  newEj!:Ejercicio;
+  pregunta!:string;
+  respuesta!:string;
+  json = {pregunta:'',respuesta:''}
+  constructor(){
+    this.newEj = {
+      id_tipo_ejercicio:1,
+      id_tema:0,
+      id_dificultad:1,
+      anotacion:'nuevo ejercicio',   
+      data_json: this.json, 
+      fecha_creacion: new Date().toISOString(),
+      fecha_modificacion: new Date().toISOString()
     }
   }
-
+  ngOnInit() {
+    this.tema.ejercicios.push(this.newEj)
+  }
 
 }

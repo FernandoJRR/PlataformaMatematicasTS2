@@ -2,13 +2,13 @@
   <h3>Opción Múltiple</h3>
   <div class="input-group">
     <label for="pregunta">Pregunta</label>
-    <input type="text" [(ngModel)]="pregunta" id="pregunta" placeholder="Escribe la pregunta" required>
+    <input type="text" [(ngModel)]="json.pregunta" id="pregunta" placeholder="Escribe la pregunta" required>
   </div>
   <div class="opciones-group">
     <label>Opciones</label>
-    <div *ngFor="let opcion of opciones; let i = index">
-      <input type="text" [(ngModel)]="opciones[i]" (input)="agregarOpcion(i, $any($event.target).value)" placeholder="Opción {{i + 1}}" required>
-      <input type="radio" name="respuestaCorrecta" [value]="i" [(ngModel)]="respuestaCorrecta" (change)="seleccionarRespuesta(i)"> Correcta
+    <div *ngFor="let opcion of json.opciones; let i = index">
+      <input type="text" [(ngModel)]="json.opciones[i]" (input)="agregarOpcion(i, $any($event.target).value)" placeholder="Opción {{i + 1}}" required>
+      <input type="radio" name="respuestaCorrecta" [value]="i" [(ngModel)]="json.correcto" (change)="seleccionarRespuesta(i)"> Correcta
     </div>
   </div>
 </div>
