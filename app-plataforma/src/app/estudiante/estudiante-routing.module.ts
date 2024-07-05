@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil-admin.component';
+import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
+import { JuegoComponent } from './pages/juegos/juego/juego.component';
 
 
 
@@ -16,6 +18,14 @@ const routes: Routes = [
       {
         path: 'perfil-estudiante', 
         component: PerfilComponent
+      },
+      {
+        path: 'eleccion-juego', 
+        component: EleccionJuegoComponent
+      },
+      {
+        path: 'juego', 
+        component: JuegoComponent
       },
       
       {

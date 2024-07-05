@@ -1,0 +1,96 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: #1e1e1e;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px; /* Ajusta este valor según tus necesidades */
+  margin: auto;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-group, .temas-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.title, .description {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  text-align: left;
+}
+
+input[type="text"] {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+}
+
+input[type="text"]::placeholder {
+  color: #bbb;
+}
+
+.new-tema-button, .create-temario-button {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px; /* Ajusta este valor según tus necesidades */
+}
+
+.new-tema-button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.new-tema-button:hover, .create-temario-button:hover {
+  background-color: #3700b3;
+}
+
+.create-temario-button {
+  margin-top: 20px;
+}
+
+.create-temario-button:hover {
+  background-color: #3700b3;
+}
