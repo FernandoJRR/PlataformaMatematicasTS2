@@ -5,7 +5,7 @@
     <div class="select-group">
         <mat-form-field appearance="fill">
             <mat-label>Modo de Juego</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="modoJuego" name="tipoEjercicio">
                 <mat-option value="contrarreloj">Contrarreloj</mat-option>
                 <mat-option value="refuerzo">Refuerzo</mat-option>
                 <mat-option value="invencible">Invencible</mat-option>
@@ -45,6 +45,6 @@
         </div>
     </div>
     <div class="continue-group">
-        <button mat-raised-button color="primary">Continuar</button>
+        <button mat-raised-button color="primary" (click)="mostrarEjerciciosCheckeados()">Continuar</button>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-juego',
@@ -18,12 +19,25 @@ export class JuegoComponent implements OnInit, OnDestroy {
   incorrectas!: number ;
   puntaje: number = 0;
 
+  receivedEjercicios!: Ejercicio[];
+
+  constructor(private route: ActivatedRoute) { }
+
   ngOnInit() {
     // Usar datos simulados si no se proporcionan ejercicios
+    this.route.params.subscribe(params => {
+      if (params['data'] && params['modo'] ) {
+        this.receivedEjercicios = JSON.parse(params['data']) as Ejercicio[];
+        this.modoSeleccionado = params['modo'] as string;
+      }
+      
+    });
     if (!this.ejercicios || this.ejercicios.length === 0) {
-      this.ejercicios = this.generarDatosSimulados();
+      //this.ejercicios = this.generarDatosSimulados();
+      this.ejercicios=this.receivedEjercicios
     }
     this.calcularTiempoTotal();
+    this.iniciarJuego()
   }
 
   iniciarJuego() {

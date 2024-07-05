@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Temario } from '../../../../interfaces/temario.interface';
+import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { Tema } from '../../../../interfaces/tema.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eleccion-juego',
@@ -11,6 +14,9 @@ export class EleccionJuegoComponent {
   temarios: Temario[] = [];
   temarioChecked: { [titulo: string]: boolean } = {};
   temaChecked: { [tituloTemario: string]: { [tituloTema: string]: boolean } } = {};
+  modoJuego!:string;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.loadTemarios();
@@ -39,7 +45,7 @@ export class EleccionJuegoComponent {
                 "id_tema": 1,
                 "id_dificultad": 1,
                 "anotacion": "Anotacion para el ejercicio",
-                "data_json": {},
+                "data_json": {pregunta: '¿Cuanto es 1+1?', respuesta: '2'},
                 "fecha_creacion": "2024-07-04T06:00:00.000Z",
                 "fecha_modificacion": "2024-07-04T06:00:00.000Z"
               }
@@ -59,7 +65,17 @@ export class EleccionJuegoComponent {
                 "id_tema": 2,
                 "id_dificultad": 3,
                 "anotacion": "Anotacion para el ejercicio",
-                "data_json": {},
+                "data_json": {pregunta: '¿Cuál es el animal que dice miu?', respuesta: 'Gato' },
+                "fecha_creacion": "2024-07-04T06:00:00.000Z",
+                "fecha_modificacion": "2024-07-04T06:00:00.000Z"
+              },
+              {
+                "id": 3,
+                "id_tipo_ejercicio": 1,
+                "id_tema": 2,
+                "id_dificultad": 3,
+                "anotacion": "Anotacion para el ejercicio",
+                "data_json": {pregunta: '¿Cuál es el animal que dice guau?', respuesta: 'perro' },
                 "fecha_creacion": "2024-07-04T06:00:00.000Z",
                 "fecha_modificacion": "2024-07-04T06:00:00.000Z"
               }
@@ -97,6 +113,47 @@ export class EleccionJuegoComponent {
       this.temarioChecked[tituloTemario] = temario.temas.every(tema => this.temaChecked[tituloTemario][tema.titulo]);
     }
   }
+
+  getCheckedTemas(): Tema[] {
+    const checkedTemas: Tema[] = [];
+    this.temarios.forEach(temario => {
+      temario.temas.forEach(tema => {
+        if (this.temaChecked[temario.titulo][tema.titulo]) {
+          checkedTemas.push(tema);
+        }
+      });
+    });
+    return checkedTemas;
+  }
+
+  getEjerciciosDeTemasSeleccionados(): Ejercicio[] {
+    const checkedTemas = this.getCheckedTemas();
+    const ejercicios: Ejercicio[] = [];
+    checkedTemas.forEach(tema => {
+      ejercicios.push(...tema.ejercicios);
+    });
+    return ejercicios;
+  }
+  
+  mostrarEjerciciosCheckeados() {
+    const ejercicios = this.getEjerciciosDeTemasSeleccionados();
+    console.log('Ejercicios checkeados:', ejercicios);
+    // Puedes pasar estos ejercicios a otro componente según lo necesites
+    this.router.navigate(['/estudiante/juego', { data: JSON.stringify(this.getEjerciciosDeTemasSeleccionados()) , modo: this.modoJuego }]);
+  }
+
+
+
+  mostrarTemasCheckeados() {
+    const checkedTemas = this.getCheckedTemas();
+    console.log('Temas checkeados:', checkedTemas);
+    // Puedes hacer lo que necesites con la lista de temas checkeados
+    
+  }
+
+  
+  
+
 
   /*
   temario1Checked = false;
