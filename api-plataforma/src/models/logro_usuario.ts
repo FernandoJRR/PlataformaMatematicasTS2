@@ -14,11 +14,11 @@ export class LogroUsuario extends Model {
     
     static get relationMappings(): RelationMappings | RelationMappingsThunk {
         return {
-          logro_usuario: {
+          logro: {
             relation: Model.BelongsToOneRelation,
             modelClass: Logro,
             join: {
-              from: 'id_logro',
+              from: 'logro_usuario.id_logro',
               to: 'logro.id',
             },
           },

@@ -1,5 +1,7 @@
 import { Model, RelationMappings, RelationMappingsThunk } from "objection";
 import { Tema } from "./tema";
+import { Usuario } from "./usuario";
+import { ModoJuego } from "./modo_juego";
 
 export class Partida extends Model {
     static tableName = 'partida';
@@ -9,6 +11,7 @@ export class Partida extends Model {
     puntaje?: number;
     username_jugador?: string;
     id_modo_juego?: number;
+
     static get relationMappings(): RelationMappings | RelationMappingsThunk {
         return {
           tema: {
@@ -20,16 +23,16 @@ export class Partida extends Model {
             },
           },
           usuario: {
-            relation: Model.HasManyRelation,
-            modelClass: Tema,
+            relation: Model.BelongsToOneRelation,
+            modelClass: Usuario,
             join: {
               from: 'partida.username_jugador',
               to: 'usuario.username',
             },
           },
           modo_juego: {
-            relation: Model.HasManyRelation,
-            modelClass: Tema,
+            relation: Model.BelongsToOneRelation,
+            modelClass: ModoJuego,
             join: {
               from: 'partida.id_modo_juego',
               to: 'modo_juego.id',
