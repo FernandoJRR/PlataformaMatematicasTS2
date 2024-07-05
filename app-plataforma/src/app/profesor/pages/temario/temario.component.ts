@@ -44,7 +44,6 @@ export class TemarioComponent {
       ejercicios: []
     };
     this.temas.push(nuevoTema);
-    
   }
 
   // Funcion para crear el temario con toda la data
