@@ -1,58 +1,50 @@
-<p>eleccion-juego works!</p>
+<div class="form-container">
+    <p class="title">Elegir Juego<p>
+    <p class="description">Elige el Modo de Juego, Tipo de Ejercicios, Dificulta de Ejercicios y Temas para jugar</p>
 
-<div class="config-container">
-    <h2>Elegir Juego</h2>
-    <div class="config-group">
-      <label for="mode-select">Modo de Juego (Select)</label>
-      <select id="mode-select">
-        <option>Contrarreloj</option>
-        <option>Refuerzo</option>
-        <option>Invencible</option>
-      </select>
+    <div class="select-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Modo de Juego</mat-label>
+            <mat-select>
+                <mat-option value="contrarreloj">Contrarreloj</mat-option>
+                <mat-option value="refuerzo">Refuerzo</mat-option>
+                <mat-option value="invencible">Invencible</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
-    <div class="config-group">
-      <label for="type-select">Tipo(s) de Ejercicio(s)</label>
-      <select id="type-select" multiple>
-        <option>Pregunta-Respuesta</option>
-        <option>Unir-Parejas</option>
-        <option>Opción-Múltiple</option>
-      </select>
-    </div>
-    <div class="config-group">
-      <label for="difficulty-select">Dificultad de Ejercicio (Select)</label>
-      <select id="difficulty-select">
-        <option>Fácil</option>
-        <option>Intermedio</option>
-        <option>Avanzado</option>
-      </select>
-    </div>
-    <div class="config-group">
-      <label>Elección de Tema(s) o Temario(s)</label>
-      <div class="temario">
-        <input type="checkbox" id="temario1" name="temario1">
-        <label for="temario1">Temario 1</label>
-        <div class="temas">
-          <input type="checkbox" id="tema1-1" name="tema1-1">
-          <label for="tema1-1">Tema 1</label>
-          <input type="checkbox" id="tema1-2" name="tema1-2">
-          <label for="tema1-2">Tema 2</label>
-          <input type="checkbox" id="tema1-3" name="tema1-3">
-          <label for="tema1-3">Tema 3</label>
+
+    <div class="select-group">
+        <label>Tipo de Ejercicios</label>
+        <div class="tipo-ejercicios">
+            <mat-checkbox>Pregunta-Respuesta</mat-checkbox>
+            <mat-checkbox>Unir-Parejas</mat-checkbox>
+            <mat-checkbox>Opción-Múltiple</mat-checkbox>
         </div>
-      </div>
-      <div class="temario">
-        <input type="checkbox" id="temario2" name="temario2">
-        <label for="temario2">Temario 2</label>
-        <div class="temas">
-          <input type="checkbox" id="tema2-1" name="tema2-1">
-          <label for="tema2-1">Tema 1</label>
-          <input type="checkbox" id="tema2-2" name="tema2-2">
-          <label for="tema2-2">Tema 2</label>
-          <input type="checkbox" id="tema2-3" name="tema2-3">
-          <label for="tema2-3">Tema 3</label>
-        </div>
-      </div>
     </div>
-    <button type="button">Continuar</button>
-  </div>
-  
+
+    <div class="select-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Dificultad de Ejercicios</mat-label>
+            <mat-select>
+                <mat-option value="facil">Fácil</mat-option>
+                <mat-option value="intermedio">Intermedio</mat-option>
+                <mat-option value="avanzado">Avanzado</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="select-group">
+        <label class="">Elección de Tema(s) o Temario(s)</label>
+        <div class="temas-temarios" *ngFor="let temario of temarios">
+            <mat-checkbox [(ngModel)]="temarioChecked[temario.titulo]"
+                (change)="toggleAllThemes(temario.titulo, $event)">{{temario.titulo}}</mat-checkbox>
+            <div>
+                <mat-checkbox class="temas" *ngFor="let tema of temario.temas" [(ngModel)]="temaChecked[temario.titulo][tema.titulo]"
+                    (change)="checkTema(temario.titulo)">{{tema.titulo}}</mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="continue-group">
+        <button mat-raised-button color="primary">Continuar</button>
+    </div>
+</div>

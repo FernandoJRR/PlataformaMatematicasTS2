@@ -7,6 +7,7 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil-admin.component';
+import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 
 
 
@@ -14,8 +15,8 @@ import { PerfilComponent } from './pages/perfil/perfil-admin.component';
   declarations: [
     HomeComponent,
     WelcomeComponent,
-    PerfilComponent
-    
+    PerfilComponent,
+    EleccionJuegoComponent    
   ],
   imports: [
     CommonModule,
