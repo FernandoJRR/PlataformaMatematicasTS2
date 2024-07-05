@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'perfil-estudiante', 
         component: PerfilComponent
       },
+      {
+        path: 'eleccion-juego', 
+        component: PerfilComponent
+      },
       
       {
         path: '**', 
