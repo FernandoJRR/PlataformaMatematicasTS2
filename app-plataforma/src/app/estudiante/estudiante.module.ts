@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil-admin.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
+import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 
 
 
@@ -15,6 +16,8 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
   declarations: [
     HomeComponent,
     WelcomeComponent,
+    PerfilComponent,
+    EleccionJuegoComponent    
     PerfilComponent,
     EleccionJuegoComponent    
   ],

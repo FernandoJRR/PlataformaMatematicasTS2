@@ -22,6 +22,7 @@ const routes: Routes = [
         path: 'eleccion-juego', 
         component: EleccionJuegoComponent
       },
+  
       
       {
         path: '**', 
