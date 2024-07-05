@@ -19,7 +19,14 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
   declarations: [
     HomeComponent,
     WelcomeComponent,
-    PerfilComponent
+    PerfilComponent,
+    JuegoPreguntaRespuestaComponent,
+    JuegoUnirParejasComponent,
+    JuegoComponent,
+    JuegoOpcionMultipleComponent,
+    EleccionJuegoComponent,
+    
+
     
   ],
   imports: [
