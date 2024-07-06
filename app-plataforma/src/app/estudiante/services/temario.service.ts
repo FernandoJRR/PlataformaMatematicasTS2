@@ -14,4 +14,13 @@ export class TemarioService {
   listarTemarios() {
     return this.http.get(`${this.baseUrl}/temario/`);
   }
+
+  listarEjericiosPorTema() {
+    return this.http.get(`${this.baseUrl}/temario/`);
+  }
+
+  listarEjericiosPorTemaTipoModo(id_tema:number,id_tipo: number, id_modo: number) {
+    return this.http.get(`${this.baseUrl}/temario/`);
+  }
+
 }
