@@ -28,7 +28,7 @@ exports.seed = async function(knex) {
       fecha_modificacion: new Date().toISOString(),
     },
     {
-      id_tipo_ejercicio: 1,
+      id_tipo_ejercicio: 2,
       id_tema: 3,
       id_dificultad: 2,
       anotacion: 'Anotacion para el ejercicio',
@@ -40,7 +40,7 @@ exports.seed = async function(knex) {
       fecha_modificacion: new Date().toISOString(),
     },
     {
-      id_tipo_ejercicio: 2,
+      id_tipo_ejercicio: 1,
       id_tema: 4,
       id_dificultad: 1,
       anotacion: 'Anotacion para el ejercicio',

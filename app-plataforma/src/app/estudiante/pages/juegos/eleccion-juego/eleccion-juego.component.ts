@@ -15,77 +15,18 @@ export class EleccionJuegoComponent implements OnInit {
   temarioChecked: { [titulo: string]: boolean } = {};
   temaChecked: { [tituloTemario: string]: { [tituloTema: string]: boolean } } = {};
   modoJuego!: string;
+  dificultadEjercicio!: number;
+  tipoEjercicios: { [key: string]: boolean } = {
+    preguntaRespuesta: false,
+    unirParejas: false,
+    opcionMultiple: false
+  };
 
   constructor(private router: Router, private temarioService: TemarioService) { }
 
   ngOnInit() {
     //this.loadTemarios();
     this.cargarTemarios();
-  }
-
-  // Carga los temarios con datos simulados
-  loadTemarios() {
-    const jsonTemarios: Temario[] = [
-      {
-        id: 1,
-        titulo: 'Temario1',
-        descripcion: 'Descripcion del temario',
-        username_creador: 'profesor1',
-        fecha_creacion: '2024-07-04T06:00:00.000Z',
-        temas: [
-          {
-            id: 1,
-            titulo: 'Tema1 - Temario1',
-            descripcion: 'Descripcion del tema',
-            id_temario: 1,
-            id_tema_previo: null,
-            fecha_creacion: '2024-07-04T06:00:00.000Z',
-            ejercicios: [
-              {
-                id: 1,
-                id_tipo_ejercicio: 1,
-                id_tema: 1,
-                id_dificultad: 1,
-                anotacion: 'Anotacion para el ejercicio',
-                data_json: { pregunta: '¿Cuanto es 1+1?', respuesta: '2' },
-                fecha_creacion: '2024-07-04T06:00:00.000Z',
-                fecha_modificacion: '2024-07-04T06:00:00.000Z'
-              }
-            ]
-          },
-          {
-            id: 2,
-            titulo: 'Tema2 - Temario1',
-            descripcion: 'Descripcion del tema',
-            id_temario: 1,
-            id_tema_previo: 1,
-            fecha_creacion: '2024-07-04T06:00:00.000Z',
-            ejercicios: []
-          }
-        ]
-      },
-      {
-        id: 2,
-        titulo: 'Temario2',
-        descripcion: 'Descripcion del temario',
-        username_creador: 'profesor2',
-        fecha_creacion: '2024-07-04T06:00:00.000Z',
-        temas: [
-          {
-            id: 3,
-            titulo: 'Tema1 - Temario2',
-            descripcion: 'Descripcion del tema',
-            id_temario: 2,
-            id_tema_previo: null,
-            fecha_creacion: '2024-07-04T06:00:00.000Z',
-            ejercicios: []
-          }
-        ]
-      }
-    ];
-
-    this.temarios = jsonTemarios;
-    this.initializeCheckedState();
   }
 
   // Carga los temarios desde el servicio
@@ -157,20 +98,34 @@ export class EleccionJuegoComponent implements OnInit {
     });
 
     try {
-      const temasCompletos = await Promise.all(temaRequests) as Tema[]; // Asegura que los resultados son del tipo `Tema`
+      const temasCompletos = await Promise.all(temaRequests) as Tema[];
       temasCompletos.forEach(temaCompleto => {
         if (temaCompleto && temaCompleto.ejercicios) {
           ejercicios.push(...temaCompleto.ejercicios);
         }
       });
+      // Filtrar ejercicios por dificultad y tipo
+      const ejerciciosFiltrados = this.filtrarEjercicios(ejercicios);
       // Aquí puedes hacer lo que necesites con los ejercicios obtenidos
-      this.router.navigate(['/estudiante/juego', { data: JSON.stringify(ejercicios), modo: this.modoJuego }]);
+      this.router.navigate(['/estudiante/juego', { data: JSON.stringify(ejerciciosFiltrados), modo: this.modoJuego }]);
     } catch (error) {
       console.error('Error al obtener los ejercicios de los temas seleccionados', error);
       alert('Ocurrió un error al obtener los ejercicios de los temas seleccionados.');
     }
 
-    return ejercicios; // Retorna los ejercicios, aunque la lista podría no estar completa aún debido a las llamadas asincrónicas
+    return ejercicios;
+  }
+
+  // Filtrar ejercicios por dificultad y tipo
+  filtrarEjercicios(ejercicios: Ejercicio[]): Ejercicio[] {
+    return ejercicios.filter(ejercicio => {
+      const dificultadCoincide = this.dificultadEjercicio ? ejercicio.id_dificultad === this.dificultadEjercicio : true;
+      const tipoCoincide = (this.tipoEjercicios['preguntaRespuesta'] && ejercicio.id_tipo_ejercicio === 1) ||
+                           (this.tipoEjercicios['unirParejas'] && ejercicio.id_tipo_ejercicio === 2) ||
+                           (this.tipoEjercicios['opcionMultiple'] && ejercicio.id_tipo_ejercicio === 3);
+
+      return dificultadCoincide && tipoCoincide;
+    });
   }
 
   // Muestra los ejercicios de los temas seleccionados

@@ -1,50 +1,51 @@
 <div class="form-container">
     <p class="title">Elegir Juego<p>
-    <p class="description">Elige el Modo de Juego, Tipo de Ejercicios, Dificulta de Ejercicios y Temas para jugar</p>
-
+    <p class="description">Elige el Modo de Juego, Tipo de Ejercicios, Dificultad de Ejercicios y Temas para jugar</p>
+  
     <div class="select-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Modo de Juego</mat-label>
-            <mat-select [(ngModel)]="modoJuego" name="tipoEjercicio">
-                <mat-option value="contrarreloj">Contrarreloj</mat-option>
-                <mat-option value="refuerzo">Refuerzo</mat-option>
-                <mat-option value="invencible">Invencible</mat-option>
-            </mat-select>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Modo de Juego</mat-label>
+        <mat-select [(ngModel)]="modoJuego" name="modoJuego">
+          <mat-option value="contrarreloj">Contrarreloj</mat-option>
+          <mat-option value="refuerzo">Refuerzo</mat-option>
+          <mat-option value="invencible">Invencible</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-
+  
     <div class="select-group">
-        <label>Tipo de Ejercicios</label>
-        <div class="tipo-ejercicios">
-            <mat-checkbox>Pregunta-Respuesta</mat-checkbox>
-            <mat-checkbox>Unir-Parejas</mat-checkbox>
-            <mat-checkbox>Opción-Múltiple</mat-checkbox>
+      <label>Tipo de Ejercicios</label>
+      <div class="tipo-ejercicios">
+        <mat-checkbox [(ngModel)]="this.tipoEjercicios['preguntaRespuesta'] ">Pregunta-Respuesta</mat-checkbox>
+        <mat-checkbox [(ngModel)]="tipoEjercicios['unirParejas']">Unir-Parejas</mat-checkbox>
+        <mat-checkbox [(ngModel)]="tipoEjercicios['opcionMultiple']">Opción-Múltiple</mat-checkbox>
+      </div>
+    </div>
+  
+    <div class="select-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Dificultad de Ejercicios</mat-label>
+        <mat-select [(ngModel)]="dificultadEjercicio" name="dificultadEjercicio">
+          <mat-option value="1">Fácil</mat-option>
+          <mat-option value="2">Intermedio</mat-option>
+          <mat-option value="3">Avanzado</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="select-group">
+      <label class="">Elección de Tema(s) o Temario(s)</label>
+      <div class="temas-temarios" *ngFor="let temario of temarios">
+        <mat-checkbox [(ngModel)]="temarioChecked[temario.titulo]"
+          (change)="toggleAllThemes(temario.titulo, $event)">{{temario.titulo}}</mat-checkbox>
+        <div>
+          <mat-checkbox class="temas" *ngFor="let tema of temario.temas" [(ngModel)]="temaChecked[temario.titulo][tema.titulo]"
+            (change)="checkTema(temario.titulo)">{{tema.titulo}}</mat-checkbox>
         </div>
-    </div>
-
-    <div class="select-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Dificultad de Ejercicios</mat-label>
-            <mat-select>
-                <mat-option value="facil">Fácil</mat-option>
-                <mat-option value="intermedio">Intermedio</mat-option>
-                <mat-option value="avanzado">Avanzado</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-    <div class="select-group">
-        <label class="">Elección de Tema(s) o Temario(s)</label>
-        <div class="temas-temarios" *ngFor="let temario of temarios">
-            <mat-checkbox [(ngModel)]="temarioChecked[temario.titulo]"
-                (change)="toggleAllThemes(temario.titulo, $event)">{{temario.titulo}}</mat-checkbox>
-            <div>
-                <mat-checkbox class="temas" *ngFor="let tema of temario.temas" [(ngModel)]="temaChecked[temario.titulo][tema.titulo]"
-                    (change)="checkTema(temario.titulo)">{{tema.titulo}}</mat-checkbox>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="continue-group">
-        <button mat-raised-button color="primary" (click)="mostrarEjerciciosCheckeados()">Continuar</button>
+      <button mat-raised-button color="primary" (click)="mostrarEjerciciosCheckeados()">Continuar</button>
     </div>
-</div>
+  </div>
+  
