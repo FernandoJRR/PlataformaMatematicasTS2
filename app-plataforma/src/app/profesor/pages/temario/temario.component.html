@@ -1,21 +1,30 @@
-<div class="form-container">
-  <p class="main-title">Creacion Temario</p>
+<div class="temario-container">
+  <h1>Temario</h1>
+
   <form class="form">
     <div class="title-group">
-      <div class="title">
-        <label for="title">Titulo de Temario</label>
-        <input type="text" name="title-input" [(ngModel)]="titulo" id="title" placeholder="Temario X" required>
-      </div>
-      <div class="description">
-        <label for="description">Descripción del Temario</label>
-        <input type="text" name="description-input" [(ngModel)]="descripcion" id="description" placeholder="Descripción..." required>
-      </div>
+      <label for="title">Titulo:</label>
+      <input type="text" name="temario-title-input" [(ngModel)]="titulo" id="title" placeholder="Álgebra" required>
     </div>
+
+    <div class="description-group">
+      <label for="description">Descripción:</label>
+      <textarea type="text" name="temario-description-input" [(ngModel)]="descripcion" id="description"
+        placeholder="Rama de la matemática que estudia la combinación de elementos de estructuras abstractas acorde a ciertas reglas"
+        required></textarea>
+    </div>
+
     <div class="temas-group">
-      <label for="new-tema" class="temas-label">Temas</label>
-      <app-tema *ngFor="let tema of temas; let i = index" [tema]="tema" [index]="i"></app-tema>
+      <label for="new-tema" class="temas-label">Temas:</label>
+      <app-tema *ngFor="let tema of temas; let i = index" [tema]="tema" [index]="i"
+        (eliminarTemaEvent)="eliminarTema(i)"></app-tema>
+      <br>
+    </div>
+
+    <div class="button-group">
       <button type="button" class="new-tema-button" (click)="agregarTema()">+ Tema</button>
     </div>
-    <button type="submit" class="create-temario-button" (click)="crearTemario()">Guardar</button>
   </form>
+
+  <button type="submit" class="create-temario-button" (click)="crearTemario()">Guardar</button>
 </div>

@@ -9,11 +9,18 @@ import { Ejercicio } from '../../../interfaces/ejercicio';
 export class TemaComponent {
   @Input() tema!: { titulo: string; descripcion: string; ejercicios: Ejercicio[] };
   @Input() index!: number;
-  @Output() eliminar = new EventEmitter<number>();
+  @Output() eliminarTemaEvent = new EventEmitter<number>();
+
   mostrarEjercicio: boolean = false;
-  ejercicio!: Ejercicio;
   ejercicios!: Ejercicio[];
 
+
+  //Funcion para eliminar tema del temario
+  eliminarTema() {
+    this.eliminarTemaEvent.emit(this.index);
+  }
+
+  //Funcion que agrega un Ejercicio al Tema
   agregarEjercicio() {
     const nuevoEjercicio: Ejercicio = {
       id_tipo_ejercicio: 0,
@@ -25,16 +32,23 @@ export class TemaComponent {
       fecha_modificacion: new Date().toISOString()
     };
     this.tema.ejercicios.push(nuevoEjercicio);
-    this.ejercicio = nuevoEjercicio;
-    //this.ejercicios.push(nuevoEjercicio);
   }
 
+  //FUncion para mostrar el Ejericcio
   mostrarEjercicioComponent() {
     this.mostrarEjercicio = true;
     this.agregarEjercicio();
   }
 
-  ocultarEjercicioComponent() {
-    this.mostrarEjercicio = false;
+  //Funcion para eliminar un ejercicio del Tema
+  eliminarEjercicio(index: number) {
+    this.tema.ejercicios.splice(index, 1);
+    if (this.tema.ejercicios.length === 0) {
+      this.mostrarEjercicio = false;
+    }
   }
+
+
+
+  //No se estan utilizando
 }

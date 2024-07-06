@@ -13,17 +13,12 @@ import { Tema } from '../../../interfaces/tema.interface';
   styleUrl: './temario.component.css',
 })
 export class TemarioComponent {
-  /*
-  temas: Array<{ titulo: string, descripcion: string }> = [];
-  titulo!: string;
-  descripcion!: string;
-  usuario_creador: User = this.globals.getUser();
-  */
-  temas: Array<any> = [];
+  temas: Array<Tema> = []; //any
   titulo!: string;
   descripcion!: string;
   usuario_creador: User;
 
+  //Constructor
   constructor(
     private globals: GlobalsService,
     private temarioService: TemarioService,
@@ -32,18 +27,23 @@ export class TemarioComponent {
     this.usuario_creador = this.globals.getUser();
   }
 
-  //Funciones
   // Función para agregar un tema al temario
   agregarTema() {
     const nuevoTema: Tema = {
       titulo: '',
       descripcion: '',
       id_temario: 0, // Asignar un valor temporal, será actualizado al guardar el temario
-      id_tema_previo: this.temas.length > 0 ? this.temas[this.temas.length - 1].id! : 0, // Asignar el ID del tema previo si existe
+      id_tema_previo:
+        this.temas.length > 0 ? this.temas[this.temas.length - 1].id! : 0, // Asignar el ID del tema previo si existe
       fecha_creacion: new Date().toISOString(),
-      ejercicios: []
+      ejercicios: [],
     };
     this.temas.push(nuevoTema);
+  }
+
+  //Funcion para eliminar un Tema
+  eliminarTema(index: number) {
+    this.temas.splice(index, 1);
   }
 
   // Funcion para crear el temario con toda la data
@@ -64,6 +64,7 @@ export class TemarioComponent {
     };
     console.log(nuevoTemario);
 
+    //Envio de nuevo temario a Backend (para insertarlo a la DB)
     this.temarioService.crearTemario(nuevoTemario).subscribe(
       (response) => {
         alert('Temario creado con éxito');
