@@ -13,8 +13,6 @@ import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 
-
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -27,8 +25,6 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
     JuegoComponent,
     JuegoOpcionMultipleComponent,
     EleccionJuegoComponent,
-    
-
     
   ],
   imports: [

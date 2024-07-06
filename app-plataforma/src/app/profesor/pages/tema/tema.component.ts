@@ -13,6 +13,7 @@ export class TemaComponent {
 
   mostrarEjercicio: boolean = false;
   ejercicios!: Ejercicio[];
+  ejercicio!: Ejercicio;
 
 
   //Funcion para eliminar tema del temario

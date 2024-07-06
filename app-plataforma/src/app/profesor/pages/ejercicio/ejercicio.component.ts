@@ -5,11 +5,10 @@ import { Tema } from '../../../interfaces/tema.interface';
 @Component({
   selector: 'app-ejercicio',
   templateUrl: './ejercicio.component.html',
-  styleUrls: ['./ejercicio.component.css']
   styleUrls: ['./ejercicio.component.css'],
 })
 export class EjercicioComponent {
-  @Input() tema!: Tema;
+  @Input() ejercicio!: Ejercicio;
   @Input() index!: number;
   @Output() eliminarEjercicioEvent = new EventEmitter<void>();
 
@@ -25,16 +24,18 @@ export class EjercicioComponent {
     this.eliminarEjercicioEvent.emit();
   }
 
+  /* PROBAR ESTO */
+  //Metodo que selecciona la dificultad
+  seleccionarDificultad(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.id_dificultad = parseInt(selectElement.value);
+    this.ejercicio.id_dificultad = this.id_dificultad; //eliminar "ejercicio"
+  }
+
   //Metodo que selecciona Tipo de Ejercicio
   seleccionarTipo(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.tipoEjercicio = selectElement.value;
   }
 
-  //Metodo que selecciona la dificultad
-  seleccionarDificultad(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.id_dificultad = parseInt(selectElement.value);
-    this.ejercicio.id_dificultad = this.id_dificultad;
-  }
 }
