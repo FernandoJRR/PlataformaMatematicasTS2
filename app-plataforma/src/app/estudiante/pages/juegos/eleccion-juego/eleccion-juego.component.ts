@@ -3,6 +3,7 @@ import { Temario } from '../../../../interfaces/temario.interface';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 import { Tema } from '../../../../interfaces/tema.interface';
 import { Router } from '@angular/router';
+import { TemarioService } from '../../../services/temario.service';
 
 @Component({
   selector: 'app-eleccion-juego',
@@ -16,7 +17,9 @@ export class EleccionJuegoComponent {
   temaChecked: { [tituloTemario: string]: { [tituloTema: string]: boolean } } = {};
   modoJuego!:string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private temarioService: TemarioService
+  ) { }
 
   ngOnInit() {
     this.loadTemarios();
@@ -48,6 +51,40 @@ export class EleccionJuegoComponent {
                 "data_json": {pregunta: '¿Cuanto es 1+1?', respuesta: '2'},
                 "fecha_creacion": "2024-07-04T06:00:00.000Z",
                 "fecha_modificacion": "2024-07-04T06:00:00.000Z"
+              },
+              {
+                "id_tipo_ejercicio": 1,
+                "id_dificultad": 1,
+                "anotacion": 'Segunda pregunta',
+                "id_tema": 0,
+                "data_json": { pregunta: '¿Cuál es el río más largo del mundo?', respuesta: 'Nilo' },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
+              },
+              {
+                "id_tipo_ejercicio": 2,
+                "id_dificultad": 1,
+                "anotacion": 'Unir parejas',
+                "id_tema": 0,
+                "data_json": {
+                  "parejasIzquierda": ['Fuente', 'Estuario', 'Tributario'],
+                  "parejasDerecha": ['Toda el área drenada por un río.', 'Escurrimiento de aguas en una red hidrográfica.', 'Lugar donde comienza un río.']
+                },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
+              },
+              {
+                "id_tipo_ejercicio": 3,
+                "id_dificultad": 1,
+                "anotacion": 'Opción múltiple',
+                "id_tema": 0,
+                "data_json": {
+                  "pregunta": '¿Cuál es el océano más grande del mundo?',
+                  "opciones": ['Océano Atlántico', 'Océano Índico', 'Océano Pacífico', 'Océano Ártico'],
+                  "respuestaCorrecta": 'Océano Pacífico'
+                },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
               }
             ]
           },
@@ -87,6 +124,22 @@ export class EleccionJuegoComponent {
 
     this.temarios = jsonTemarios;
     this.initializeCheckedState();
+  }
+
+  cargarTemarios(){
+    this.temarioService.listarTemarios().subscribe({
+      next: (response: Object) => {
+        this.temarios = response as Temario[];
+        this.temarios.forEach(element => {
+        });     
+      },
+      error: (error) => {
+        console.error('Error al cargar temarios', error);
+        alert(error.error);
+      },
+    });
+    
+
   }
 
   initializeCheckedState() {

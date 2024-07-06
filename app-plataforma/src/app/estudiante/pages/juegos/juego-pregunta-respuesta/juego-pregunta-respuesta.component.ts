@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'app-juego-pregunta-respuesta',
@@ -8,11 +9,14 @@ import { Ejercicio } from '../../../../interfaces/ejercicio';
 })
 export class JuegoPreguntaRespuestaComponent {
   @Input() ejercicio!: Ejercicio;
+  @Input() esCorrecta!: boolean;
+  @Output() esCorrecta1!: boolean;
   @Output() next = new EventEmitter<{ correcta: boolean }>();
 
   pregunta: string = '';
   respuestaCorrecta: string = '';
   respuestaUsuario: string = '';
+  constructor(private juegoService: JuegoService){}
 
   ngOnInit() {
     this.actualizarEjercicio();
@@ -36,10 +40,14 @@ export class JuegoPreguntaRespuestaComponent {
     const correcta = this.respuestaUsuario.trim().toLowerCase() === this.respuestaCorrecta.trim().toLowerCase();
     if (correcta) {
       alert('¡Respuesta correcta!');
+      this.esCorrecta=true;
+      this.juegoService.incrementarCorrectas();
     } else {
       alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
+      this.esCorrecta=false;
+      this.juegoService.incrementarIncorrectas();
     }
-    this.next.emit({ correcta });
+    this.next.emit({ correcta } );
   }
 
   }
