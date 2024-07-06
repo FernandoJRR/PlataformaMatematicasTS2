@@ -79,7 +79,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
   }
 
   siguienteEjercicio(event?: { correcta: boolean }) {
-    alert("siguiente ejercicio");
+    //alert("siguiente ejercicio");
+    //Elinimar este cliclo si funciona el otro nmetodo
     if (event!) {
       alert("siguiente ejercicio2");
       alert('event')

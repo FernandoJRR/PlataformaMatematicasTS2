@@ -23,4 +23,9 @@ export class TemarioService {
     return this.http.get(`${this.baseUrl}/temario/`);
   }
 
+  obtenerTemaConEjercicios(id: number){
+    return this.http.get(`${this.baseUrl}/temario/tema/${id}`);
+
+  }
+
 }
