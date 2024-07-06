@@ -27,6 +27,13 @@ export async function getTemario(idTemario: number) {
 
 export async function getTemarios() {
   const temarios = await Temario.query();
+
+  for (const temario of temarios) {
+    const temas = await temario
+      .$relatedQuery('temas');
+    
+    temario.temas = temas;
+  }
   
   return temarios;
 }
