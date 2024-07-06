@@ -4,6 +4,7 @@ import * as usuarioService from "../services/usuario.service";
 export const getUsuario: RequestHandler = async (req, res, next) => {
   try {
     const username = req.params.username;
+    console.log(username);
     const response = await usuarioService.getUsuario(username);
     res.status(200).json(response);
   } catch (error: any) {

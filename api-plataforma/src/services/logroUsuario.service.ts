@@ -1,6 +1,7 @@
 import { LogroUsuario } from "../models/logro_usuario";
 import { Logro } from "../models/logro";
 import { Partida } from "../models/partida";
+import { Usuario} from "../models/usuario";
 
 export async function getLogrosUsuario(username: string) {
     const logrosUsuario = await LogroUsuario.query()
@@ -25,7 +26,7 @@ export async function otorgarLogros(username: string) {
     const partidasJugadasCount = parseInt(partidasJugadasResult[0].count, 10);
 
     if (partidasJugadasCount >= 10) {
-        const logro = await Logro.query().findOne({ nombre: 'Jugador Experimentado' });
+        const logro = await Logro.query().findOne({ nombre: 'Jugador principiante' });
         if (logro) {
             /*const logroUsuario = await LogroUsuario.query().insert({
                 id_logro: logro.id,
