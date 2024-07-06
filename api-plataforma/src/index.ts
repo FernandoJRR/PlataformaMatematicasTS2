@@ -4,6 +4,8 @@ import cors from "cors";
 
 import usuarioRoutes from "./routes/usuario";
 import temarioRoutes from "./routes/temario";
+import ejercicioRoutes from "./routes/ejercicio";
+import partidaRoutes from "./routes/partida";
 
 import * as Knex from "knex";
 import { Model } from "objection";
@@ -38,6 +40,8 @@ app.use(cors(corsConfig));
 
 app.use('/usuario', usuarioRoutes);
 app.use('/temario', temarioRoutes);
+app.use('/ejercicio', ejercicioRoutes);
+app.use('/partida', partidaRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at port:${port}`);
