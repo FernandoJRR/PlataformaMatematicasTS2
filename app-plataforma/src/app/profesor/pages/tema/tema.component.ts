@@ -47,8 +47,4 @@ export class TemaComponent {
       this.mostrarEjercicio = false;
     }
   }
-
-
-
-  //No se estan utilizando
 }

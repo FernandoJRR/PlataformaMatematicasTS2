@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { Tema } from '../../../../interfaces/tema.interface';
 
 @Component({
   selector: 'app-pregunta-respuesta',

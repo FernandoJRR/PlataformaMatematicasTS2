@@ -20,6 +20,8 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
     HomeComponent,
     WelcomeComponent,
     PerfilComponent,
+    EleccionJuegoComponent,    
+    PerfilComponent,
     JuegoPreguntaRespuestaComponent,
     JuegoUnirParejasComponent,
     JuegoComponent,
