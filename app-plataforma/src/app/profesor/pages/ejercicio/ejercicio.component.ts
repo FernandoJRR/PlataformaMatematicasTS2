@@ -14,6 +14,7 @@ export class EjercicioComponent {
 
   id_dificultad!: number;
   tipoEjercicio: string = '';
+  anotacion?: string;
   ejercicioJson: { pregunta: string; respuesta: string } = {
     pregunta: '',
     respuesta: '',
@@ -36,6 +37,19 @@ export class EjercicioComponent {
   seleccionarTipo(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.tipoEjercicio = selectElement.value;
-  }
 
+    switch (this.tipoEjercicio) {
+      case 'pregunta-respuesta':
+        this.ejercicio.id_tipo_ejercicio = 1;
+        break;
+
+      case 'unir-parejas':
+        this.ejercicio.id_tipo_ejercicio = 2;
+        break;
+
+      case 'opcion-multiple':
+        this.ejercicio.id_tipo_ejercicio = 3;
+        break;
+    }
+  }
 }

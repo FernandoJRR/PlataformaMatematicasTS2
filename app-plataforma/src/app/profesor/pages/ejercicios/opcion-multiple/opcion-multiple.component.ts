@@ -10,7 +10,7 @@ export class OpcionMultipleComponent {
   pregunta: string = '';
   opciones: string[] = ['', '', '', ''];
   respuestaCorrecta: number = 0;
-
+ 
   agregarOpcion(index: number, valor: string) {
     this.opciones[index] = valor;
   }

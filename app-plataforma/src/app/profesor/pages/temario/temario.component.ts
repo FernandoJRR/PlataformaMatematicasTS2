@@ -73,6 +73,7 @@ export class TemarioComponent {
       },
       (error) => {
         console.error('Error al crear el temario', error);
+        console.log(nuevoTemario);
         alert('Ocurrió un error al crear el temario.');
       }
     );

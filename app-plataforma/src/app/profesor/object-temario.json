@@ -1,0 +1,80 @@
+{
+    "titulo": "Temario",
+    "descripcion": "descrip temario",
+    "username_creador": "profesor1",
+    "fecha_creacion": "2024-07-06T19:43:09.611Z",
+    "temas": [
+        {
+            "titulo": "Factorizacion",
+            "descripcion": "descrip tema 1",
+            "id_temario": 0,
+            "id_tema_previo": 0,
+            "fecha_creacion": "2024-07-06T19:40:07.522Z",
+            "ejercicios": [
+                {
+                    "id_tipo_ejercicio": 1,
+                    "id_dificultad": 1,
+                    "anotacion": "",
+                    "id_tema": 0,
+                    "data_json": {
+                        "pregunta": "",
+                        "respuesta": ""
+                    },
+                    "fecha_creacion": "2024-07-06T19:40:08.802Z",
+                    "fecha_modificacion": "2024-07-06T19:40:08.802Z"
+                },
+                {
+                    "id_tipo_ejercicio": 2,
+                    "id_dificultad": 2,
+                    "anotacion": "",
+                    "id_tema": 0,
+                    "data_json": {
+                        "pregunta": "",
+                        "respuesta": ""
+                    },
+                    "fecha_creacion": "2024-07-06T19:41:14.994Z",
+                    "fecha_modificacion": "2024-07-06T19:41:14.994Z"
+                }
+            ]
+        },
+        {
+            "titulo": "Tema 2",
+            "descripcion": "descrip tema 2",
+            "id_temario": 0,
+            "fecha_creacion": "2024-07-06T19:41:45.167Z",
+            "ejercicios": [
+                {
+                    "id_tipo_ejercicio": 3,
+                    "id_dificultad": 3,
+                    "anotacion": "",
+                    "id_tema": 0,
+                    "data_json": {
+                        "pregunta": "",
+                        "respuesta": ""
+                    },
+                    "fecha_creacion": "2024-07-06T19:41:53.163Z",
+                    "fecha_modificacion": "2024-07-06T19:41:53.163Z"
+                },
+                {
+                    "id_tipo_ejercicio": 2,
+                    "id_dificultad": 2,
+                    "anotacion": "",
+                    "id_tema": 0,
+                    "data_json": {
+                        "pregunta": "",
+                        "respuesta": ""
+                    },
+                    "fecha_creacion": "2024-07-06T19:42:17.089Z",
+                    "fecha_modificacion": "2024-07-06T19:42:17.089Z"
+                }
+            ]
+        },
+        {
+            "titulo": "tema 3",
+            "descripcion": "descrip tema 3",
+            "id_temario": 0,
+            "fecha_creacion": "2024-07-06T19:42:34.921Z",
+            "ejercicios": []
+        }
+    ]
+}
