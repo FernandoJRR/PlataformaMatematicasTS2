@@ -23,6 +23,8 @@ export class EleccionJuegoComponent {
 
   ngOnInit() {
     this.loadTemarios();
+    //this.cargarTemarios();
+    //this.initializeCheckedState();
   }
 
   loadTemarios() {
@@ -30,6 +32,99 @@ export class EleccionJuegoComponent {
       {
         "id": 1,
         "titulo": "Temario1",
+        "descripcion": "Descripcion del temario",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-04T06:00:00.000Z",
+        "temas": [
+          {
+            "id": 1,
+            "titulo": "Tema1 - Temario1",
+            "descripcion": "Descripcion del tema",
+            "id_temario": 1,
+            "id_tema_previo": null,
+            "fecha_creacion": "2024-07-04T06:00:00.000Z",
+            "ejercicios": [
+              {
+                "id": 1,
+                "id_tipo_ejercicio": 1,
+                "id_tema": 1,
+                "id_dificultad": 1,
+                "anotacion": "Anotacion para el ejercicio",
+                "data_json": {pregunta: '¿Cuanto es 1+1?', respuesta: '2'},
+                "fecha_creacion": "2024-07-04T06:00:00.000Z",
+                "fecha_modificacion": "2024-07-04T06:00:00.000Z"
+              },
+              {
+                "id_tipo_ejercicio": 1,
+                "id_dificultad": 1,
+                "anotacion": 'Segunda pregunta',
+                "id_tema": 0,
+                "data_json": { pregunta: '¿Cuál es el río más largo del mundo?', respuesta: 'Nilo' },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
+              },
+              {
+                "id_tipo_ejercicio": 2,
+                "id_dificultad": 1,
+                "anotacion": 'Unir parejas',
+                "id_tema": 0,
+                "data_json": {
+                  "parejasIzquierda": ['Fuente', 'Estuario', 'Tributario'],
+                  "parejasDerecha": ['Toda el área drenada por un río.', 'Escurrimiento de aguas en una red hidrográfica.', 'Lugar donde comienza un río.']
+                },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
+              },
+              {
+                "id_tipo_ejercicio": 3,
+                "id_dificultad": 1,
+                "anotacion": 'Opción múltiple',
+                "id_tema": 0,
+                "data_json": {
+                  "pregunta": '¿Cuál es el océano más grande del mundo?',
+                  "opciones": ['Océano Atlántico', 'Océano Índico', 'Océano Pacífico', 'Océano Ártico'],
+                  "respuestaCorrecta": 'Océano Pacífico'
+                },
+                "fecha_creacion": new Date().toISOString(),
+                "fecha_modificacion": new Date().toISOString()
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "titulo": "Tema2 - Temario1",
+            "descripcion": "Descripcion del tema",
+            "id_temario": 1,
+            "id_tema_previo": 1,
+            "fecha_creacion": "2024-07-04T06:00:00.000Z",
+            "ejercicios": [
+              {
+                "id": 2,
+                "id_tipo_ejercicio": 1,
+                "id_tema": 2,
+                "id_dificultad": 3,
+                "anotacion": "Anotacion para el ejercicio",
+                "data_json": {pregunta: '¿Cuál es el animal que dice miu?', respuesta: 'Gato' },
+                "fecha_creacion": "2024-07-04T06:00:00.000Z",
+                "fecha_modificacion": "2024-07-04T06:00:00.000Z"
+              },
+              {
+                "id": 3,
+                "id_tipo_ejercicio": 1,
+                "id_tema": 2,
+                "id_dificultad": 3,
+                "anotacion": "Anotacion para el ejercicio",
+                "data_json": {pregunta: '¿Cuál es el animal que dice guau?', respuesta: 'perro' },
+                "fecha_creacion": "2024-07-04T06:00:00.000Z",
+                "fecha_modificacion": "2024-07-04T06:00:00.000Z"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "titulo": "Temario2",
         "descripcion": "Descripcion del temario",
         "username_creador": "profesor1",
         "fecha_creacion": "2024-07-04T06:00:00.000Z",
@@ -131,6 +226,7 @@ export class EleccionJuegoComponent {
       next: (response: Object) => {
         this.temarios = response as Temario[];
         this.temarios.forEach(element => {
+          console.log(this.temarios)
         });     
       },
       error: (error) => {
@@ -138,6 +234,7 @@ export class EleccionJuegoComponent {
         alert(error.error);
       },
     });
+    //this.initializeCheckedState();
     
 
   }
@@ -183,7 +280,10 @@ export class EleccionJuegoComponent {
     const checkedTemas = this.getCheckedTemas();
     const ejercicios: Ejercicio[] = [];
     checkedTemas.forEach(tema => {
-      ejercicios.push(...tema.ejercicios);
+      if (tema.ejercicios) {
+        ejercicios.push(...tema.ejercicios);    
+      }
+      
     });
     return ejercicios;
   }
