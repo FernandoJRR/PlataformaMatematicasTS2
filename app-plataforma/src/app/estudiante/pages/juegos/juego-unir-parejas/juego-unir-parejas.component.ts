@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'app-juego-unir-parejas',
@@ -19,6 +20,7 @@ export class JuegoUnirParejasComponent implements OnInit {
   mappingDerecha: number[] = [];
   parejasIntentadas: Set<number> = new Set(); // Para rastrear parejas intentadas
 
+  constructor(private juegoService: JuegoService){}
   ngOnInit() {
     if (this.ejercicio.data_json && this.ejercicio.data_json.parejasIzquierda && this.ejercicio.data_json.parejasDerecha) {
       this.parejasIzquierda = [...this.ejercicio.data_json.parejasIzquierda];
@@ -68,8 +70,10 @@ export class JuegoUnirParejasComponent implements OnInit {
 
       if (correcta) {
         alert('¡Pareja correcta!');
+        this.juegoService.incrementarUnirParejas(this.parejasDerecha.length);
       } else {
         alert('Pareja incorrecta. Inténtelo de nuevo.');
+        this.juegoService.incrementarUnirParejasIncorrectas(this.parejasDerecha.length);
       }
 
       // Marcar esta pareja como intentada

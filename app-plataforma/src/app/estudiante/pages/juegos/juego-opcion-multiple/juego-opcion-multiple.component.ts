@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'app-juego-opcion-multiple',
@@ -16,7 +17,7 @@ export class JuegoOpcionMultipleComponent {
   respuestaCorrecta: string = '';
   respuestaSeleccionada: string | null = null;
   colores: string[] = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50'];
-
+  constructor(private juegoService:JuegoService){}
   ngOnInit() {
     if (this.ejercicio.data_json) {
       this.pregunta = this.ejercicio.data_json.pregunta;
@@ -42,8 +43,10 @@ export class JuegoOpcionMultipleComponent {
     const correcta = this.respuestaSeleccionada === this.respuestaCorrecta;
     if (correcta) {
       alert('¡Respuesta correcta!');
+      this.juegoService.incrementarCorrectas();
     } else {
       alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
+      this.juegoService.incrementarIncorrectas();
     }
     this.respuestaSeleccionada = null;
     console.log('Evento emitido desde JuegoOpcionMultipleComponent:', { correcta }); // Añadir traza

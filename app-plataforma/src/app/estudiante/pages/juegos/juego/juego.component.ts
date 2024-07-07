@@ -1,5 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
+import { ActivatedRoute } from '@angular/router';
+import { JuegoService } from '../juego.service';
+import { GlobalsService } from '../../../../globals/globals.service';
+import { EjercicioPartidax } from '../../../../interfaces/ejercicio_partida.interface';
+
 
 @Component({
   selector: 'app-juego',
@@ -14,23 +19,42 @@ export class JuegoComponent implements OnInit, OnDestroy {
   juegoIniciado: boolean = false;
   modoContrarreloj: boolean = false;
   modoSeleccionado: string = 'normal';
-  correctas!: number ;
-  incorrectas!: number ;
+  modo:number=1;
+  correctas: number= 0;
+  incorrectas: number= 0 ;
   puntaje: number = 0;
+  esCorrecta:boolean=false;
+
+  receivedEjercicios!: Ejercicio[];
+
+  constructor(private route: ActivatedRoute, 
+              private juegoService: JuegoService,
+            private globals: GlobalsService) { }
 
   ngOnInit() {
     // Usar datos simulados si no se proporcionan ejercicios
+    this.route.params.subscribe(params => {
+      if (params['data'] && params['modo'] ) {
+        this.receivedEjercicios = JSON.parse(params['data']) as Ejercicio[];
+        this.modoSeleccionado = params['modo'] as string;
+      }
+      
+    });
     if (!this.ejercicios || this.ejercicios.length === 0) {
-      this.ejercicios = this.generarDatosSimulados();
+      //this.ejercicios = this.generarDatosSimulados();
+      this.ejercicios=this.receivedEjercicios
     }
     this.calcularTiempoTotal();
+    this.iniciarJuego()
   }
 
   iniciarJuego() {
     this.juegoIniciado = true;
+    this.juegoService.setTotalEjercicios(this.ejercicios.length);
 
     if (this.modoSeleccionado === 'contrarreloj') {
       this.modoContrarreloj = true;
+      this.modo=1;
       this.iniciarTemporizador();
     } else {
       this.modoContrarreloj = false;
@@ -55,16 +79,22 @@ export class JuegoComponent implements OnInit, OnDestroy {
   }
 
   siguienteEjercicio(event?: { correcta: boolean }) {
-    if (event) {
+    //alert("siguiente ejercicio");
+    //Elinimar este cliclo si funciona el otro nmetodo
+    if (event!) {
+      alert("siguiente ejercicio2");
       alert('event')
       if (event.correcta) {
         this.correctas++;
         alert("sumando correcta");
+        console.log("sumando correcta");
       } else {
         this.incorrectas++;
         alert("sumando incorrecta");
+        alert("sumando incorrecta");
       }
     }
+
     if (this.currentEjercicioIndex < this.ejercicios.length - 1) {
       this.currentEjercicioIndex++;
     } else {
@@ -152,8 +182,30 @@ export class JuegoComponent implements OnInit, OnDestroy {
     const totalPreguntas = this.ejercicios.length;
     this.puntaje = Math.round((this.correctas / totalPreguntas) * 100);
     alert(`Resultados:
-      Respuestas correctas: ${this.correctas}
-      Respuestas incorrectas: ${this.incorrectas}
-      Puntaje: ${this.puntaje}/100`);
-  }
+      Respuestas correctas: ${this.juegoService.getCorrectas()}
+      Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
+      Puntaje: ${this.juegoService.calcularPuntaje(this.juegoService.getCorrectas()+this.juegoService.getInCorrectas())}`);
+      
+      this.juegoService.resetearEstadisticas();
+      this.guardarPartida();
+    }
+
+
+    guardarPartida(){
+      const partida = {
+        puntaje: this.puntaje,
+        username_jugador: this.globals.getUser().username,
+        id_modo_juego: this.modo
+      }
+      //llamar a servico de partidas, y el metodo guardar partida (aun falta xd)
+    }
+
+    guardarEjercicioPartida(ejercicio: Ejercicio){
+      const EjercicioPartidax = {
+        id_ejercicio: ejercicio.id,
+        id_partida: 0,
+        resuelto_satisfactoriamente: true
+      }
+    }
+  
 }
