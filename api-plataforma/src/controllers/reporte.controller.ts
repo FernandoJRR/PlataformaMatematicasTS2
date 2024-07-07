@@ -11,3 +11,11 @@ export const getPartida: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const getPartidaTema: RequestHandler = async(req,res,next) =>{
+   try{
+    const response = await reporteService.getReportePartidaPorTema();
+    res.status(200).json(response);
+   }catch(error: any){
+    res.status(400).json(error.message);
+   }
+};
