@@ -10,27 +10,17 @@ import { Tema } from '../../../../interfaces/tema.interface';
 export class PreguntaRespuestaComponent {
   @Input() tema!: Tema;
   @Input() index!: number;
+  @Input() newEj!: Ejercicio;
 
-  newEj!: Ejercicio;
   pregunta!: string;
   respuesta!: string;
   json = { pregunta: '', respuesta: '' };
 
+  //Constructor
+  constructor() {}
+
   //Agregar el Ejercicio Pregunta-Respuest a la lista de Ejercicios del Tema
   ngOnInit() {
     this.tema.ejercicios.push(this.newEj); //ERROR EN CONSOLA DEL BROWSER
-  }
-
-  //Constructor
-  constructor() {
-    this.newEj = {
-      id_tipo_ejercicio: 1,
-      id_tema: 0,
-      id_dificultad: 1,
-      anotacion: 'nuevo ejercicio',
-      data_json: this.json,
-      fecha_creacion: new Date().toISOString(),
-      fecha_modificacion: new Date().toISOString(),
-    };
   }
 }

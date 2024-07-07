@@ -1,73 +1,249 @@
-{
-    "titulo": "Temario",
-    "descripcion": "descrip",
-    "username_creador": "profesor1",
-    "fecha_creacion": "2024-07-06T22:13:24.516Z",
-    "temas": [
-        {
-            "titulo": "tema 1",
-            "descripcion": "descrip",
-            "id_temario": 0,
-            "id_tema_previo": 0,
-            "fecha_creacion": "2024-07-06T22:09:11.676Z",
-            "ejercicios": [
-                {
-                    "id_tipo_ejercicio": 1,
-                    "id_dificultad": 1,
-                    "anotacion": "",
-                    "id_tema": 0,
-                    "data_json": {
-                        "pregunta": "",
-                        "respuesta": ""
+[
+    {
+        "titulo": "Temario",
+        "descripcion": "descrip",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-06T22:13:24.516Z",
+        "temas": [
+            {
+                "titulo": "tema 1",
+                "descripcion": "descrip",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-06T22:09:11.676Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 1,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-06T22:09:19.694Z",
+                        "fecha_modificacion": "2024-07-06T22:09:19.694Z"
                     },
-                    "fecha_creacion": "2024-07-06T22:09:19.694Z",
-                    "fecha_modificacion": "2024-07-06T22:09:19.694Z"
-                },
-                {
-                    "id_tipo_ejercicio": 2,
-                    "id_dificultad": 2,
-                    "anotacion": "",
-                    "id_tema": 0,
-                    "data_json": {
-                        "pregunta": "",
-                        "respuesta": ""
+                    {
+                        "id_tipo_ejercicio": 2,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-06T22:11:10.485Z",
+                        "fecha_modificacion": "2024-07-06T22:11:10.485Z"
+                    }
+                ]
+            },
+            {
+                "titulo": "tema 2",
+                "descripcion": "DESCRIP",
+                "id_temario": 0,
+                "fecha_creacion": "2024-07-06T22:12:05.702Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 3,
+                        "id_dificultad": 3,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-06T22:12:12.377Z",
+                        "fecha_modificacion": "2024-07-06T22:12:12.377Z"
                     },
-                    "fecha_creacion": "2024-07-06T22:11:10.485Z",
-                    "fecha_modificacion": "2024-07-06T22:11:10.485Z"
-                }
-            ]
-        },
-        {
-            "titulo": "tema 2",
-            "descripcion": "DESCRIP",
-            "id_temario": 0,
-            "fecha_creacion": "2024-07-06T22:12:05.702Z",
-            "ejercicios": [
-                {
-                    "id_tipo_ejercicio": 3,
-                    "id_dificultad": 3,
-                    "anotacion": "",
-                    "id_tema": 0,
-                    "data_json": {
-                        "pregunta": "",
-                        "respuesta": ""
-                    },
-                    "fecha_creacion": "2024-07-06T22:12:12.377Z",
-                    "fecha_modificacion": "2024-07-06T22:12:12.377Z"
-                },
-                {
-                    "id_tipo_ejercicio": 1,
-                    "id_dificultad": 2,
-                    "anotacion": "",
-                    "id_tema": 0,
-                    "data_json": {
-                        "pregunta": "",
-                        "respuesta": ""
-                    },
-                    "fecha_creacion": "2024-07-06T22:12:55.129Z",
-                    "fecha_modificacion": "2024-07-06T22:12:55.129Z"
-                }
-            ]
-        }
-    ]
-}
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-06T22:12:55.129Z",
+                        "fecha_modificacion": "2024-07-06T22:12:55.129Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "Temario",
+        "descripcion": "sdres",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T01:44:41.984Z",
+        "temas": [
+            {
+                "titulo": "facto",
+                "descripcion": "aaa",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T01:44:19.960Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T01:44:24.952Z",
+                        "fecha_modificacion": "2024-07-07T01:44:24.952Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "Temario XA",
+        "descripcion": "sdfsa",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T01:52:49.505Z",
+        "temas": [
+            {
+                "titulo": "theme1",
+                "descripcion": "sdfgtrewq",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T01:52:16.202Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 3,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T01:52:29.640Z",
+                        "fecha_modificacion": "2024-07-07T01:52:29.640Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "a",
+        "descripcion": "dsa",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T02:01:24.474Z",
+        "temas": [
+            {
+                "titulo": "facto",
+                "descripcion": "sqsdfdewq",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T02:00:29.275Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T02:00:35.441Z",
+                        "fecha_modificacion": "2024-07-07T02:00:35.441Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "a",
+        "descripcion": "aaa",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T02:05:11.069Z",
+        "temas": [
+            {
+                "titulo": "b",
+                "descripcion": "bbb",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T02:04:31.772Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T02:04:35.694Z",
+                        "fecha_modificacion": "2024-07-07T02:04:35.694Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "a",
+        "descripcion": "sdfgbhgfd",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T02:27:22.262Z",
+        "temas": [
+            {
+                "titulo": "asdf",
+                "descripcion": "sdfvbfds",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T02:27:07.458Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 1,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T02:27:11.368Z",
+                        "fecha_modificacion": "2024-07-07T02:27:11.368Z"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "titulo": "a",
+        "descripcion": "aaaa",
+        "username_creador": "profesor1",
+        "fecha_creacion": "2024-07-07T03:17:26.844Z",
+        "temas": [
+            {
+                "titulo": "tema 2",
+                "descripcion": "asdfvv",
+                "id_temario": 0,
+                "id_tema_previo": 0,
+                "fecha_creacion": "2024-07-07T03:15:48.938Z",
+                "ejercicios": [
+                    {
+                        "id_tipo_ejercicio": 1,
+                        "id_dificultad": 2,
+                        "anotacion": "",
+                        "id_tema": 0,
+                        "data_json": {
+                            "pregunta": "",
+                            "respuesta": ""
+                        },
+                        "fecha_creacion": "2024-07-07T03:15:54.872Z",
+                        "fecha_modificacion": "2024-07-07T03:15:54.872Z"
+                    }
+                ]
+            }
+        ]
+    }
+]

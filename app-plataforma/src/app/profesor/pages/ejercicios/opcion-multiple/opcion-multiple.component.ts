@@ -15,7 +15,7 @@ export class OpcionMultipleComponent {
 
   //Funcion que agrega el ejercicioOpcion-Multiple a la lista de Ejercicios del Tema
   ngOnInit() {
-    this.tema.ejercicios.push(this.newEj);
+    this.tema.ejercicios.push(this.newEj); //ERROR EN CONSOLA DEL BROWSER
   }
 
   //Constructor

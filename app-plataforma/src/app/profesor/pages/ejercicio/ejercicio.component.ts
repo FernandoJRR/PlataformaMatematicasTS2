@@ -9,17 +9,25 @@ import { Tema } from '../../../interfaces/tema.interface';
 })
 export class EjercicioComponent {
   @Input() tema!: Tema;
-  @Input() ejercicio!: Ejercicio;
   @Input() index!: number;
   @Output() eliminarEjercicioEvent = new EventEmitter<void>();
 
-  id_dificultad!: number;
   tipoEjercicio: string = '';
-  anotacion?: string;
-  ejercicioJson: { pregunta: string; respuesta: string } = {
-    pregunta: '',
-    respuesta: '',
-  };
+  newEj!: Ejercicio;
+
+
+  //Constructor
+  constructor(){
+    this.newEj = {
+      id_tipo_ejercicio: 1,
+      id_tema: 0,
+      id_dificultad: 1,
+      anotacion: 'nuevo ejercicio',
+      data_json: {},
+      fecha_creacion: new Date().toISOString(),
+      fecha_modificacion: new Date().toISOString(),
+    };
+  }
 
   //Funcion que agregar
   ngOnInit() {
@@ -34,8 +42,9 @@ export class EjercicioComponent {
   //Metodo que selecciona la dificultad
   seleccionarDificultad(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.id_dificultad = parseInt(selectElement.value);
-    this.ejercicio.id_dificultad = this.id_dificultad; //eliminar "ejercicio"
+    this.tema.ejercicios[this.index].id_dificultad = parseInt(
+      selectElement.value
+    );
   }
 
   //Metodo que selecciona Tipo de Ejercicio
@@ -45,15 +54,15 @@ export class EjercicioComponent {
 
     switch (this.tipoEjercicio) {
       case 'pregunta-respuesta':
-        this.ejercicio.id_tipo_ejercicio = 1;
+        this.tema.ejercicios[this.index].id_tipo_ejercicio = 1;
         break;
 
       case 'unir-parejas':
-        this.ejercicio.id_tipo_ejercicio = 2;
+        this.tema.ejercicios[this.index].id_tipo_ejercicio = 2;
         break;
 
       case 'opcion-multiple':
-        this.ejercicio.id_tipo_ejercicio = 3;
+        this.tema.ejercicios[this.index].id_tipo_ejercicio = 3;
         break;
     }
   }

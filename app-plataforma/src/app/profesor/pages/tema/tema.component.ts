@@ -1,38 +1,35 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ejercicio } from '../../../interfaces/ejercicio';
+import { Tema } from '../../../interfaces/tema.interface';
+import { Temario } from '../../../interfaces/temario.interface';
 
 @Component({
   selector: 'app-tema',
   templateUrl: './tema.component.html',
-  styleUrls: ['./tema.component.css']
+  styleUrls: ['./tema.component.css'],
 })
 export class TemaComponent {
-  @Input() tema!: { titulo: string; descripcion: string; ejercicios: Ejercicio[] };
+  @Input() tema!: Temario; //TEMARIO no seas mula
   @Input() index!: number;
   @Output() eliminarTemaEvent = new EventEmitter<number>();
 
   mostrarEjercicio: boolean = false;
-  ejercicios!: Ejercicio[];
   ejercicio!: Ejercicio;
+  titulo!: string;
+  descripcion!: string;
+  newtema!: Tema;
 
+  //Constructor
+  constructor() {}
+
+  //
+  ngOnInit() {
+    this.newtema = this.tema.temas[this.index];
+  }
 
   //Funcion para eliminar tema del temario
   eliminarTema() {
     this.eliminarTemaEvent.emit(this.index);
-  }
-
-  //Funcion que agrega un Ejercicio al Tema
-  agregarEjercicio() {
-    const nuevoEjercicio: Ejercicio = {
-      id_tipo_ejercicio: 0,
-      id_dificultad: 1,
-      anotacion: '',
-      id_tema: 0,
-      data_json: { pregunta: '', respuesta: '' },
-      fecha_creacion: new Date().toISOString(),
-      fecha_modificacion: new Date().toISOString()
-    };
-    this.tema.ejercicios.push(nuevoEjercicio);
   }
 
   //FUncion para mostrar el Ejericcio
@@ -41,10 +38,17 @@ export class TemaComponent {
     this.agregarEjercicio();
   }
 
+  //Funcion que agrega un Ejercicio al Tema
+  agregarEjercicio() {
+    this.newtema.titulo = this.titulo;
+    this.newtema.descripcion = this.descripcion;
+    this.newtema.ejercicios.push(this.ejercicio);
+  }
+
   //Funcion para eliminar un ejercicio del Tema
   eliminarEjercicio(index: number) {
-    this.tema.ejercicios.splice(index, 1);
-    if (this.tema.ejercicios.length === 0) {
+    this.tema.temas[index].ejercicios.splice(index, 1);
+    if (this.tema.temas[index].ejercicios.length === 0) {
       this.mostrarEjercicio = false;
     }
   }

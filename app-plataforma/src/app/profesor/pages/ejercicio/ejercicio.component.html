@@ -7,7 +7,7 @@
   <form class="form">
     <div class="select-group">
       <label for="dificultad-ejercicio">Dificultad:</label>
-      <select id="dificultad-ejercicio" [(ngModel)]="id_dificultad" name="id-dificultad"
+      <select id="dificultad-ejercicio" [(ngModel)]="newEj.id_dificultad" name="id-dificultad"
         (change)="seleccionarDificultad($event)">
         <option disabled selected>Seleccione la Dificultad</option>
         <option value="1">Facil</option>
@@ -28,7 +28,7 @@
 
     <div class="select-group">
       <label for="anotacion">Anotación:</label>
-      <input type="text" [(ngModel)]="anotacion" id="anotacion" placeholder="Anotación (opcional)">
+      <input type="text" [(ngModel)]="newEj.anotacion" id="anotacion" placeholder="Anotación (opcional)">
     </div>
   </form>
 
@@ -38,7 +38,7 @@
   </div>
 
   <div class="ejercicio-card" *ngIf="tipoEjercicio === 'pregunta-respuesta'">
-    <app-pregunta-respuesta [tema]="tema" [index]="index"></app-pregunta-respuesta>
+    <app-pregunta-respuesta [tema]="tema" [index]="index" [newEj]="newEj"></app-pregunta-respuesta>
   </div>
 
   <div class="ejercicio-card" *ngIf="tipoEjercicio === 'unir-parejas'">

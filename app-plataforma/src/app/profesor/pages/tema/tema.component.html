@@ -18,9 +18,9 @@
         required></textarea>
     </div>
 
-    <div class="ejercicios-group" *ngIf="tema.ejercicios.length > 0">
+    <div class="ejercicios-group" *ngIf="newtema.ejercicios.length > 0">
       <label for="new-ejercicio" class="ejercicios-label">Ejercicios:</label>
-      <app-ejercicio *ngFor="let ejercicio of tema.ejercicios; let i = index" [ejercicio]="ejercicio" [index]="i"
+      <app-ejercicio *ngFor="let ejercicio of newtema.ejercicios; let i = index" [tema]="newtema" [index]="index"
         (eliminarEjercicioEvent)="eliminarEjercicio(i)"></app-ejercicio>
       <br>
     </div>

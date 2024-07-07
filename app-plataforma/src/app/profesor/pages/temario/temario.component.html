@@ -16,7 +16,7 @@
 
     <div class="temas-group">
       <label for="new-tema" class="temas-label">Temas:</label>
-      <app-tema *ngFor="let tema of temas; let i = index" [tema]="tema" [index]="i"
+      <app-tema *ngFor="let tema of newTemario.temas; let i = index" [tema]="newTemario" [index]="i"
         (eliminarTemaEvent)="eliminarTema(i)"></app-tema>
       <br>
     </div>
