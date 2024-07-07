@@ -3,6 +3,7 @@ import { Model, RelationMappings, RelationMappingsThunk } from "objection";
 export class Partida extends Model {
     static tableName = 'partida';
 
+    id?: number;
     id_tema?: number;
     puntaje?: number;
     username_jugador?: string;
