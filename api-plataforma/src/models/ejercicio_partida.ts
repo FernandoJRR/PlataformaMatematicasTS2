@@ -8,6 +8,11 @@ export class EjercicioPartida extends Model {
     id_ejercicio?: number;
     id_partida?: number;
     resuelto_satisfactoriamente?: boolean;
+
+    static get idColumn() {
+      return ['id_ejercicio', 'id_partida'];
+    }
+
     static get relationMappings(): RelationMappings | RelationMappingsThunk {
       return {
           ejercicio: {
