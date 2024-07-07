@@ -69,21 +69,6 @@ export async function getReportePartidaPorTema() {
     }
 }
 
-// Función auxiliar para agrupar partidas por tema
-function groupPartidasPorTema(partidas: Partida[]) {
-    const partidasPorTema: { [idTema: number]: Partida[] } = {};
-
-    partidas.forEach(partida => {
-        const idTema = partida.id_tema!;
-        if (!partidasPorTema[idTema]) {
-            partidasPorTema[idTema] = [];
-        }
-        partidasPorTema[idTema].push(partida);
-    });
-
-    return partidasPorTema;
-}
-
 // Función auxiliar para calcular el promedio de puntaje por tema
 function calcularPromedioPuntajePorTema(partidasPorTema: { [idTema: number]: Partida[] }) {
     const reportePorTema: { [idTema: number]: { totalPartidas: number; puntajePromedio: number } } = {};
