@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import usuarioRoutes from "./routes/usuario";
+import partidaRoutes from "./routes/partida";
 import temarioRoutes from "./routes/temario";
 
 import * as Knex from "knex";
@@ -12,7 +13,7 @@ import bodyParser from "body-parser";
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json({limit: '50mb'}))
 
@@ -38,6 +39,8 @@ app.use(cors(corsConfig));
 
 app.use('/usuario', usuarioRoutes);
 app.use('/temario', temarioRoutes);
+app.use('/partida', partidaRoutes);
+
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at port:${port}`);

@@ -14,7 +14,7 @@ export const getPartida: RequestHandler = async (req, res, next) => {
 export const createPartida: RequestHandler = async (req, res, next) => {
   try {
     const input = req.body;
-    const response = await partidaService.createPartida(input);
+    const response = await partidaService.createPartidaWithEjercicios(input);
     res.status(200).json(response);
   } catch (error: any) {
     res.status(400).json(error.message);

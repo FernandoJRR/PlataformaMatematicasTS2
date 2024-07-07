@@ -1,6 +1,6 @@
 import { Partida } from "../models/partida";
 import { Tema } from "../models/tema";
-import { Usuario } from "../models/usuario";
+import { EjercicioPartida } from "../models/ejercicio_partida";
 import { ModoJuego } from "../models/modo_juego";
 
 export async function getPartida(idPartida: number) {
@@ -9,26 +9,44 @@ export async function getPartida(idPartida: number) {
   if (!partida) {
     throw new Error("La partida no existe");
   }
-
-  const tema = await partida.$relatedQuery('tema');
-  const usuario = await partida.$relatedQuery('usuario');
-  const modoJuego = await partida.$relatedQuery('modo_juego');
-
-  return { ...partida, tema, usuario, modoJuego };
+  return partida;
 }
 
-export async function createPartida(input: any) {
+export async function createPartidaWithEjercicios(input: any) {
   const trx = await Partida.startTransaction();
-
+  
   try {
-    const partida = await Partida.query(trx).insert(input);
+    // Insertar la partida
+    const partida = await Partida.query(trx).insert({
+      id_tema: input.id_tema,
+      username_jugador: input.username_jugador,
+      id_modo_juego: input.id_modoJuego,
+    });
+
+    // Obtener el ID de la partida recién insertada
+    const idPartida = partida.id;
+
+    // Iterar sobre cada ejercicio y realizar la inserción individual
+    console.log("aqui si entra?");
+     const ejercico =  await EjercicioPartida.query(trx).insert({
+        id_partida: 4,
+        id_ejercicio: 1,
+        resuelto_satisfactoriamente: true
+      });
+    console.log("nop");
+
+    // Commit de la transacción
     await trx.commit();
+
     return partida;
   } catch (error) {
+    // Rollback en caso de error
     await trx.rollback();
     throw error;
   }
 }
+
+
 
 export async function addTemaToPartida(idPartida: number, inputTema: any) {
   const partida = await Partida.query().findById(idPartida);
