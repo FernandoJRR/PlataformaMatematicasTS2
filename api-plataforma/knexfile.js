@@ -5,12 +5,11 @@ dotenv.config();
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-  client: process.env.DB_CONNECTION || 'pg',
+  client: process.env.DB_CONNECTION,
   connection: {
-    host: process.env.DB_HOST || 'localhost',
-    database: process.env.DB_DATABASE || 'plataforma_matematicas',
-    user: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || 'postgres'
+    database: process.env.DB_DATABASE,
+    user:     process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD
   },
   migrations: {
     directory: './database/migrations'
