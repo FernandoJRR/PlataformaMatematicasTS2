@@ -1,0 +1,8 @@
+<div class="pregunta-respuesta-container" *ngIf="ejercicio">
+  <h3>{{ pregunta }}</h3>
+  <div class="input-group">
+    <label for="respuesta">Respuesta</label>
+    <input type="text" [(ngModel)]="respuestaUsuario" id="respuesta" placeholder="Escribe tu respuesta" required>
+  </div>
+  <button (click)="verificarRespuesta()">Verificar</button>
+</div>

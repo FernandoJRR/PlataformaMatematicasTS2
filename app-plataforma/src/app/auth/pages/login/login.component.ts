@@ -42,14 +42,14 @@ export class LoginComponent {
         console.log(this.user.id_rol);
         if (this.user.id_rol == 1) {
           this.router.navigate(['/estudiante']);
-          localStorage.setItem('tipoUser', '/estudiante');
+          localStorage.setItem('tipoUser', 'Estudiante');
         } else if (this.user.id_rol == 3){
           this.router.navigate(['/admin']);
-          localStorage.setItem('tipoUser', '/admin');
+          localStorage.setItem('tipoUser', 'Administrador');
 
         }else {
-          this.router.navigate(['/productos']);
-          localStorage.setItem('tipoUser', '/empleado');
+          this.router.navigate(['/profe']);
+          localStorage.setItem('tipoUser', 'Profesor');
         }
       },
       error: (error) => {

@@ -14,12 +14,16 @@ import {MatFormFieldModule } from "@angular/material/form-field";
 import {MatInputModule } from "@angular/material/input";  
 import {MatSelectModule} from '@angular/material/select';
 import { MatLineModule } from '@angular/material/core';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -35,7 +39,9 @@ import { MatLineModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatGridListModule,
     MatSelectModule,
-    MatLineModule
+    MatLineModule,
+    MatChipsModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

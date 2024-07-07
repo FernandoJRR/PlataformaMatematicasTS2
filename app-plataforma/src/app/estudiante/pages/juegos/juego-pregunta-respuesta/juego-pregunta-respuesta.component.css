@@ -1,0 +1,37 @@
+.pregunta-respuesta-container {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #ffffff;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #6200ea;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #3700b3;
+  }
+  
