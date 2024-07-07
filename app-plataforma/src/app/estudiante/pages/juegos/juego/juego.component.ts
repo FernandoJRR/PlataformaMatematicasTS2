@@ -1,9 +1,10 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JuegoService } from '../juego.service';
 import { GlobalsService } from '../../../../globals/globals.service';
 import { EjercicioPartidax } from '../../../../interfaces/ejercicio_partida.interface';
+import { Partida } from '../../../../interfaces/partida.interface';
 
 
 @Component({
@@ -24,12 +25,14 @@ export class JuegoComponent implements OnInit, OnDestroy {
   incorrectas: number= 0 ;
   puntaje: number = 0;
   esCorrecta:boolean=false;
+  partida!: Partida;
 
   receivedEjercicios!: Ejercicio[];
 
-  constructor(private route: ActivatedRoute, 
-              private juegoService: JuegoService,
-            private globals: GlobalsService) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private juegoService: JuegoService,
+    private globals: GlobalsService) { }
 
   ngOnInit() {
     // Usar datos simulados si no se proporcionan ejercicios
@@ -79,21 +82,20 @@ export class JuegoComponent implements OnInit, OnDestroy {
   }
 
   siguienteEjercicio(event?: { correcta: boolean }) {
-    //alert("siguiente ejercicio");
-    //Elinimar este cliclo si funciona el otro nmetodo
-    if (event!) {
-      alert("siguiente ejercicio2");
-      alert('event')
-      if (event.correcta) {
-        this.correctas++;
-        alert("sumando correcta");
-        console.log("sumando correcta");
-      } else {
-        this.incorrectas++;
-        alert("sumando incorrecta");
-        alert("sumando incorrecta");
+
+    //en este metodo podemos saber si la pregunta es correcta o incorrecta
+    console.log('Modeo seleccionado'+this.modoSeleccionado)
+    if (this.modoSeleccionado=='invencible') {
+      console.log('Modeo seleccionado1'+this.modoSeleccionado)
+      if (this.juegoService.getCorrecta()!) {
+        alert('¡Modo invensible termindado !');
+        this.detenerTemporizador();
+        this.mostrarResultados();
+        
       }
+      
     }
+    
 
     if (this.currentEjercicioIndex < this.ejercicios.length - 1) {
       this.currentEjercicioIndex++;
@@ -117,6 +119,11 @@ export class JuegoComponent implements OnInit, OnDestroy {
       } else {
         this.detenerTemporizador();
         alert('¡Se acabó el tiempo!');
+        alert(`Resultados:
+          Total de preguntas: ${this.ejercicios.length}
+          Respuestas correctas: ${this.juegoService.getCorrectas()}
+          Solo contesto: ${this.ejercicios.length-this.juegoService.getCorrectas()}
+          Puntaje: ${this.juegoService.calcularPuntaje()}`);
         this.mostrarResultados();
       }
     }, 1000);
@@ -184,19 +191,36 @@ export class JuegoComponent implements OnInit, OnDestroy {
     alert(`Resultados:
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
-      Puntaje: ${this.juegoService.calcularPuntaje(this.juegoService.getCorrectas()+this.juegoService.getInCorrectas())}`);
+      Puntaje: ${this.juegoService.calcularPuntaje()}`);
+      this.puntaje=this.juegoService.calcularPuntaje();
       
-      this.juegoService.resetearEstadisticas();
+      this.router.navigate(['/estudiante/resultados'], {
+        state: {
+          modoJuego: this.modoSeleccionado,
+          correctas: this.correctas,
+          incorrectas: this.incorrectas,
+          puntaje: this.puntaje,
+          ejercicios: this.ejercicios
+        }
+      });
+      console.log(this.modoSeleccionado,)
+      console.log('Punteje que debe mandarse:'+this.puntaje)
+      console.log(this.ejercicios)
       this.guardarPartida();
+      
+      
     }
 
 
     guardarPartida(){
-      const partida = {
-        puntaje: this.puntaje,
+      this.partida = {
         username_jugador: this.globals.getUser().username,
-        id_modo_juego: this.modo
+        id_modo_juego: this.modo,
+        puntaje: this.puntaje,
+        ejercicio_partida:this.juegoService.getEjerciciosPartida()       
       }
+      this.juegoService.resetearEstadisticas();
+      console.log(this.partida);
       //llamar a servico de partidas, y el metodo guardar partida (aun falta xd)
     }
 

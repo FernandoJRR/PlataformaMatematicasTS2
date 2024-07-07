@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { EjercicioPartidax } from '../../../interfaces/ejercicio_partida.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,10 @@ export class JuegoService {
   incorrectas: number = 0;
   puntaje: number = 0;
   totalEjercicios: number=0;
+  ejerciciosResueltos: EjercicioPartidax[] = [];
+  ejercicioR!:EjercicioPartidax;
+  actualCorrecta!: boolean;
+
 
   setTotalEjercicios(total: number){
     this.totalEjercicios = total;
@@ -20,24 +26,49 @@ export class JuegoService {
   getValorXejercicio(){
     return 100/this.totalEjercicios;
   }
+  //Eliminar los siguientes dos metodos posiblemente
+  
 
-  incrementarUnirParejas(cantParejas:number){
-    const valPareja: number=this.getValorXejercicio()/cantParejas;
-    //this.puntaje+=valPareja/100;
-    this.correctas+=valPareja/100;
-  }
-  incrementarUnirParejasIncorrectas(cantParejas:number){
-    const valPareja: number=this.getValorXejercicio()/cantParejas;
-    //this.puntaje+=valPareja/100;
-    this.incorrectas+=valPareja/100;
+  unirParejasPuntaje(id: number,correcta: boolean, puntaje: number){
+    if(correcta){
+      this.correctas++; 
+      this.actualCorrecta=true;
+    }else{
+      this.incorrectas++;
+      this.actualCorrecta=false;
+    }
+    this.puntaje=this.puntaje+puntaje;
+    this.agregarEjercicioPartida(id, correcta);
   }
 
-  incrementarCorrectas() {
+  incrementarCorrectas(id_ejercicio: number) {
     this.correctas++;
+    this.puntaje+=this.getValorXejercicio();
+    this.actualCorrecta=true;
+    this.agregarEjercicioPartida(id_ejercicio, true);
+    
   }
 
-  incrementarIncorrectas() {
+  incrementarIncorrectas(id_ejercicio: number) {
     this.incorrectas++;
+    this.actualCorrecta=false;
+    this.agregarEjercicioPartida(id_ejercicio, false);
+  }
+
+  agregarEjercicioPartida(id_ejercicio: number, correcta:boolean){
+    this.ejercicioR ={
+      id_ejercicio: id_ejercicio,
+      resuelto_satisfactoriamente: correcta
+    };
+    this.ejerciciosResueltos.push(this.ejercicioR);
+  }
+
+  getEjerciciosPartida(){
+    return this.ejerciciosResueltos;
+  }
+
+  getCorrecta(): boolean{
+    return this.actualCorrecta;
   }
 
   getCorrectas(){
@@ -47,9 +78,9 @@ export class JuegoService {
     return this.incorrectas;
   }
 
-  calcularPuntaje(totalPreguntas: number) {
-    return this.puntaje = Math.floor((this.correctas / totalPreguntas) * 100 * 100) / 100;
-;
+  calcularPuntaje() {
+    console.log('El puntaje es '+this.puntaje)
+    return this.puntaje ;
   }
 
   resetearEstadisticas() {

@@ -38,14 +38,25 @@ export class JuegoPreguntaRespuestaComponent {
 
   verificarRespuesta() {
     const correcta = this.respuestaUsuario.trim().toLowerCase() === this.respuestaCorrecta.trim().toLowerCase();
+    
+    if (this.ejercicio.id) {
+      
+    
     if (correcta) {
       alert('¡Respuesta correcta!');
       this.esCorrecta=true;
-      this.juegoService.incrementarCorrectas();
+      this.ejercicio.id;
+      this.juegoService.incrementarCorrectas(this.ejercicio.id);
+      //this.ejercicio.
     } else {
       alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
       this.esCorrecta=false;
-      this.juegoService.incrementarIncorrectas();
+      this.juegoService.incrementarIncorrectas(this.ejercicio.id);
+    }
+
+  }
+    if(this.ejercicio){
+
     }
     this.next.emit({ correcta } );
   }
