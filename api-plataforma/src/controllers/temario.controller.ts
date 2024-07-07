@@ -61,3 +61,36 @@ export const addEjercicio: RequestHandler = async (req, res, next) => {
     res.status(400).json(error.message);
   }
 };
+
+export const updateTemario: RequestHandler = async (req, res, next) => {
+  try {
+    const idTemario = req.params.id;
+    const input = req.body;
+    const response = await temarioService.updateTemario(+idTemario, input);
+    res.status(200).json(response);
+  } catch (error: any) {
+    res.status(400).json(error.message);
+  }
+};
+
+export const updateTema: RequestHandler = async (req, res, next) => {
+  try {
+    const idTema = req.params.id;
+    const input = req.body;
+    const response = await temarioService.updateTema(+idTema, input);
+    res.status(200).json(response);
+  } catch (error: any) {
+    res.status(400).json(error.message);
+  }
+};
+
+export const updateEjercicio: RequestHandler = async (req, res, next) => {
+  try {
+    const idEjercicio = req.params.id;
+    const input = req.body;
+    const response = await temarioService.updateEjercicio(+idEjercicio, input);
+    res.status(200).json(response);
+  } catch (error: any) {
+    res.status(400).json(error.message);
+  }
+};
