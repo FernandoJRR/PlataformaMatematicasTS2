@@ -9,7 +9,6 @@ import { Tema } from '../../../../interfaces/tema.interface';
 })
 export class PreguntaRespuestaComponent {
   @Input() tema!: Tema;
-  @Input() index!: number;
   @Input() newEj!: Ejercicio;
 
   pregunta!: string;
@@ -21,6 +20,7 @@ export class PreguntaRespuestaComponent {
 
   //Agregar el Ejercicio Pregunta-Respuest a la lista de Ejercicios del Tema
   ngOnInit() {
+    this.newEj.data_json = this.json
     this.tema.ejercicios.push(this.newEj); //ERROR EN CONSOLA DEL BROWSER
   }
 }
