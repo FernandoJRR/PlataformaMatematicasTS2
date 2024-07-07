@@ -1,8 +1,13 @@
 import { Router } from "express";
-import * as ejercicioController from "../controllers/ejercicio.controller";
+import * as partidaController from "../controllers/partida.controller";
 
 const router = Router();
 
-router.post('/ejercicios-partida/:tipo/:dificultad/:modo', ejercicioController.getEjerciciosPartida);
+router.get('/', partidaController.getPartidas);
+
+router.get('/:id', partidaController.getPartida);
+
+router.post('/', partidaController.storePartida);
+
 
 export default router;

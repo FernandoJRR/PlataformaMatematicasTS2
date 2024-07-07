@@ -64,7 +64,7 @@ export class RegisterComponent {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Usuario registrado con exito",
+          title: "Usuario registrado con exitp",
           showConfirmButton: false,
           timer: 1500
         });

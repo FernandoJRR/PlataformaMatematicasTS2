@@ -79,9 +79,11 @@ export class JuegoService {
   }
 
   calcularPuntaje() {
-    console.log('El puntaje es '+this.puntaje)
-    return this.puntaje ;
-  }
+    const puntajeRedondeado = this.puntaje.toFixed(2);
+    console.log('El puntaje es ' + puntajeRedondeado);
+    return parseFloat(puntajeRedondeado);
+}
+
 
   resetearEstadisticas() {
     this.correctas = 0;

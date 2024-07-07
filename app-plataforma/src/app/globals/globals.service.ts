@@ -30,6 +30,9 @@ export class GlobalsService {
     return tipo as string;
   }
 
+  
+  
+
   deleteUser() {
     localStorage.removeItem('actualUser');
   }
