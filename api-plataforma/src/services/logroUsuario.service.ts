@@ -4,6 +4,7 @@ import { Partida } from "../models/partida";
 import { Usuario} from "../models/usuario";
 
 export async function getLogrosUsuario(username: string) {
+    console.log("llega aqui");
     const logrosUsuario = await LogroUsuario.query()
         .where('username_usuario', username)
         .withGraphFetched('logro');
@@ -11,7 +12,7 @@ export async function getLogrosUsuario(username: string) {
     if (!logrosUsuario.length) {
         throw new Error("El usuario no tiene logros o no existe");
     }
-
+    console.log(logrosUsuario);
     return logrosUsuario;
 }
 /*
