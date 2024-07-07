@@ -13,7 +13,7 @@
   </div>
   <ng-container *ngIf="currentEjercicio">
     <div *ngIf="currentEjercicio.id_tipo_ejercicio === 1">
-      <app-juego-pregunta-respuesta [ejercicio]="currentEjercicio" (next)="siguienteEjercicio()"></app-juego-pregunta-respuesta>
+      <app-juego-pregunta-respuesta [ejercicio]="currentEjercicio" [esCorrecta]="esCorrecta" (next)="siguienteEjercicio()"></app-juego-pregunta-respuesta>
     </div>
     <div *ngIf="currentEjercicio.id_tipo_ejercicio === 2">
       <app-juego-unir-parejas [ejercicio]="currentEjercicio" [correctas]="correctas" (next)="siguienteEjercicio()"></app-juego-unir-parejas>

@@ -12,6 +12,7 @@ import { JuegoUnirParejasComponent } from './pages/juegos/juego-unir-parejas/jue
 import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
+import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
 
 
 
@@ -25,7 +26,7 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
     JuegoComponent,
     JuegoOpcionMultipleComponent,
     EleccionJuegoComponent,
-    
+    ProgresoEstudianteComponent
 
     
   ],
