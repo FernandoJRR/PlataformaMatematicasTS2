@@ -14,12 +14,12 @@ import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multip
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
 
-
-
 @NgModule({
   declarations: [
     HomeComponent,
     WelcomeComponent,
+    PerfilComponent,
+    EleccionJuegoComponent,    
     PerfilComponent,
     JuegoPreguntaRespuestaComponent,
     JuegoUnirParejasComponent,

@@ -1,18 +1,31 @@
 <div class="tema-container">
-  <h3>Agregar Tema</h3>
-  <div class="tema-form">
-    <label for="tema-title">Titulo del Tema</label>
-    <input type="text" [(ngModel)]="tema.titulo" id="tema-title" placeholder="Titulo del Tema" required>
-
-    <label for="tema-description">Descripción del Tema</label>
-    <input type="text" [(ngModel)]="tema.descripcion" id="tema-description" placeholder="Descripción del Tema" required>
-
-    
-    <div *ngIf="mostrarEjercicio">
-      <app-ejercicio *ngFor="let ejercicio of tema.ejercicios; let i = index" [ejercicio]="ejercicio" [index]="index"></app-ejercicio>
-      <button type="button" class="hide-ejercicio-button" (click)="ocultarEjercicioComponent()">Cerrar Ejercicio</button>
-    </div>
-    <button type="button" class="show-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
-
+  <div class="header">
+    <button type="button" class="close-button" (click)="eliminarTema()">x</button>
+    <h3 class="main-title">Tema</h3>
   </div>
+
+  <form class="form">
+    <div class="title-group">
+      <label for="title">Titulo:</label>
+      <input type="text" name="tema-title-input" [(ngModel)]="tema.titulo" id="tema-title" placeholder="Factorización"
+        required>
+    </div>
+
+    <div class="description-group">
+      <label for="description">Descripción:</label>
+      <textarea type="text" name="tema-description-input" [(ngModel)]="tema.descripcion" id="tema-description"
+        placeholder="Técnica de descomposición de factores de una expresión algebraica en forma de producto"
+        required></textarea>
+    </div>
+
+    <div class="ejercicios-group" *ngIf="newtema.ejercicios.length > 0">
+      <label for="new-ejercicio" class="ejercicios-label">Ejercicios:</label>
+      <app-ejercicio *ngFor="let ejercicio of newtema.ejercicios; let i = index" [tema]="newtema" [index]="index"
+        (eliminarEjercicioEvent)="eliminarEjercicio(i)"></app-ejercicio>
+      <br>
+    </div>
+    <div class="button-group">
+      <button type="button" class="new-ejercicio-button" (click)="mostrarEjercicioComponent()">+ Ejercicio</button>
+    </div>
+  </form>
 </div>

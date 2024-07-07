@@ -1,73 +1,144 @@
 .tema-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 20px auto;
+  width: 28rem;
+  background-color: #101010;
+  border: 2px solid #808080;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  margin: auto;
+  padding: 1rem 0rem 1rem 0rem;
   text-align: center;
+
+  /* Para Boton "x" */
+  position: relative;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
 }
 
-.tema-form {
-  background-color: #2a2a2a;
-  padding: 20px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+.header {
+  width: 100%;
 }
 
-.tema-form label {
+.main-title {
+  padding: 0 0 1rem 0;
+}
+
+.close-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: #e74c3c;
+  color: #fff;
+  border: 2px solid #d1d5db;
+  font-size: 1rem;
+  font-weight: 300;
+  width: 1rem;
+  height: 1.2rem;
+  border-radius: 7px;
+  transition: 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #ee0d0d;
+  border: 2px solid #d1d5db;
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.title-group {
+  width: 80%;
+  margin: auto;
+}
+
+.description-group {
+  width: 80%;
+  margin: auto;
+}
+
+.form label {
   display: block;
-  margin-bottom: 10px;
-  font-weight: 500;
+  margin: 1rem;
+  font-size: 25px;
   text-align: left;
 }
 
-.tema-form input[type="text"] {
+.form input[type="text"] {
   background-color: #333;
   border: 1px solid #555;
-  color: #fff;
-  padding: 10px;
   border-radius: 4px;
-  width: 100%;
+  color: #fff;
+
+  padding: 10px;
+  width: 85%;
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
-.tema-form input[type="text"]::placeholder {
+.form input[type="text"]::placeholder {
   color: #bbb;
 }
 
-.new-tema-button, .show-ejercicio-button, .hide-ejercicio-button {
+.form textarea[type="text"] {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+
+  padding: 0.5rem;
+  width: 85%;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.form textarea[type="text"]::placeholder {
+  color: #bbb;
+}
+
+.ejercicios-group {
+  width: 80%;
+  margin: auto;
+}
+
+.button-group {
+  width: 74%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.new-ejercicio-button {
   background-color: #6200ea;
+  border-radius: 4px;
   color: #fff;
   border: none;
-  padding: 12px 24px;
-  border-radius: 4px;
+
+  padding: 0.6rem;
+  width: 90%;
+  max-width: 6rem;
+
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  width: 100%;
-  margin-top: 10px;
 }
 
-.new-tema-button:hover, .show-ejercicio-button:hover, .hide-ejercicio-button:hover {
+.new-ejercicio-button:hover {
   background-color: #3700b3;
-}
-
-.temas-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.temas-table th, .temas-table td {
-  padding: 10px;
-  border: 1px solid #444;
-}
-
-.temas-table th {
-  background-color: #333;
-}
-
-.temas-table td {
-  background-color: #2a2a2a;
 }
 
 .remove-tema-button {
@@ -83,4 +154,16 @@
 
 .remove-tema-button:hover {
   background-color: #c0392b;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

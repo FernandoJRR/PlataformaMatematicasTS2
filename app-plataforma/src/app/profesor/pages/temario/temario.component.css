@@ -1,86 +1,118 @@
-body {
-  background-color: #121212;
-  color: #ffffff;
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.form-container {
-  background-color: #1e1e1e;
-  padding: 20px 40px;
-  border-radius: 8px;
+.temario-container {
+  width: 40rem;
+  background-color: #000000;
+  border: 3px solid #404040;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 500px; /* Ajusta este valor según tus necesidades */
-  margin: auto;
-  text-align: center;
-}
 
-.main-title {
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #ffffff;
-  font-weight: bold;
+  margin: auto;
+  padding: 1.5rem 0rem 1.5rem 0rem;
+  text-align: center;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  
+  padding: 1rem 1rem 1rem 1rem;
+  
 }
 
-.title-group, .temas-group {
-  margin-bottom: 20px;
-  width: 100%;
+.title-group {
+  width: 80%;
+  margin: auto;
 }
 
-.title, .description {
-  margin-bottom: 15px;
-  width: 100%;
+.description-group {
+  width: 80%;
+  margin: auto;
 }
 
-label {
+.form label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
+  margin: 1rem;
+  font-size: 30px;
   text-align: left;
 }
 
-input[type="text"] {
+.form input[type="text"] {
   background-color: #333;
   border: 1px solid #555;
-  color: #fff;
-  padding: 10px;
   border-radius: 4px;
-  width: 100%;
+  color: #fff;
+  
+  padding: 10px;
+  width: 90%;
   font-size: 16px;
+  margin-bottom: 1rem;
 }
 
-input[type="text"]::placeholder {
+.form input[type="text"]::placeholder {
   color: #bbb;
 }
 
-.new-tema-button, .create-temario-button {
-  background-color: #6200ea;
-  color: #fff;
-  border: none;
-  padding: 12px 24px;
+.form textarea[type="text"] {
+  background-color: #333;
+  border: 1px solid #555;
   border-radius: 4px;
-  cursor: pointer;
+  color: #fff;
+  
+  padding: 0.5rem;
+  width: 90%;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  max-width: 300px; /* Ajusta este valor según tus necesidades */
+  margin-bottom: 1rem;
+}
+
+.form textarea[type="text"]::placeholder {
+  color: #bbb;
+}
+
+.temas-group {
+  width: 80%;
+  margin: auto;
+}
+
+.temas-container {
+
+}
+
+.button-group {
+  width: 80%; 
+  margin: auto;
+  /*
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content:center;
+  */
 }
 
 .new-tema-button {
   display: block;
   margin-bottom: 10px;
+
+  padding: 0.5rem;
+  width: 90%;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.new-tema-button, .create-temario-button {
+  background-color: #6200ea;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 6rem;
+  margin-left: 20px;
+  
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+   /* Ajusta este valor según tus necesidades */
 }
 
 .new-tema-button:hover, .create-temario-button:hover {
@@ -91,6 +123,15 @@ input[type="text"]::placeholder {
   margin-top: 20px;
 }
 
-.create-temario-button:hover {
-  background-color: #3700b3;
+
+body {
+  background-color: #000000; 
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

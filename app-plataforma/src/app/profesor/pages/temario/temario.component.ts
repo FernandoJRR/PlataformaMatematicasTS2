@@ -6,6 +6,7 @@ import { GlobalsService } from '../../../globals/globals.service';
 import { User } from '../../../interfaces/user.interface';
 import { Temario } from '../../../interfaces/temario.interface';
 import { Tema } from '../../../interfaces/tema.interface';
+import { Ejercicio } from '../../../interfaces/ejercicio';
 
 @Component({
   selector: 'app-temario',
@@ -13,37 +14,51 @@ import { Tema } from '../../../interfaces/tema.interface';
   styleUrl: './temario.component.css',
 })
 export class TemarioComponent {
-  /*
-  temas: Array<{ titulo: string, descripcion: string }> = [];
-  titulo!: string;
-  descripcion!: string;
-  usuario_creador: User = this.globals.getUser();
-  */
-  temas: Array<any> = [];
   titulo!: string;
   descripcion!: string;
   usuario_creador: User;
+  newTemario!: Temario;
 
+  //Constructor
   constructor(
     private globals: GlobalsService,
     private temarioService: TemarioService,
     private router: Router
   ) {
     this.usuario_creador = this.globals.getUser();
+    this.newTemario = {
+      titulo: '',
+      descripcion: '',
+      username_creador: this.usuario_creador.username,
+      fecha_creacion: new Date().toISOString(),
+      temas: [],
+    };
   }
 
-  //Funciones
+  //
+  ngOnInit(): void {
+    console.log(this.newTemario.temas.length);
+  }
+
   // Función para agregar un tema al temario
   agregarTema() {
     const nuevoTema: Tema = {
       titulo: '',
       descripcion: '',
       id_temario: 0, // Asignar un valor temporal, será actualizado al guardar el temario
-      id_tema_previo: this.temas.length > 0 ? this.temas[this.temas.length - 1].id! : 0, // Asignar el ID del tema previo si existe
+      id_tema_previo:
+        this.newTemario.temas.length > 0
+          ? this.newTemario.temas[this.newTemario.temas.length - 1].id!
+          : 0, // Asignar el ID del tema previo si existe
       fecha_creacion: new Date().toISOString(),
-      ejercicios: []
+      ejercicios: [],
     };
-    this.temas.push(nuevoTema);
+    this.newTemario.temas.push(nuevoTema);
+  }
+
+  //Funcion para eliminar un Tema
+  eliminarTema(index: number) {
+    this.newTemario.temas.splice(index, 1);
   }
 
   // Funcion para crear el temario con toda la data
@@ -54,17 +69,17 @@ export class TemarioComponent {
       return;
     }
 
-    //Objeto nuevo Temario
-    const nuevoTemario: Temario = {
-      titulo: this.titulo,
-      descripcion: this.descripcion,
-      username_creador: this.usuario_creador.username,
-      fecha_creacion: new Date().toISOString(),
-      temas: this.temas,
-    };
-    console.log(nuevoTemario);
-
-    this.temarioService.crearTemario(nuevoTemario).subscribe(
+    this.newTemario.titulo = this.titulo;
+    this.newTemario.descripcion = this.descripcion;
+    this.newTemario.username_creador = this.usuario_creador.username;
+    this.newTemario.fecha_creacion = new Date().toISOString();
+    this.newTemario.temas.forEach((element) => {
+      element.ejercicios = element.ejercicios.filter(
+        (item): item is Ejercicio => item !== undefined
+      );
+    });
+    console.log(this.newTemario);
+    this.temarioService.crearTemario(this.newTemario).subscribe(
       (response) => {
         alert('Temario creado con éxito');
         this.router.navigate(['/']);

@@ -1,46 +1,112 @@
-.form-container {
-    background-color: #1e1e1e;
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
-    margin: auto;
-    text-align: center;
-  }
+.ejercicio-container {
+  width: 19rem;
+  border: 1px solid #ccc;
+  background-color: #272727;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  margin: auto;
+  padding: 1rem 0rem 2rem 0rem;
+  text-align: center;
+
+  /* Para Boton "x" */
+  position: relative;
+  margin: auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+}
+
+.main-title {
+  padding: 0 0 1rem 0;
+}
+
+.close-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: #e74c3c;
+  color: #fff;
+  border: 2px solid #d1d5db;
+  font-size: 1rem;
+  font-weight: 300;
+  width: 1rem;
+  height: 1.2rem;
+  border-radius: 7px;
+  transition: 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #ee0d0d;
+  border: 2px solid #d1d5db;
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem 1rem 1rem 1rem; /* 2rem horizontal*/
+}
+
+.select-group {
+  width: 80%;
+  margin: auto;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.form select, input {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.form input {
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
   
-  .main-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    text-align: left;
-  }
-  
-  select {
-    background-color: #333;
-    border: 1px solid #555;
-    color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    width: 100%;
-    font-size: 16px;
-  }
-  
+  padding: 10px;
+  width: 92%;
+  font-size: 16px;
+  margin-bottom: 1rem;
+}
+
+.ejercicio-card {
+  width: 100%;
+  margin: auto;
+}
+
+body {
+  background-color: #000000; 
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
