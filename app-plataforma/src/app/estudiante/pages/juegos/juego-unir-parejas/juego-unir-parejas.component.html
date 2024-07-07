@@ -1,0 +1,24 @@
+<div class="unir-parejas-container" *ngIf="ejercicio">
+  <h3>Une los conceptos con las definiciones</h3>
+  <div class="parejas">
+    <div class="column izquierda">
+      <div class="pareja-item" *ngFor="let izquierda of parejasIzquierda; let i = index"
+           [class.selected]="seleccionIzquierda === i"
+           [class.correct]="esParejaCorrectaIzquierda(i)"
+           [class.incorrect]="esParejaIncorrectaIzquierda(i)"
+           (click)="seleccionarIzquierda(i)">
+        {{ izquierda }}
+      </div>
+    </div>
+    <div class="column derecha">
+      <div class="pareja-item" *ngFor="let derecha of parejasDerecha; let j = index"
+           [class.selected]="seleccionDerecha === j"
+           [class.correct]="esParejaCorrectaDerecha(j)"
+           [class.incorrect]="esParejaIncorrectaDerecha(j)"
+           (click)="seleccionarDerecha(j)">
+        {{ derecha }}
+      </div>
+    </div>
+  </div>
+  
+</div>

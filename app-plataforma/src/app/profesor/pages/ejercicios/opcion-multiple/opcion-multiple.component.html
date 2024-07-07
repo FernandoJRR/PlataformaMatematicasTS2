@@ -1,0 +1,19 @@
+<div class="opcion-multiple-container">
+
+  <div class="input-group">
+    <label for="pregunta">Pregunta:</label>
+    <input class="input" type="text" [(ngModel)]="json.pregunta" id="pregunta" placeholder="Escribe la pregunta"
+      required>
+  </div>
+
+  <div class="input-group">
+    <label>Opciones:</label>
+    <div class="opciones-container" *ngFor="let opcion of json.opciones; let i = index">
+      <input class="option" type="radio" name="respuestaCorrecta" [value]="i" [(ngModel)]="json.correcto"
+        (change)="seleccionarRespuesta(i)">
+      <input class="input" type="text" [(ngModel)]="json.opciones[i]"
+        (input)="agregarOpcion(i, $any($event.target).value)" placeholder="Opción {{i + 1}}" required>
+    </div>
+  </div>
+
+</div>
