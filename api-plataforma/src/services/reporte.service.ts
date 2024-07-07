@@ -24,6 +24,13 @@ export async function getReportePartida() {
         totalPartidas,
         puntajePromedio
     };
+    /**
+     * Salida en formato json 
+     {
+        "totalPartidas": 6,
+        "puntajePromedio": 44.833333333333336
+    }
+     */
 }
 
 
