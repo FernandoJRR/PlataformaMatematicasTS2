@@ -8,6 +8,7 @@ import { Tema } from '../../../interfaces/tema.interface';
   styleUrls: ['./ejercicio.component.css'],
 })
 export class EjercicioComponent {
+  @Input() tema!: Tema;
   @Input() ejercicio!: Ejercicio;
   @Input() index!: number;
   @Output() eliminarEjercicioEvent = new EventEmitter<void>();
@@ -20,12 +21,16 @@ export class EjercicioComponent {
     respuesta: '',
   };
 
+  //Funcion que agregar
+  ngOnInit() {
+    this.tema.ejercicios[this.index]; //ERROR EN CONSOLA DEL BROWSER
+  }
+
   //Funcion para eliminar el Ejercicio del Tema
   eliminarEjercicio() {
     this.eliminarEjercicioEvent.emit();
   }
 
-  /* PROBAR ESTO */
   //Metodo que selecciona la dificultad
   seleccionarDificultad(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;

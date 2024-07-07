@@ -8,17 +8,29 @@ import { Tema } from '../../../../interfaces/tema.interface';
   styleUrls: ['./pregunta-respuesta.component.css'],
 })
 export class PreguntaRespuestaComponent {
-  @Input() ejercicioJson!: {
-    pregunta: string;
-    respuesta: string;
-    anotacion?: string;
-  }; //Anotacion va afuera de detaJson en la DB (corregir en Frontend)
+  @Input() tema!: Tema;
+  @Input() index!: number;
 
+  newEj!: Ejercicio;
+  pregunta!: string;
+  respuesta!: string;
+  json = { pregunta: '', respuesta: '' };
+
+  //Agregar el Ejercicio Pregunta-Respuest a la lista de Ejercicios del Tema
   ngOnInit() {
-    if (!this.ejercicioJson) {
-      this.ejercicioJson = { pregunta: '', respuesta: '' };
-    }
+    this.tema.ejercicios.push(this.newEj); //ERROR EN CONSOLA DEL BROWSER
   }
 
-
+  //Constructor
+  constructor() {
+    this.newEj = {
+      id_tipo_ejercicio: 1,
+      id_tema: 0,
+      id_dificultad: 1,
+      anotacion: 'nuevo ejercicio',
+      data_json: this.json,
+      fecha_creacion: new Date().toISOString(),
+      fecha_modificacion: new Date().toISOString(),
+    };
+  }
 }

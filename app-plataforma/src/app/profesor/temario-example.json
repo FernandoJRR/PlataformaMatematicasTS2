@@ -1,15 +1,15 @@
 {
     "titulo": "Temario",
-    "descripcion": "descrip temario",
+    "descripcion": "descrip",
     "username_creador": "profesor1",
-    "fecha_creacion": "2024-07-06T19:43:09.611Z",
+    "fecha_creacion": "2024-07-06T22:13:24.516Z",
     "temas": [
         {
-            "titulo": "Factorizacion",
-            "descripcion": "descrip tema 1",
+            "titulo": "tema 1",
+            "descripcion": "descrip",
             "id_temario": 0,
             "id_tema_previo": 0,
-            "fecha_creacion": "2024-07-06T19:40:07.522Z",
+            "fecha_creacion": "2024-07-06T22:09:11.676Z",
             "ejercicios": [
                 {
                     "id_tipo_ejercicio": 1,
@@ -20,8 +20,8 @@
                         "pregunta": "",
                         "respuesta": ""
                     },
-                    "fecha_creacion": "2024-07-06T19:40:08.802Z",
-                    "fecha_modificacion": "2024-07-06T19:40:08.802Z"
+                    "fecha_creacion": "2024-07-06T22:09:19.694Z",
+                    "fecha_modificacion": "2024-07-06T22:09:19.694Z"
                 },
                 {
                     "id_tipo_ejercicio": 2,
@@ -32,16 +32,16 @@
                         "pregunta": "",
                         "respuesta": ""
                     },
-                    "fecha_creacion": "2024-07-06T19:41:14.994Z",
-                    "fecha_modificacion": "2024-07-06T19:41:14.994Z"
+                    "fecha_creacion": "2024-07-06T22:11:10.485Z",
+                    "fecha_modificacion": "2024-07-06T22:11:10.485Z"
                 }
             ]
         },
         {
-            "titulo": "Tema 2",
-            "descripcion": "descrip tema 2",
+            "titulo": "tema 2",
+            "descripcion": "DESCRIP",
             "id_temario": 0,
-            "fecha_creacion": "2024-07-06T19:41:45.167Z",
+            "fecha_creacion": "2024-07-06T22:12:05.702Z",
             "ejercicios": [
                 {
                     "id_tipo_ejercicio": 3,
@@ -52,11 +52,11 @@
                         "pregunta": "",
                         "respuesta": ""
                     },
-                    "fecha_creacion": "2024-07-06T19:41:53.163Z",
-                    "fecha_modificacion": "2024-07-06T19:41:53.163Z"
+                    "fecha_creacion": "2024-07-06T22:12:12.377Z",
+                    "fecha_modificacion": "2024-07-06T22:12:12.377Z"
                 },
                 {
-                    "id_tipo_ejercicio": 2,
+                    "id_tipo_ejercicio": 1,
                     "id_dificultad": 2,
                     "anotacion": "",
                     "id_tema": 0,
@@ -64,17 +64,10 @@
                         "pregunta": "",
                         "respuesta": ""
                     },
-                    "fecha_creacion": "2024-07-06T19:42:17.089Z",
-                    "fecha_modificacion": "2024-07-06T19:42:17.089Z"
+                    "fecha_creacion": "2024-07-06T22:12:55.129Z",
+                    "fecha_modificacion": "2024-07-06T22:12:55.129Z"
                 }
             ]
-        },
-        {
-            "titulo": "tema 3",
-            "descripcion": "descrip tema 3",
-            "id_temario": 0,
-            "fecha_creacion": "2024-07-06T19:42:34.921Z",
-            "ejercicios": []
         }
     ]
 }

@@ -34,14 +34,14 @@
 
   <!-- Cards/Components Tipos de Ejercicios -->
   <div class="ejercicio-card" *ngIf="tipoEjercicio === 'opcion-multiple'">
-    <app-opcion-multiple></app-opcion-multiple>
+    <app-opcion-multiple [tema]="tema"></app-opcion-multiple>
   </div>
 
   <div class="ejercicio-card" *ngIf="tipoEjercicio === 'pregunta-respuesta'">
-    <app-pregunta-respuesta [ejercicioJson]="ejercicioJson"></app-pregunta-respuesta>
+    <app-pregunta-respuesta [tema]="tema" [index]="index"></app-pregunta-respuesta>
   </div>
 
   <div class="ejercicio-card" *ngIf="tipoEjercicio === 'unir-parejas'">
-    <app-unir-parejas></app-unir-parejas>
+    <app-unir-parejas [tema]="tema"></app-unir-parejas>
   </div>
 </div>
