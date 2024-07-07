@@ -14,30 +14,78 @@ export async function getLogrosUsuario(username: string) {
 
     return logrosUsuario;
 }
-
+/*
+Se retorna lo siguiente
+{
+        "id_logro": 1,
+        "username_usuario": "admin1",
+        "fecha_conseguido": "2024-07-07T06:00:00.000Z",
+        "logro": {
+            "id": 1,
+            "titulo": "admin1",
+            "descripcion": "as"
+        }
+    }
+*/
 export async function otorgarLogros(username: string) {
     const logrosOtorgados: LogroUsuario[] = [];
-
+    const trx = await LogroUsuario.startTransaction();
     // Contar cuántas partidas ha jugado el usuario.
     const partidasJugadasResult = await Partida.query()
         .where('username_jugador', username)
         .count() as unknown as { count: string }[];
 
     const partidasJugadasCount = parseInt(partidasJugadasResult[0].count, 10);
-
-    if (partidasJugadasCount >= 10) {
-        const logro = await Logro.query().findOne({ nombre: 'Jugador principiante' });
-        if (logro) {
-            /*const logroUsuario = await LogroUsuario.query().insert({
-                id_logro: logro.id,
-                username_usuario: username,
-                fecha_conseguido: new Date()
-            });*/
-            //logrosOtorgados.push(logroUsuario);
-        }
-    }
-
+    // Logro por cantidad de partidas
+    if (partidasJugadasCount === 10) {
+       const logroUsuario = await LogroUsuario.query(trx).insert({
+            username_usuario: username,
+            fecha_conseguido: new Date(),
+            id_logro: 1
+       });
+       logrosOtorgados.push(logroUsuario);
+    }else if (partidasJugadasCount === 30) {
+        const logroUsuario = await LogroUsuario.query(trx).insert({
+             username_usuario: username,
+             fecha_conseguido: new Date(),
+             id_logro: 2
+        });
+        logrosOtorgados.push(logroUsuario);
+     }
+     else if (partidasJugadasCount  === 60 ) {
+        const logroUsuario = await LogroUsuario.query(trx).insert({
+             username_usuario: username,
+             fecha_conseguido: new Date(),
+             id_logro: 3
+        });
+        logrosOtorgados.push(logroUsuario);
+     }
+     else if(partidasJugadasCount === 100){
+        const logroUsuario = await LogroUsuario.query(trx).insert({
+            username_usuario: username,
+            fecha_conseguido: new Date(),
+            id_logro: 3
+       });
+       logrosOtorgados.push(logroUsuario);
+     }
+    //Logros por cantidad de ejercicos correctos  
+    await trx.commit();
     // Añadir más condiciones aquí...
 
     return logrosOtorgados;
+}
+export async function crearLogro(input: any) {
+    const trx = await Logro.startTransaction();
+    try {
+        const logro = await Logro.query(trx).insert({
+        titulo: input.titulo,
+        descripcion: input.descripcion,
+    });
+    await trx.commit();
+    return logro;
+    } catch (error) {
+        await trx.rollback();
+        throw error;
+    }
+    
 }
