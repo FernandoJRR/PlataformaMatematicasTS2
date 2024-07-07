@@ -6,8 +6,7 @@ exports.seed = async function(knex) {
   await knex('modo_juego').del()
   await knex('modo_juego').insert([
     {codigo: 'Contrarreloj'},
-    {codigo: 'Invencible'},
+    {codigo: 'Campaña'},
     {codigo: 'Refuerzo'},
-    {codigo: 'Normal'},
   ]);
 };

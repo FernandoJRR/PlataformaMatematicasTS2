@@ -24,8 +24,8 @@ export async function createPartidaWithEjercicios(input: any) {
     });
 
     // Obtener el ID de la partida recién insertada
-    const idPartida = partida.id;
-
+    //const idPartida = partida.id;
+/*
     // Iterar sobre cada ejercicio y realizar la inserción individual
     console.log("aqui si entra?");
      const ejercico =  await EjercicioPartida.query(trx).insert({
@@ -34,7 +34,7 @@ export async function createPartidaWithEjercicios(input: any) {
         resuelto_satisfactoriamente: true
       });
     console.log("nop");
-
+*/
     // Commit de la transacción
     await trx.commit();
 
