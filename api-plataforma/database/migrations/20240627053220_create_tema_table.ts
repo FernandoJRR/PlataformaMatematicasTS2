@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
         p.increments('id').primary();
         p.string('titulo').notNullable();
         p.string('descripcion').notNullable();
+        p.text('informacion');
         p.integer('id_temario')
             .notNullable()
             .references('id')
