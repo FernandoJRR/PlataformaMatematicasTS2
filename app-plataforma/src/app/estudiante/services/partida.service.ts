@@ -17,6 +17,10 @@ export class PartidaService {
     return this.http.post(`${this.baseUrl}/partida/`, nuevaPartida );
   }
 
+  obtenerLogros()  {
+    return this.http.get(this.baseUrl);
+  }
+
   /*listarEjericiosPorTema() {
     return this.http.get(`${this.baseUrl}/temario/`);
   }

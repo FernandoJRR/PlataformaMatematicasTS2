@@ -13,6 +13,8 @@ import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
+import { LogrosComponent } from './pages/logros/logros.component';
+import { RefuerzoComponent } from './pages/juegos/refuerzo/refuerzo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progres
     JuegoComponent,
     JuegoOpcionMultipleComponent,
     EleccionJuegoComponent,
-    ProgresoEstudianteComponent
+    ProgresoEstudianteComponent,
+    LogrosComponent,
+    RefuerzoComponent
 
     
   ],

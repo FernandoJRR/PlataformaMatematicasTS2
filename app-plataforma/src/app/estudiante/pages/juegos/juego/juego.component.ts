@@ -5,6 +5,8 @@ import { JuegoService } from '../juego.service';
 import { GlobalsService } from '../../../../globals/globals.service';
 import { Partida } from '../../../../interfaces/partida.interface';
 import { PartidaService } from '../../../services/partida.service';
+import Swal from 'sweetalert2';
+
 //import { error } from 'console';
 
 @Component({
@@ -49,8 +51,15 @@ export class JuegoComponent implements OnInit, OnDestroy {
       //this.ejercicios = this.generarDatosSimulados();
       this.ejercicios = this.receivedEjercicios;
     }
-    this.calcularTiempoTotal();
-    this.iniciarJuego();
+    if (this.ejercicios.length>0) {
+      this.calcularTiempoTotal();
+      this.iniciarJuego();
+      
+    }else{
+      alert('No hay juegos disponibles')
+    }
+
+    
   }
 
   
@@ -100,7 +109,20 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if (this.modoSeleccionado == 'Invencible') {
       console.log('Modeo seleccionado1'+this.modoSeleccionado+this.juegoService.getCorrecta()!)
       if (this.juegoService.getCorrecta()==false) {
-        alert('¡Modo invensible termindado !');
+        Swal.fire({
+          title: "¡Juego completado!",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            left top
+            no-repeat
+          `
+        });
+        
         this.detenerTemporizador();
         this.mostrarResultados();
       }
@@ -110,6 +132,19 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.currentEjercicioIndex++;
     } else {
       alert('¡Juego completado!');
+      Swal.fire({
+        title: "¡Juego completado!",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
       this.detenerTemporizador();
       this.mostrarResultados();
     }
