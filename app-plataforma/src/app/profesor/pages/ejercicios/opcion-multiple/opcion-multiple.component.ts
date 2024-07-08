@@ -10,25 +10,17 @@ let json;
 })
 export class OpcionMultipleComponent {
   @Input() tema!: Tema;
-  newEj!: Ejercicio;
+  @Input() newEj!: Ejercicio;
   json = { pregunta: '', opciones: ['', '', '', ''], correcto: 1 };
 
   //Funcion que agrega el ejercicioOpcion-Multiple a la lista de Ejercicios del Tema
   ngOnInit() {
+    this.newEj.data_json = this.json
     this.tema.ejercicios.push(this.newEj); //ERROR EN CONSOLA DEL BROWSER
   }
 
   //Constructor
   constructor() {
-    this.newEj = {
-      id_tipo_ejercicio: 1,
-      id_tema: 0,
-      id_dificultad: 1,
-      anotacion: 'nuevo ejercicio', //Corroborar en Ejercicio
-      data_json: this.json,
-      fecha_creacion: new Date().toISOString(),
-      fecha_modificacion: new Date().toISOString(),
-    };
   }
 
   agregarOpcion(index: number, valor: string) {
