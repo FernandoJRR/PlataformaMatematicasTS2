@@ -22,8 +22,18 @@ export class TemaService {
     return this.http.get<Tema>(`${this.baseUrl}/tema/${id}`);
   }
 
+  // Enviar Tema
+  crearTema(tema: Tema, temarioId: number): Observable<Tema> {
+    return this.http.post<Tema>(`${this.baseUrl}/temario/temario/${temarioId}`, tema);
+  }
+
   // Actualizar un tema
   actualizarTema(tema: Tema): Observable<Tema> {
-    return this.http.put<Tema>(`${this.baseUrl}/tema/${tema.id}`, tema);
+    return this.http.patch<Tema>(`${this.baseUrl}/temario/tema/${tema.id}`, tema);
   }
+
+  // Eliminar un tema
+  // eliminarTema(temaId: number) {
+  //   return this.http.delete<Tema>(`${this.baseUrl}/tema
+  // }
 }
