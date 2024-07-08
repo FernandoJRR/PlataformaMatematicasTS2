@@ -1,0 +1,11 @@
+<div *ngIf="editor">
+  <textarea [(ngModel)]="markdownContent" rows="20" class="responsive-textarea"></textarea>
+</div>
+<!-- Agregamos un if para mostrar el titulo de visualizar el markdown -->
+<div *ngIf="editor">
+  <br>
+  <h3>Visualizar Markdown</h3>
+</div>
+<div>
+  <markdown [data]="markdownContent"></markdown>
+</div>

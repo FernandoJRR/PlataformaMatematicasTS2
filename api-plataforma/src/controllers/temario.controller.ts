@@ -10,6 +10,16 @@ export const getTemarios: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const getTemariosProfesor: RequestHandler = async (req, res, next) => {
+  try {
+    const usernameProfesor = req.params.username;
+    const response = await temarioService.getTemariosProfesor(usernameProfesor);
+    res.status(200).json(response);
+  } catch (error: any) {
+    res.status(400).json(error.message);
+  }
+};
+
 export const getTemario: RequestHandler = async (req, res, next) => {
   try {
     const idTemario = req.params.id;

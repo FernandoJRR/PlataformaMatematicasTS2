@@ -1,54 +1,52 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
-            <span>Menu</span>
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
+            <span class="tool-menu-span">Menu</span>
+            <button mat-button class="nav-button" (click)="sidenav.toggle()">
+                <mat-icon style="margin: 4px; font-size: 26px;">arrow_back</mat-icon>
             </button>
         </mat-toolbar>
+
         <mat-nav-list>
-            <a routerLink="./perfil-estudiante" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>person</mat-icon>
-                <span class="nav-text">Mi perfil</span>
+            <a routerLink="./perfil-estudiante" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span class="nav-text">Home</span>
             </a>
-            <a routerLink="./eleccion-juego" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>extension</mat-icon>
-                <span class="nav-text">Juegos</span>
+
+            <a routerLink="./eleccion-juego" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span class="nav-text">Partida/Juego</span>
             </a>
-            <a routerLink="./reportes" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>report</mat-icon>
-                <span class="nav-text">Temarios</span>
+            <a routerLink="./reportes" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>star_border</mat-icon>
+                <span class="nav-text">Refuerzo</span>
             </a>
-            <a routerLink="./progreso" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>school</mat-icon>
+
+            <a routerLink="./progreso" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>flare</mat-icon>
                 <span class="nav-text">Mis logros</span>
             </a>
-            <a routerLink="./progreso" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>add</mat-icon>
+            <a routerLink="./progreso" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>bar_chart</mat-icon>
                 <span class="nav-text">Estadisticas</span>
             </a>
-        </mat-nav-list>    
+            <a routerLink="./perfil-estudiante" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>face</mat-icon>
+                <span class="nav-text">Mi perfil</span>
+            </a>
+        </mat-nav-list>
     </mat-sidenav>
+
     <mat-toolbar>
-        <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
+        <button mat-button class="nav-button" (click)="sidenav.toggle()">
+            <mat-icon style="margin: 4px; font-size: 26px;">menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <span>Estuardo Ramos - Administrador</span>
-        <button mat-button class="logout-button" >
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-          </button>
+        <mat-icon>person</mat-icon>
+        <span>Username | Estudiante</span>
+        <button mat-button class="nav-button" (click)="logout()">
+            <mat-icon style="margin: 4px; font-size: 26px;">logout</mat-icon>
+        </button>
     </mat-toolbar>
     <div class="container">
         <router-outlet></router-outlet>

@@ -79,6 +79,7 @@ export class TemarioComponent {
       );
     });
     console.log(this.newTemario);
+    /*
     this.temarioService.crearTemario(this.newTemario).subscribe(
       (response) => {
         alert('Temario creado con éxito');
@@ -88,6 +89,6 @@ export class TemarioComponent {
         console.error('Error al crear el temario', error);
         alert('Ocurrió un error al crear el temario.');
       }
-    );
+    );*/
   }
 }
