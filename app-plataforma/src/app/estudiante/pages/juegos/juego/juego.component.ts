@@ -24,7 +24,7 @@ export class JuegoComponent implements OnInit, OnDestroy {
   correctas: number = 0;
   incorrectas: number = 0;
   puntaje: number = 0;
-  esCorrecta: boolean = false;
+  esCorrecta:boolean=false;
   partida!: Partida;
 
   receivedEjercicios!: Ejercicio[];
