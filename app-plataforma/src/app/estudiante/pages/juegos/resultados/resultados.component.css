@@ -1,0 +1,22 @@
+.resultados-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .resultados-container h2 {
+    color: #4CAF50;
+  }
+  
+  .resultados-container p {
+    font-size: 18px;
+  }
+  
+  .resultados-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .resultados-container li {
+    font-size: 16px;
+  }
+  

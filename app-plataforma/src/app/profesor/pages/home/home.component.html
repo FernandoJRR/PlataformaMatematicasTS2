@@ -2,6 +2,7 @@
     <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
             <span class="tool-menu-span">Menu</span>
+
             <button mat-button class="nav-button" (click)="sidenav.toggle()">
                 <mat-icon style="margin: 4px; font-size: 26px;">arrow_back</mat-icon>
             </button>
@@ -16,6 +17,7 @@
                 <mat-icon mat-list-icon>add_box</mat-icon>
                 <span class="nav-text">Temario</span>
             </a>
+
             <a routerLink="./editar-temario" mat-list-item (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>book</mat-icon>
                 <span class="nav-text">Temarios</span>

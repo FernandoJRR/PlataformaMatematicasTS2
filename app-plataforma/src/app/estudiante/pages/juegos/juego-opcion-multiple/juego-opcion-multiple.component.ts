@@ -41,13 +41,17 @@ export class JuegoOpcionMultipleComponent {
 
   verificarRespuesta() {
     const correcta = this.respuestaSeleccionada === this.respuestaCorrecta;
-    if (correcta) {
-      alert('¡Respuesta correcta!');
-      this.juegoService.incrementarCorrectas();
-    } else {
-      alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
-      this.juegoService.incrementarIncorrectas();
+    if (this.ejercicio.id) {
+      if (correcta) {
+        alert('¡Respuesta correcta!');
+        this.juegoService.incrementarCorrectas(this.ejercicio.id);
+      } else {
+        alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
+        this.juegoService.incrementarIncorrectas(this.ejercicio.id);
+      }
+      
     }
+    
     this.respuestaSeleccionada = null;
     console.log('Evento emitido desde JuegoOpcionMultipleComponent:', { correcta }); // Añadir traza
     this.next.emit({ correcta });

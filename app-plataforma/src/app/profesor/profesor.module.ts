@@ -13,10 +13,12 @@ import { EjercicioComponent } from './pages/ejercicio/ejercicio.component';
 import { PreguntaRespuestaComponent } from './pages/ejercicios/pregunta-respuesta/pregunta-respuesta.component';
 import { OpcionMultipleComponent } from './pages/ejercicios/opcion-multiple/opcion-multiple.component';
 import { UnirParejasComponent } from './pages/ejercicios/unir-parejas/unir-parejas.component';
+
 import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.component';
 import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
 import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
+
 
 
 
@@ -35,6 +37,7 @@ import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor
     EditarTemarioComponent,
     EditarTemaComponent,
     EditarEjercicioComponent
+
   ],
   imports: [
     MarkEditorComponent,
