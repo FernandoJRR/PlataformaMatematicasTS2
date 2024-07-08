@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 import { JuegoService } from '../juego.service';
 
@@ -23,6 +23,14 @@ export class JuegoUnirParejasComponent implements OnInit {
 
   constructor(private juegoService: JuegoService){}
   ngOnInit() {
+    this.actualizarEjercicio();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['ejercicio']) {
+      this.actualizarEjercicio();
+    }
+  }
+  actualizarEjercicio(){
     if (this.ejercicio.data_json && this.ejercicio.data_json.parejasIzquierda && this.ejercicio.data_json.parejasDerecha) {
       this.parejasIzquierda = [...this.ejercicio.data_json.parejasIzquierda];
       this.parejasDerechaOriginal = [...this.ejercicio.data_json.parejasDerecha];
@@ -30,10 +38,12 @@ export class JuegoUnirParejasComponent implements OnInit {
 
       // Crear un mapa de las posiciones mezcladas a las posiciones originales
       this.mappingDerecha = this.parejasDerecha.map(item => this.parejasDerechaOriginal.indexOf(item));
+      // Inicializar respuestas
+      this.respuestas = [];
+      this.puntaje=0;
+      this.parejasIntentadas.clear();
     }
 
-    // Inicializar respuestas
-    this.respuestas = [];
   }
 
   shuffleArray(array: any[]): any[] {

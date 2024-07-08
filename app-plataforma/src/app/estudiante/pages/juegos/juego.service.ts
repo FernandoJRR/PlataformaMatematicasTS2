@@ -36,14 +36,19 @@ export class JuegoService {
     this.incorrectas+=valPareja/100;
   }
 
-  incrementarCorrectas(id:number=1) {
+  incrementarCorrectas(id_ejercicio: number) {
     this.correctas++;
+    this.puntaje+=this.getValorXejercicio();
+    this.actualCorrecta=true;
+    this.agregarEjercicioPartida(id_ejercicio, true);
+
   }
 
-  incrementarIncorrectas(id:number=1) {
+  incrementarIncorrectas(id_ejercicio: number) {
     this.incorrectas++;
+    this.actualCorrecta=false;
+    this.agregarEjercicioPartida(id_ejercicio, false);
   }
-
   getCorrectas(){
     return this.correctas;
   }
@@ -78,7 +83,7 @@ export class JuegoService {
     this.puntaje=this.puntaje+puntaje;
     this.agregarEjercicioPartida(id, correcta);
   }
-
+  
   
 
   agregarEjercicioPartida(id_ejercicio: number, correcta:boolean){
