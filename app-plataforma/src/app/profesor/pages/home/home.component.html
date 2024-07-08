@@ -1,11 +1,12 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
-            <span>Menu</span>
+            <span class="tool-menu-span">Menu</span>
             <button mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
         </mat-toolbar>
+        
         <mat-nav-list>
             <a routerLink="./perfil-profesor" 
                 mat-list-item
@@ -19,7 +20,7 @@
                 <mat-icon mat-list-icon>extension</mat-icon>
                 <span class="nav-text">Juegos</span>
             </a>
-            <a routerLink="./reportes" 
+            <a routerLink="./nuevo-temario" 
                 mat-list-item
                 (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>report</mat-icon>
@@ -39,12 +40,13 @@
             </a>
         </mat-nav-list>    
     </mat-sidenav>
-    <mat-toolbar>
+
+    <mat-toolbar class="mat-toolbar mat-toolbar-single-row">
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <span>Estuardo Ramos - Administrador</span>
+        <span class="username-span">Estuardo Ramos - Administrador</span>
         <button mat-button class="logout-button" >
             <mat-icon>logout</mat-icon>
             <span>Logout</span>
