@@ -8,20 +8,26 @@
                 <p>Elige un Temario:</p>
                 <mat-form-field>
                     <mat-label>Temario</mat-label>
-                    <mat-select [formControl]="animalControl" placeholder="Ej. Cálculo I" formControlName="firstCtrl"
-                        required>
-                        <mat-option>--</mat-option>
-                        @for (animal of animals; track animal) {
-                        <mat-option [value]="animal">{{animal.name}}</mat-option>
-                        }
+                    <mat-select [formControl]="temarioControl" placeholder="Ej. Cálculo I" formControlName="firstCtrl" (selectionChange)="onTemarioChange($event.value)" required>
+                        
+                        <mat-option *ngFor="let temario of temarios" [value]="temario">{{temario.titulo}}</mat-option>
+
+                        <!-- <mat-option>--</mat-option>
+                        @for (temario of temarios; track temario) {
+                        <!-- <mat-option [value]="temario">{{temario.titulo}}</mat-option>
+                        } -->
+
                     </mat-select>
-                    @if (animalControl.hasError('required')) {
+
+                    <mat-error *ngIf="temarioControl.hasError('required')">Debes elegir un Temario.</mat-error>
+
+                    <!-- @if (temarioControl.hasError('required')) {
                     <mat-error>Debes eligir un Temario.</mat-error>
-                    }
-                    <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+                    } -->
+                    <mat-hint>{{temarioControl.value?.id}}</mat-hint>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext>Siguiente</button>
+                    <button mat-button matStepperNext (click)="cargarTemas()">Siguiente</button>
                 </div>
             </form>
         </mat-step>
@@ -33,69 +39,63 @@
                 <div class="div-mat-tab">
                     <mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="start">
                         <!-- CREAR TEMA -->
-                        <mat-tab label="Crear Ejercicio">
+                        <mat-tab label="Crear Tema">
                             <form class="form">
                                 <div class="container">
-
+                                    <p style="padding: 1rem 0rem;">Nuevo Tema:
+                                    <p>
+                                        
+                                        <!-- Cards/Components Tipos de Ejercicios -->
+                                    
                                 </div>
                             </form>
                         </mat-tab>
                         <!--  -->
 
                         <!-- VER, EDITAR Y ELIMINAR TEMA -->
-                        <mat-tab label="Ver Ejercicios">
+                        <mat-tab label="Ver Temas">
                             <form class="form">
                                 <div class="container">
-
-
-
                                     <form>
                                         <table mat-table [dataSource]="dataSource" matSort
                                             (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
                                             <!-- Position Column -->
-                                            <ng-container matColumnDef="position">
+                                            <ng-container matColumnDef="id">
                                                 <th mat-header-cell *matHeaderCellDef mat-sort-header
                                                     sortActionDescription="Sort by number">
-                                                    No.
+                                                    ID
                                                 </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                                             </ng-container>
 
                                             <!-- Name Column -->
-                                            <ng-container matColumnDef="name">
+                                            <ng-container matColumnDef="titulo">
                                                 <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by name">
-                                                    Name
+                                                    sortActionDescription="Sort by titulo">
+                                                    Titulo
                                                 </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                                <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
                                             </ng-container>
 
                                             <!-- Weight Column -->
-                                            <ng-container matColumnDef="weight">
+                                            <ng-container matColumnDef="descripcion">
                                                 <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by weight">
-                                                    Weight
+                                                    sortActionDescription="Sort by descripcion">
+                                                    Descripcion
                                                 </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                                                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
                                             </ng-container>
 
                                             <!-- Symbol Column -->
-                                            <ng-container matColumnDef="symbol">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by symbol">
-                                                    Symbol
-                                                </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-                                            </ng-container>
+                                            
 
                                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                         </table>
-
+                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                            showFirstLastButtons></mat-paginator>
                                     </form>
-
-
 
                                 </div>
                             </form>
@@ -111,7 +111,7 @@
         </mat-step>
 
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
+            <ng-template matStepLabel>Finalizar</ng-template>
             <p>Confirmar Cambios</p>
             <div>
                 <button mat-button matStepperPrevious>Anterior</button>
