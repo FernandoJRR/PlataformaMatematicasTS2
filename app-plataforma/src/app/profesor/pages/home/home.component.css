@@ -2,12 +2,11 @@
 .container {
   padding: 5rem;
 
-  display: flex;
+  /*display: flex; TAMAÑO CARDS DENTRO DE HOME */
   flex-direction: column;
   align-items: center; /* Centrar los elementos horizontalmente */
   justify-content: center;
 }
-
 
 .mat-drawer-inner-container ng-tns-c2033655494-0 {
   background: black;
@@ -62,19 +61,23 @@
 }
 
 .mat-icon {
-  margin: 0rem 0.5rem 0rem;
+  font-size: 1.5rem;
+  width: auto;
+  height: auto;
 }
 
 .mat-mdc-icon-button .mdc-button__label,
 .mat-mdc-icon-button .mat-icon {
   z-index: 1;
   position: absolute;
-  right: -1.5px;
-  top: 9px;
+  right: -7px;
+  top: 4px;
+  font-size: 35px;
 }
 
 .nav-text {
-  vertical-align: 0.2rem; /* Alinea verticalmente el texto */
+  padding: 0.85rem;
+  vertical-align: 0.4rem; /* Alinea verticalmente el texto */
   line-height: 2rem; /* Alinea con el tamaño del icono */
 }
 
@@ -86,6 +89,20 @@ mat-toolbar {
   background: blueviolet;
 }
 
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.example-button-container button {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+}
+
 .username-span {
   height: 3rem;
   margin: 2rem;
@@ -95,23 +112,35 @@ mat-toolbar {
   align-content: center;
   justify-content: center;
   font-size: 25px;
-  font-style: italic;
 }
 
-.logout-button {
-  height: 3rem;
-  margin: 2rem;
+.nav-button {
+  height: 3.5rem;
+  width: 5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   display: flex;
+  text-align: center;
   align-content: center;
   justify-content: center;
-  font-size: 18px;
+  vertical-align: middle;
 
+  font-size: 18px;
   border: 10px;
-  background: black;
   border-color: whitesmoke;
 }
 
+.nav-button:hover {
+  background: darkorchid;
+}
+
 .tool-menu-span {
+  margin: 2rem;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.tool-menu-icon {
   margin: 2rem;
   font-size: 35px;
   font-weight: 600;

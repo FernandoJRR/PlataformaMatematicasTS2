@@ -4,29 +4,31 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)  
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)  
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'estudiante',
-    loadChildren: () => import('./estudiante/estudiante.module').then(m => m.EstudianteModule)  
+    loadChildren: () =>
+      import('./estudiante/estudiante.module').then((m) => m.EstudianteModule),
   },
   {
     path: 'profe',
-    loadChildren: () => import('./profesor/profesor.module').then(m => m.ProfesorModule)  
+    loadChildren: () =>
+      import('./profesor/profesor.module').then((m) => m.ProfesorModule),
   },
-    {
+  {
     path: '**',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)  
-  }
-
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

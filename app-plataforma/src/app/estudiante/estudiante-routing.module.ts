@@ -12,6 +12,7 @@ import { ResultadosComponent } from './pages/juegos/resultados/resultados.compon
 
 
 
+
 const routes: Routes = [
   {
     path: '',

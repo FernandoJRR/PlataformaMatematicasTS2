@@ -23,7 +23,7 @@ export class EjercicioComponent {
       id_tema: 0,
       id_dificultad: 1,
       anotacion: 'nuevo ejercicio',
-      data_json: {},
+      data_json: "AQUI CREANDO",
       fecha_creacion: new Date().toISOString(),
       fecha_modificacion: new Date().toISOString(),
     };
@@ -42,7 +42,7 @@ export class EjercicioComponent {
   //Metodo que selecciona la dificultad
   seleccionarDificultad(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.tema.ejercicios[this.index].id_dificultad = parseInt(
+    this.newEj.id_dificultad =  parseInt(
       selectElement.value
     );
   }
@@ -54,15 +54,15 @@ export class EjercicioComponent {
 
     switch (this.tipoEjercicio) {
       case 'pregunta-respuesta':
-        this.tema.ejercicios[this.index].id_tipo_ejercicio = 1;
+        this.newEj.id_tipo_ejercicio = 1;
         break;
 
       case 'unir-parejas':
-        this.tema.ejercicios[this.index].id_tipo_ejercicio = 2;
+        this.newEj.id_tipo_ejercicio = 2;
         break;
 
       case 'opcion-multiple':
-        this.tema.ejercicios[this.index].id_tipo_ejercicio = 3;
+        this.newEj.id_tipo_ejercicio = 3;
         break;
     }
   }
