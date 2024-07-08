@@ -8,26 +8,15 @@
                 <p>Elige un Temario:</p>
                 <mat-form-field>
                     <mat-label>Temario</mat-label>
-                    <mat-select [formControl]="temarioControl" placeholder="Ej. Cálculo I" formControlName="firstCtrl" (selectionChange)="onTemarioChange($event.value)" required>
-                        
+                    <mat-select [formControl]="temarioControl" placeholder="Ej. Cálculo I" formControlName="firstCtrl"
+                        (selectionChange)="onTemarioChange($event.value)" required>
                         <mat-option *ngFor="let temario of temarios" [value]="temario">{{temario.titulo}}</mat-option>
-
-                        <!-- <mat-option>--</mat-option>
-                        @for (temario of temarios; track temario) {
-                        <!-- <mat-option [value]="temario">{{temario.titulo}}</mat-option>
-                        } -->
-
                     </mat-select>
-
                     <mat-error *ngIf="temarioControl.hasError('required')">Debes elegir un Temario.</mat-error>
-
-                    <!-- @if (temarioControl.hasError('required')) {
-                    <mat-error>Debes eligir un Temario.</mat-error>
-                    } -->
                     <mat-hint>{{temarioControl.value?.id}}</mat-hint>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperNext (click)="cargarTemas()">Siguiente</button>
+                    <button mat-button matStepperNext (click)="cargarTemas(temarioControl.value!)">Siguiente</button>
                 </div>
             </form>
         </mat-step>
@@ -40,13 +29,32 @@
                     <mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="start">
                         <!-- CREAR TEMA -->
                         <mat-tab label="Crear Tema">
-                            <form class="form">
+                            <form class="form" [formGroup]="newTemaForm">
                                 <div class="container">
-                                    <p style="padding: 1rem 0rem;">Nuevo Tema:
-                                    <p>
-                                        
-                                        <!-- Cards/Components Tipos de Ejercicios -->
-                                    
+                                    <p style="padding: 1rem 0rem;">Nuevo Tema:</p>
+
+                                    <div class="crear-tema-container">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Título</mat-label>
+                                            <input matInput formControlName="titulo" placeholder="Ingrese el título"
+                                                required>
+                                            <mat-error *ngIf="newTemaForm.controls['titulo'].hasError('required')">
+                                                El título es requerido.
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Descripción</mat-label>
+                                            <textarea matInput formControlName="descripcion"
+                                                placeholder="Ingrese la descripción" required></textarea>
+                                            <mat-error *ngIf="newTemaForm.controls['descripcion'].hasError('required')">
+                                                La descripción es requerida.
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                        <button mat-raised-button color="primary" (click)="crearTema()">Agregar
+                                            Tema</button>
+                                    </div>
                                 </div>
                             </form>
                         </mat-tab>
@@ -56,67 +64,54 @@
                         <mat-tab label="Ver Temas">
                             <form class="form">
                                 <div class="container">
-                                    <form>
-                                        <table mat-table [dataSource]="dataSource" matSort
-                                            (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+                                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                                        <!-- id Column -->
+                                        <ng-container matColumnDef="id">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                        </ng-container>
 
-                                            <!-- Position Column -->
-                                            <ng-container matColumnDef="id">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by number">
-                                                    ID
-                                                </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                                            </ng-container>
+                                        <!-- Titulo Column -->
+                                        <ng-container matColumnDef="titulo">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+                                        </ng-container>
 
-                                            <!-- Name Column -->
-                                            <ng-container matColumnDef="titulo">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by titulo">
-                                                    Titulo
-                                                </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
-                                            </ng-container>
+                                        <!-- Descripcion Column -->
+                                        <ng-container matColumnDef="descripcion">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </th>
+                                            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                                        </ng-container>
 
-                                            <!-- Weight Column -->
-                                            <ng-container matColumnDef="descripcion">
-                                                <th mat-header-cell *matHeaderCellDef mat-sort-header
-                                                    sortActionDescription="Sort by descripcion">
-                                                    Descripcion
-                                                </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-                                            </ng-container>
+                                        <!-- Acciones column -->
+                                        <ng-container matColumnDef="acciones">
+                                            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <button mat-icon-button color="primary" (click)="editarTema(element)">
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+                                                <button mat-icon-button color="warn" (click)="eliminarTema(element.id)">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
 
-                                            <!-- Symbol Column -->
-                                            
-
-                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                        </table>
-                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                                            showFirstLastButtons></mat-paginator>
-                                    </form>
-
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                    </table>
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
                                 </div>
                             </form>
                         </mat-tab>
-                        <!--  -->
                     </mat-tab-group>
+                    <!--  -->
+
                     <div>
                         <button mat-button matStepperPrevious>Anterior</button>
-                        <button mat-button matStepperNext>Siguiente</button>
                     </div>
                 </div>
+                <!--  -->
             </form>
-        </mat-step>
-
-        <mat-step>
-            <ng-template matStepLabel>Finalizar</ng-template>
-            <p>Confirmar Cambios</p>
-            <div>
-                <button mat-button matStepperPrevious>Anterior</button>
-                <button mat-button (click)="stepper.reset()">Cancelar</button>
-            </div>
         </mat-step>
     </mat-stepper>
 
