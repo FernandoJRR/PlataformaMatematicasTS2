@@ -114,5 +114,6 @@ export class TemarioComponent {
         alert('Ocurrió un error al crear el temario.');
       }
     );
+    );
   }
 }
