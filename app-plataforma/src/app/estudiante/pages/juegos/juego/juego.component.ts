@@ -131,7 +131,7 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if (this.currentEjercicioIndex < this.ejercicios.length - 1) {
       this.currentEjercicioIndex++;
     } else {
-      alert('¡Juego completado!');
+      //alert('¡Juego completado 1!');
       Swal.fire({
         title: "¡Juego completado!",
         width: 600,
@@ -140,7 +140,7 @@ export class JuegoComponent implements OnInit, OnDestroy {
         background: "#fff url(/images/trees.png)",
         backdrop: `
           rgba(0,0,123,0.4)
-          url("/images/nyan-cat.gif")
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
           left top
           no-repeat
         `
@@ -162,7 +162,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
         this.tiempoRestante--;
       } else {
         this.detenerTemporizador();
-        alert('¡Se acabó el tiempo!');
+        //alert('¡Se acabó el tiempo!');
+        
         alert(`Resultados:
           Total de preguntas: ${this.ejercicios.length}
           Respuestas correctas: ${this.juegoService.getCorrectas()}
@@ -193,6 +194,26 @@ export class JuegoComponent implements OnInit, OnDestroy {
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
       Puntaje: ${this.puntaje}`);
+      Swal.fire({
+        title: "¡Juego completado!",
+        width: 600,
+        padding: "3em",
+        text:`Resultados:
+        Total de preguntas: ${this.ejercicios.length}
+        Respuestas correctas: ${this.juegoService.getCorrectas()}
+        Solo contesto: ${
+          this.ejercicios.length - this.juegoService.getCorrectas()
+        }
+        Puntaje: ${this.juegoService.calcularPuntaje()}`,
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
     
 
     this.router.navigate(['/estudiante/resultados'], {
