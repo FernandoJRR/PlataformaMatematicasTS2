@@ -8,6 +8,7 @@ import { PerfilComponent } from './pages/perfil/perfil-admin.component';
 import { TemarioComponent } from './pages/temario/temario.component';
 import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.component';
 import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
+import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
 
 
 
@@ -34,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: 'editar-ejercicio', 
-        component: EditarTemaComponent
+        component: EditarEjercicioComponent
       },
       {
         path: '**', 
