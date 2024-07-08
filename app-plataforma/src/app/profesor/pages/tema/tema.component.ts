@@ -47,8 +47,8 @@ export class TemaComponent {
 
   //Funcion para eliminar un ejercicio del Tema
   eliminarEjercicio(index: number) {
-    this.tema.temas[index].ejercicios.splice(index, 1);
-    if (this.tema.temas[index].ejercicios.length === 0) {
+    this.tema.temas[this.index].ejercicios.splice(index, 1);
+    if (this.tema.temas[this.index].ejercicios.length === 0) {
       this.mostrarEjercicio = false;
     }
   }

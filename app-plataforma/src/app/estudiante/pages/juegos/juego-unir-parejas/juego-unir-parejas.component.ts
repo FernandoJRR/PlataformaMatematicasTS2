@@ -19,6 +19,7 @@ export class JuegoUnirParejasComponent implements OnInit {
   respuestas: { izquierda: number; derecha: number; correct: boolean }[] = [];
   mappingDerecha: number[] = [];
   parejasIntentadas: Set<number> = new Set(); // Para rastrear parejas intentadas
+  puntaje:number=0;
 
   constructor(private juegoService: JuegoService){}
   ngOnInit() {
@@ -70,12 +71,12 @@ export class JuegoUnirParejasComponent implements OnInit {
 
       if (correcta) {
         alert('¡Pareja correcta!');
-        this.juegoService.incrementarUnirParejas(this.parejasDerecha.length);
+        //this.juegoService.incrementarUnirParejas(this.parejasDerecha.length);
       } else {
         alert('Pareja incorrecta. Inténtelo de nuevo.');
-        this.juegoService.incrementarUnirParejasIncorrectas(this.parejasDerecha.length);
+        //this.juegoService.incrementarUnirParejasIncorrectas(this.parejasDerecha.length);
       }
-
+      this.calcularPuntaje(correcta);
       // Marcar esta pareja como intentada
       this.parejasIntentadas.add(this.seleccionIzquierda);
 
@@ -84,9 +85,34 @@ export class JuegoUnirParejasComponent implements OnInit {
 
       // Verificar si todas las parejas han sido intentadas
       if (this.parejasIntentadas.size === this.parejasIzquierda.length) {
+        this.getCorrecta();
         this.next.emit({ correcta: this.respuestas.every(r => r.correct) });
       }
     }
+  }
+
+  calcularPuntaje(correcta: boolean) {
+    const ValPareja: number = this.juegoService.getValorXejercicio() / this.parejasDerecha.length;
+  
+    if (correcta) {
+      this.puntaje += ValPareja;
+    } else {
+    }
+    this.puntaje = parseFloat(this.puntaje.toFixed(2));
+  }
+  getCorrecta(): boolean{
+    let correcta: boolean = false
+    if (this.puntaje>=(this.juegoService.getValorXejercicio())*0.60) {
+      correcta= true
+    }else{
+      correcta= false
+    }
+    if (this.ejercicio.id) {
+    console.log("puntaje de "+this.puntaje);
+      this.juegoService.unirParejasPuntaje(this.ejercicio.id,correcta, this.puntaje)
+    }
+    this.puntaje=0;
+    return correcta;
   }
 
   esParejaCorrectaIzquierda(index: number): boolean {

@@ -1,15 +1,16 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JuegoService } from '../juego.service';
 import { GlobalsService } from '../../../../globals/globals.service';
-import { EjercicioPartidax } from '../../../../interfaces/ejercicio_partida.interface';
-
+import { Partida } from '../../../../interfaces/partida.interface';
+import { PartidaService } from '../../../services/partida.service';
+//import { error } from 'console';
 
 @Component({
   selector: 'app-juego',
   templateUrl: './juego.component.html',
-  styleUrls: ['./juego.component.css']
+  styleUrls: ['./juego.component.css'],
 })
 export class JuegoComponent implements OnInit, OnDestroy {
   @Input() ejercicios: Ejercicio[] = [];
@@ -19,34 +20,40 @@ export class JuegoComponent implements OnInit, OnDestroy {
   juegoIniciado: boolean = false;
   modoContrarreloj: boolean = false;
   modoSeleccionado: string = 'normal';
-  modo:number=1;
-  correctas: number= 0;
-  incorrectas: number= 0 ;
+  modo: number = 1;
+  correctas: number = 0;
+  incorrectas: number = 0;
   puntaje: number = 0;
   esCorrecta:boolean=false;
+  partida!: Partida;
 
   receivedEjercicios!: Ejercicio[];
 
-  constructor(private route: ActivatedRoute, 
-              private juegoService: JuegoService,
-            private globals: GlobalsService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private juegoService: JuegoService,
+    private globals: GlobalsService,
+    private partidaService: PartidaService
+  ) {}
 
   ngOnInit() {
     // Usar datos simulados si no se proporcionan ejercicios
-    this.route.params.subscribe(params => {
-      if (params['data'] && params['modo'] ) {
+    this.route.params.subscribe((params) => {
+      if (params['data'] && params['modo']) {
         this.receivedEjercicios = JSON.parse(params['data']) as Ejercicio[];
         this.modoSeleccionado = params['modo'] as string;
       }
-      
     });
     if (!this.ejercicios || this.ejercicios.length === 0) {
       //this.ejercicios = this.generarDatosSimulados();
-      this.ejercicios=this.receivedEjercicios
+      this.ejercicios = this.receivedEjercicios;
     }
     this.calcularTiempoTotal();
-    this.iniciarJuego()
+    this.iniciarJuego();
   }
+
+  
 
   iniciarJuego() {
     this.juegoIniciado = true;
@@ -54,18 +61,24 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
     if (this.modoSeleccionado === 'contrarreloj') {
       this.modoContrarreloj = true;
-      this.modo=1;
+      this.modo = 1;
       this.iniciarTemporizador();
-    } else {
+      this.modoSeleccionado='Contra-Reloj';
+    } else if (this.modoSeleccionado === 'invencible') {
       this.modoContrarreloj = false;
+      this.modo = 1;
+      this.modoSeleccionado='Invencible';
+    }else {
+      this.modoContrarreloj = false;
+      this.modoSeleccionado='Normal';
     }
   }
 
   calcularTiempoTotal() {
     this.tiempoRestante = this.ejercicios.reduce((acc, ejercicio) => {
-      if (ejercicio.id_tipo_ejercicio === 1 ) {
+      if (ejercicio.id_tipo_ejercicio === 1) {
         return acc + 8;
-      }else if (ejercicio.id_tipo_ejercicio === 3) {
+      } else if (ejercicio.id_tipo_ejercicio === 3) {
         return acc + 4;
       } else if (ejercicio.id_tipo_ejercicio === 2) {
         return acc + 13;
@@ -75,23 +88,18 @@ export class JuegoComponent implements OnInit, OnDestroy {
   }
 
   get currentEjercicio(): Ejercicio | null {
-    return this.ejercicios.length > 0 ? this.ejercicios[this.currentEjercicioIndex] : null;
+    return this.ejercicios.length > 0
+      ? this.ejercicios[this.currentEjercicioIndex]
+      : null;
   }
 
   siguienteEjercicio(event?: { correcta: boolean }) {
-    //alert("siguiente ejercicio");
-    //Elinimar este cliclo si funciona el otro nmetodo
-    if (event!) {
-      alert("siguiente ejercicio2");
-      alert('event')
-      if (event.correcta) {
-        this.correctas++;
-        alert("sumando correcta");
-        console.log("sumando correcta");
-      } else {
-        this.incorrectas++;
-        alert("sumando incorrecta");
-        alert("sumando incorrecta");
+    //en este metodo podemos saber si la pregunta es correcta o incorrecta
+    if (this.modoSeleccionado == 'invencible') {
+      if (this.juegoService.getCorrecta()!) {
+        alert('¡Modo invensible termindado !');
+        this.detenerTemporizador();
+        this.mostrarResultados();
       }
     }
 
@@ -117,6 +125,13 @@ export class JuegoComponent implements OnInit, OnDestroy {
       } else {
         this.detenerTemporizador();
         alert('¡Se acabó el tiempo!');
+        alert(`Resultados:
+          Total de preguntas: ${this.ejercicios.length}
+          Respuestas correctas: ${this.juegoService.getCorrectas()}
+          Solo contesto: ${
+            this.ejercicios.length - this.juegoService.getCorrectas()
+          }
+          Puntaje: ${this.juegoService.calcularPuntaje()}`);
         this.mostrarResultados();
       }
     }, 1000);
@@ -130,82 +145,49 @@ export class JuegoComponent implements OnInit, OnDestroy {
     this.detenerTemporizador();
   }
 
-  generarDatosSimulados(): Ejercicio[] {
-    return [
-      {
-        id_tipo_ejercicio: 1,
-        id_dificultad: 1,
-        anotacion: 'Primera pregunta',
-        id_tema: 0,
-        data_json: { pregunta: '¿Cuál es la capital de Francia?', respuesta: 'París' },
-        fecha_creacion: new Date().toISOString(),
-        fecha_modificacion: new Date().toISOString()
-      },
-      {
-        id_tipo_ejercicio: 1,
-        id_dificultad: 1,
-        anotacion: 'Segunda pregunta',
-        id_tema: 0,
-        data_json: { pregunta: '¿Cuál es el río más largo del mundo?', respuesta: 'Nilo' },
-        fecha_creacion: new Date().toISOString(),
-        fecha_modificacion: new Date().toISOString()
-      },
-      {
-        id_tipo_ejercicio: 2,
-        id_dificultad: 1,
-        anotacion: 'Unir parejas',
-        id_tema: 0,
-        data_json: {
-          parejasIzquierda: ['Fuente', 'Estuario', 'Tributario'],
-          parejasDerecha: ['Toda el área drenada por un río.', 'Escurrimiento de aguas en una red hidrográfica.', 'Lugar donde comienza un río.']
-        },
-        fecha_creacion: new Date().toISOString(),
-        fecha_modificacion: new Date().toISOString()
-      },
-      {
-        id_tipo_ejercicio: 3,
-        id_dificultad: 1,
-        anotacion: 'Opción múltiple',
-        id_tema: 0,
-        data_json: {
-          pregunta: '¿Cuál es el océano más grande del mundo?',
-          opciones: ['Océano Atlántico', 'Océano Índico', 'Océano Pacífico', 'Océano Ártico'],
-          respuestaCorrecta: 'Océano Pacífico'
-        },
-        fecha_creacion: new Date().toISOString(),
-        fecha_modificacion: new Date().toISOString()
-      }
-    ];
-  }
-
   mostrarResultados() {
     const totalPreguntas = this.ejercicios.length;
     this.puntaje = Math.round((this.correctas / totalPreguntas) * 100);
     alert(`Resultados:
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
-      Puntaje: ${this.juegoService.calcularPuntaje(this.juegoService.getCorrectas()+this.juegoService.getInCorrectas())}`);
-      
-      this.juegoService.resetearEstadisticas();
-      this.guardarPartida();
-    }
+      Puntaje: ${this.juegoService.calcularPuntaje()}`);
+    this.puntaje = this.juegoService.calcularPuntaje();
 
-
-    guardarPartida(){
-      const partida = {
+    this.router.navigate(['/estudiante/resultados'], {
+      state: {
+        modoJuego: this.modoSeleccionado,
+        correctas: this.juegoService.getCorrectas(),
+        incorrectas: this.juegoService.getInCorrectas(),
         puntaje: this.puntaje,
-        username_jugador: this.globals.getUser().username,
-        id_modo_juego: this.modo
-      }
-      //llamar a servico de partidas, y el metodo guardar partida (aun falta xd)
-    }
+        ejercicios: this.ejercicios,
+      },
+    });
+    this.guardarPartida();
+  }
 
-    guardarEjercicioPartida(ejercicio: Ejercicio){
-      const EjercicioPartidax = {
-        id_ejercicio: ejercicio.id,
-        id_partida: 0,
-        resuelto_satisfactoriamente: true
-      }
-    }
-  
+  guardarPartida() {
+    this.partida = {
+      username_jugador: this.globals.getUser().username,
+      id_modo_juego: this.modo,
+      puntaje: this.puntaje,
+      ejercicio_partida: this.juegoService.getEjerciciosPartida(),
+    };
+    this.juegoService.resetearEstadisticas();
+    //llamar a servico de partidas, y el metodo guardar partida (aun falta xd)
+    this.partidaService.guardarPartida(this.partida)
+    .subscribe((data) => {
+      console.log('partida guardada');
+    }, (error)=>{
+      console.log('partida guardada');
+    });
+  }
+
+  guardarEjercicioPartida(ejercicio: Ejercicio) {
+    const EjercicioPartidax = {
+      id_ejercicio: ejercicio.id,
+      id_partida: 0,
+      resuelto_satisfactoriamente: true,
+    };
+  }
 }

@@ -1,60 +1,62 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
-            <span>Menu</span>
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
+            <span class="tool-menu-span">Menu</span>
+            <button mat-button class="nav-button" (click)="sidenav.toggle()">
+                <mat-icon style="margin: 4px; font-size: 26px;">arrow_back</mat-icon>
             </button>
         </mat-toolbar>
+
         <mat-nav-list>
-            <a routerLink="./perfil-admin" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>check_circle_outline</mat-icon>
-                <span class="nav-text">Mi perfil</span>
+            <a routerLink="./" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span class="nav-text">Home</span>
             </a>
-            <a routerLink="./solicitudes" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>check_circle_outline</mat-icon>
-                <span class="nav-text">Administracion de temarios</span>
+            <a routerLink="./temarios" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>table_chart</mat-icon>
+                <span class="nav-text">Lista de Temarios</span>
             </a>
-            <a routerLink="./reportes" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>report</mat-icon>
-                <span class="nav-text">Reportes</span>
+            <a routerLink="./temas" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>table_chart</mat-icon>
+                <span class="nav-text">Lista de Temas</span>
             </a>
-            <a routerLink="./listado" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>assignment_ind</mat-icon>
+            <a routerLink="./ejercicios" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>table_chart</mat-icon>
+                <span class="nav-text">Lista de Ejercicios</span>
+            </a>
+            <a routerLink="./logros" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>stars</mat-icon>
+                <span class="nav-text">Logros</span>
+            </a>
+            <a routerLink="./nuevo-usuario" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>person_add</mat-icon>
+                <span class="nav-text">Usuario</span>
+            </a>
+            <a routerLink="./usuarios" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>people</mat-icon>
                 <span class="nav-text">Usuarios</span>
             </a>
-            <a routerLink="./agregar" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>add</mat-icon>
-                <span class="nav-text">Agregar temario</span>
+            <a routerLink="./estadisticas" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>insert_chart</mat-icon>
+                <span class="nav-text">Estadísticas</span>
             </a>
-            <a routerLink="./buscar" 
-                mat-list-item
-                (click)="sidenav.toggle()">
-                <mat-icon mat-list-icon>search</mat-icon>
-                <span class="nav-text">Buscar</span>
+            <a routerLink="./perfil-admin" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>face</mat-icon>
+                <span class="nav-text">Mi perfil</span>
             </a>
-        </mat-nav-list>    
+        </mat-nav-list>
     </mat-sidenav>
-    <mat-toolbar>
-        <button mat-icon-button (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
+
+    <mat-toolbar class="mat-toolbar mat-toolbar-single-row">
+        <button mat-button class="nav-button" (click)="sidenav.toggle()">
+            <mat-icon style="margin: 4px; font-size: 26px;">menu</mat-icon>
         </button>
         <span class="spacer"></span>
-        <span>Estuardo Ramos - Administrador</span>
-        <button mat-button class="logout-button" >
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-          </button>
+        <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+        <span class="username-span">Username | Administrador</span>
+        <button mat-button class="nav-button" (click)="logout()">
+            <mat-icon style="margin: 4px; font-size: 26px;">logout</mat-icon>
+        </button>
     </mat-toolbar>
     <div class="container">
         <router-outlet></router-outlet>
