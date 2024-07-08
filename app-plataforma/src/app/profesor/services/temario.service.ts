@@ -19,8 +19,8 @@ export class TemarioService {
   }
 
   // Obtener todos los temarios
-  obtenerListaTemarios(): Observable<Temario[]> {
-    return this.http.get<Temario[]>(`${this.baseUrl}/temarios`);
+  obtenerListaTemariosProfesor(username: string): Observable<Temario[]> {
+    return this.http.get<Temario[]>(`${this.baseUrl}/temario/temarios-profesor/${username}`);
   }
 
   // Obtener un temario por su ID específico

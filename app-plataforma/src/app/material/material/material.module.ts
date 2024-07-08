@@ -23,11 +23,12 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import {MatTable, MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule,MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatInputModule, ],
+  imports: [CommonModule,MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule, MatInputModule, MatSort, MatTable, MatPaginator,],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -50,11 +51,12 @@ import {MatTable, MatTableDataSource, MatTableModule} from '@angular/material/ta
     MatTabsModule,
     MatTableModule,
     MatSortModule,
+    MatPaginator,
   
   ],
   providers: [
     {
-      provide: STEPPER_GLOBAL_OPTIONS,
+      provide: STEPPER_GLOBAL_OPTIONS, 
       useValue: { showError: true },
     },
   ],
