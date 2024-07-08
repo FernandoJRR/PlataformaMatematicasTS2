@@ -4,6 +4,7 @@ import knex from "knex";
 import { encriptar, encriptarComparar } from "../handlers/encription.handler";
 
 export async function getUsuario(username: string) {
+  
   const usuario = await Usuario.query()
     .select('usuario.*','rol.codigo')
     .where('username', username)
@@ -11,7 +12,7 @@ export async function getUsuario(username: string) {
     .first();
 
   if (usuario === undefined) {
-    throw new Error("El usuario no existe");
+    throw new Error(`El usuario --'${username}'-- no existe :c`);
   }
 
   return usuario;

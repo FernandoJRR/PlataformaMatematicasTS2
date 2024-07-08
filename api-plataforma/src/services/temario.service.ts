@@ -1,6 +1,7 @@
 import { Temario } from "../models/temario";
 import { Tema } from "../models/tema";
 import { Ejercicio } from "../models/ejercicio";
+import { timingSafeEqual } from "crypto";
 
 export async function getTemario(idTemario: number) {
   const temario = await Temario.query()
@@ -34,7 +35,21 @@ export async function getTemarios() {
     
     temario.temas = temas;
   }
-  
+
+  return temarios;
+}
+
+export async function getTemariosProfesor(usernameProfesor: string) {
+  const temarios = await Temario.query()
+  .where('username_creador', usernameProfesor);
+
+  for (const temario of temarios) {
+    const temas = await temario
+      .$relatedQuery('temas');
+    
+    temario.temas = temas;
+  }
+
   return temarios;
 }
 
@@ -129,10 +144,10 @@ export async function getTema(idTema: number) {
   if (tema === undefined) {
     throw new Error("El tema no existe");
   }
-  
+
   const ejerciciosTema = await tema
   .$relatedQuery('ejercicios');
-    
+
   tema.ejercicios = ejerciciosTema;
 
   return tema;
@@ -162,7 +177,7 @@ export async function addEjercicio(idTema: number, inputEjercicio: any) {
 export async function updateTemario(idTemario: number, input: any) {
   const temario = await Temario.query()
     .findById(idTemario);
-  
+
   if (temario === undefined) {
     throw new Error("El temario no existe");
   }
@@ -172,7 +187,7 @@ export async function updateTemario(idTemario: number, input: any) {
     await Temario.query()
     .where('id', idTemario)
     .update(input);
-    
+
     await trx.commit();
     return await Temario.query()
       .findById(idTemario);
@@ -185,7 +200,7 @@ export async function updateTemario(idTemario: number, input: any) {
 export async function updateTema(idTema: number, input: any) {
   const tema = await Temario.query()
     .findById(idTema);
-  
+
   if (tema === undefined) {
     throw new Error("El tema no existe");
   }
@@ -195,7 +210,7 @@ export async function updateTema(idTema: number, input: any) {
     await Tema.query()
     .where('id', idTema)
     .update(input);
-    
+
     await trx.commit();
     return await Tema.query()
       .findById(idTema);
@@ -208,7 +223,7 @@ export async function updateTema(idTema: number, input: any) {
 export async function updateEjercicio(idEjercicio: number, input: any) {
   const ejercicio = await Ejercicio.query()
     .findById(idEjercicio);
-  
+
   if (ejercicio === undefined) {
     throw new Error("El ejercicio no existe");
   }
@@ -218,7 +233,7 @@ export async function updateEjercicio(idEjercicio: number, input: any) {
     await Ejercicio.query()
     .where('id', idEjercicio)
     .update(input);
-    
+
     await trx.commit();
     return await Ejercicio.query()
       .findById(idEjercicio);

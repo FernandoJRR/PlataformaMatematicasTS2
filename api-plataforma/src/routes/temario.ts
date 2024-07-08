@@ -5,6 +5,8 @@ const router = Router();
 
 router.get('/', temarioController.getTemarios);
 
+router.get('/temarios-profesor/:username', temarioController.getTemariosProfesor);
+
 router.get('/:id', temarioController.getTemario);
 
 router.patch('/:id', temarioController.updateTemario);
@@ -13,7 +15,7 @@ router.post('/', temarioController.createTemario);
 
 router.post('/temario/:id', temarioController.addTema);
 
-router.get('/tema/:id', temarioController.getTema);
+router.get('/tema/:id', temarioController.getTema)
 
 router.post('/tema/:id', temarioController.addEjercicio);
 
