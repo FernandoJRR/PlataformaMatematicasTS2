@@ -5,6 +5,8 @@ const router = Router();
 
 router.get('/', temarioController.getTemarios);
 
+router.get('/temarios-profesor/:username', temarioController.getTemariosProfesor);
+
 router.get('/:id', temarioController.getTemario);
 
 router.patch('/:id', temarioController.updateTemario);
