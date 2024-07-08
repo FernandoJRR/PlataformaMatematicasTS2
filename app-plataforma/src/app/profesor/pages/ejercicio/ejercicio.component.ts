@@ -19,11 +19,11 @@ export class EjercicioComponent {
   //Constructor
   constructor(){
     this.newEj = {
-      id_tipo_ejercicio: 1,
-      id_tema: 0,
-      id_dificultad: 1,
-      anotacion: 'nuevo ejercicio',
-      data_json: "AQUI CREANDO",
+      id_tipo_ejercicio: -1,
+      id_tema: -1,
+      id_dificultad: -1,
+      anotacion: '',
+      data_json: "",
       fecha_creacion: new Date().toISOString(),
       fecha_modificacion: new Date().toISOString(),
     };
