@@ -16,6 +16,7 @@ import { UnirParejasComponent } from './pages/ejercicios/unir-parejas/unir-parej
 import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.component';
 import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
+import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
 
 
 
@@ -23,7 +24,6 @@ import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejerci
   declarations: [
     HomeComponent,
     WelcomeComponent,
-    
     PerfilComponent,
     TemarioComponent,
     TemaComponent,
@@ -37,6 +37,7 @@ import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejerci
     EditarEjercicioComponent
   ],
   imports: [
+    MarkEditorComponent,
     CommonModule,
     MaterialModule,
     RouterModule,
