@@ -1,3 +1,4 @@
+import { EjercicioPartida } from "../models/ejercicio_partida";
 import { Partida } from "../models/partida";
 //import { Tema } from "../models/tema";
 //import { EjercicioPartida } from "../models/ejercicio_partida";
@@ -33,9 +34,8 @@ export async function getReportePartida() {
         reporte para administrador 
      */
 }
+
 //Reporte para adnministrador por tema y promedio de puntos por tema 
-
-
 export async function getReportePartidaPorTema() {
     try {
         // Consulta utilizando JOIN para obtener partidas con tema y usuario relacionados
@@ -93,34 +93,11 @@ function calcularPromedioPuntajePorTema(partidasPorTema: { [idTema: number]: Par
 }
 
 export async function getReportePartidaPorTemaProfesor(username_profesor: string) {
-    try {
-        // Consulta utilizando JOIN para obtener partidas con tema y usuario relacionados
-        const partidas = await Partida.query()
-            .join('tema', 'partida.id_tema', 'tema.id')
-            .join('usuario', 'partida.username_jugador', 'usuario.username')
-            .select('partida.id', 'partida.puntaje', 'tema.titulo as nombre_tema', 'usuario.username as username_jugador');
-
-        if (!partidas || partidas.length === 0) {
-            throw new Error("No se encontraron partidas jugadas");
-        }
-
-        // Calcular promedio de puntaje por tema
-        const promediosPorTema: { [nombreTema: string]: { totalPartidas: number, totalPuntaje: number } } = {};
-        const conteoPorTema: { [nombreTema: string]: number } = {};
-
-
-
-        const reportePorTema = Object.keys(promediosPorTema).map(nombreTema => ({
-            nombre_tema: nombreTema,
-            puntaje_promedio: promediosPorTema[nombreTema].totalPuntaje / promediosPorTema[nombreTema].totalPartidas,
-            total_partidas: conteoPorTema[nombreTema]
-        }));
-
-        console.log(reportePorTema);
-
-        return reportePorTema;
-    } catch (error) {
-        console.error("Error al obtener el reporte de partidas por tema:", error);
-        throw error;
-    }
+    //Se obtienen todos los ejercicio_partida donde el temario del ejercicio sea creado por el profesor
+    const ejercicios_partida_profesor = await EjercicioPartida.query()
+    .join('ejercicio', 'ejercicio_partida.id_ejercicio', 'ejercicio.id')
+    .join('tema', 'ejercicio.id_tema', 'tema.id')
+    .join('temario', 'tema.id_temario', 'temario.id')
+    .where('temario.username_creador', username_profesor)
+    .orderBy('ejercicio_partida.id_partida');
 }
