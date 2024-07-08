@@ -2,7 +2,6 @@
 .container {
   padding: 5rem;
 
-
   /*display: flex; TAMAÑO CARDS DENTRO DE HOME */ 
   flex-direction: column;
   align-items: center; /* Centrar los elementos horizontalmente */
@@ -62,7 +61,6 @@
 }
 
 .mat-icon {
-  margin: 0rem 0.5rem 0rem; /*probar*/
   font-size: 1.5rem;
   width: auto;
   height: auto;
@@ -72,16 +70,14 @@
 .mat-mdc-icon-button .mat-icon {
   z-index: 1;
   position: absolute;
-  right: -1.5px;
-  top: 9px;
-}
-
-.nav-text {
-  vertical-align: 0.2rem; /* Alinea verticalmente el texto */
   right: -7px;
   top: 4px;
   font-size: 35px;
+}
+
+.nav-text {
   padding: 0.85rem;
+  vertical-align: 0.4rem; /* Alinea verticalmente el texto */
   line-height: 2rem; /* Alinea con el tamaño del icono */
 }
 
@@ -92,7 +88,6 @@ mat-toolbar {
   padding: 3rem 2rem 3rem 1rem;
   background: blueviolet;
 }
-
 
 .example-button-container {
   display: flex;
@@ -117,20 +112,6 @@ mat-toolbar {
   align-content: center;
   justify-content: center;
   font-size: 25px;
-  font-style: italic;
-}
-
-.logout-button {
-  height: 3rem;
-  margin: 2rem;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  font-size: 18px;
-
-  border: 10px;
-  background: black;
-  border-color: whitesmoke;
 }
 
 .nav-button {
@@ -168,4 +149,3 @@ mat-toolbar {
 .spacer {
   flex: 1 1 auto;
 }
-
