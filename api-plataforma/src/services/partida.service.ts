@@ -94,6 +94,54 @@ async function verificarLogros(partida: Partida) {
       .insert({id_logro: 3, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
   }
+
+  //Se verifica si es la primer partida contrarreloj del jugador
+  //Primero se verifica si lo tiene para optimizar recursos
+  if (!verificarPosesionLogro(4, partida.username_jugador!)) {
+    //Si no lo tiene se comprueba si se le puede dar
+    const partidasContrarreloj = await Partida.query()
+    .where('username_jugador', partida.username_jugador!)
+    .where('id_modo_juego', 1);
+
+    if (partidasContrarreloj.length === 1) {
+      //Si es su primer partida se le da
+      await LogroUsuario.query()
+      .insert({id_logro: 4, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
+    }
+
+  }
+
+  //Se verifica si es la primer partida invencible del jugador
+  //Primero se verifica si lo tiene para optimizar recursos
+  if (!verificarPosesionLogro(4, partida.username_jugador!)) {
+    //Si no lo tiene se comprueba si se le puede dar
+    const partidasInvencible = await Partida.query()
+    .where('username_jugador', partida.username_jugador!)
+    .where('id_modo_juego', 2);
+
+    if (partidasInvencible.length === 1) {
+      //Si es su primer partida se le da
+      await LogroUsuario.query()
+      .insert({id_logro: 5, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
+    }
+
+  }
+
+  //Se verifica si es la primer partida refuerzo del jugador
+  //Primero se verifica si lo tiene para optimizar recursos
+  if (!verificarPosesionLogro(4, partida.username_jugador!)) {
+    //Si no lo tiene se comprueba si se le puede dar
+    const partidasRefuerzo = await Partida.query()
+    .where('username_jugador', partida.username_jugador!)
+    .where('id_modo_juego', 3);
+
+    if (partidasRefuerzo.length === 1) {
+      //Si es su primer partida se le da
+      await LogroUsuario.query()
+      .insert({id_logro: 6, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
+    }
+
+  }
 }
 
 //Verifica si un jugador tiene un logro
