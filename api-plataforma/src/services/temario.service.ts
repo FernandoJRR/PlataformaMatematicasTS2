@@ -39,6 +39,20 @@ export async function getTemarios() {
   return temarios;
 }
 
+export async function getTemariosProfesor(usernameProfesor: string) {
+  const temarios = await Temario.query()
+  .where('username_creador', usernameProfesor);
+
+  for (const temario of temarios) {
+    const temas = await temario
+      .$relatedQuery('temas');
+    
+    temario.temas = temas;
+  }
+
+  return temarios;
+}
+
 export async function createTemario(input: any) {
   const trx = await Temario.startTransaction();
   
