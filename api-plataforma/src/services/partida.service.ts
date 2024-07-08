@@ -1,15 +1,14 @@
+
 import { Partida } from "../models/partida";
 import { Tema } from "../models/tema";
 import { EjercicioPartida } from "../models/ejercicio_partida";
 import { ModoJuego } from "../models/modo_juego";
 import { Temario } from "../models/temario";
 import { Ejercicio } from "../models/ejercicio";
+//import { Partida } from "../models/partida";
+
 import { LogroUsuario } from "../models/logro_usuario";
 
-export async function getPartidas() {
-  const partidas = await Partida.query();
-  return partidas;
-}
 
 export async function getPartida(idPartida: number) {
   const partida = await Partida.query().findById(idPartida);
