@@ -53,6 +53,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
     this.iniciarJuego();
   }
 
+  
+
   iniciarJuego() {
     this.juegoIniciado = true;
     this.juegoService.setTotalEjercicios(this.ejercicios.length);
@@ -61,8 +63,14 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.modoContrarreloj = true;
       this.modo = 1;
       this.iniciarTemporizador();
-    } else {
+      this.modoSeleccionado='Contra-Reloj';
+    } else if (this.modoSeleccionado === 'invencible') {
       this.modoContrarreloj = false;
+      this.modo = 1;
+      this.modoSeleccionado='Invencible';
+    }else {
+      this.modoContrarreloj = false;
+      this.modoSeleccionado='Normal';
     }
   }
 
@@ -149,8 +157,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
     this.router.navigate(['/estudiante/resultados'], {
       state: {
         modoJuego: this.modoSeleccionado,
-        correctas: this.correctas,
-        incorrectas: this.incorrectas,
+        correctas: this.juegoService.getCorrectas(),
+        incorrectas: this.juegoService.getInCorrectas(),
         puntaje: this.puntaje,
         ejercicios: this.ejercicios,
       },
