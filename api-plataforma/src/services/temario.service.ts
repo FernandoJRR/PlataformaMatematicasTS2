@@ -25,6 +25,12 @@ export async function getTemario(idTemario: number) {
   return temario;
 }
 
+export async function getTemarios() {
+  const temarios = await Temario.query();
+
+  return temarios;
+}
+
 export async function createTemario(input: any) {
   const trx = await Temario.startTransaction();
   
@@ -105,6 +111,22 @@ export async function addTema(idTemario: number, inputTema: any) {
   } catch (error) {
     await trx.rollback();
   }
+}
+
+export async function getTema(idTema: number) {
+  const tema = await Tema.query()
+  .findById(idTema);
+
+  if (tema === undefined) {
+    throw new Error("El tema no existe");
+  }
+
+  const ejerciciosTema = await tema
+  .$relatedQuery('ejercicios');
+
+  tema.ejercicios = ejerciciosTema;
+
+  return tema;
 }
 
 export async function addEjercicio(idTema: number, inputEjercicio: any) {
