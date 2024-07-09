@@ -30,9 +30,16 @@ export class TemarioService {
 
   // Actualizar un temario
   actualizarTemario(temario: Temario): Observable<Temario> {
-    return this.http.put<Temario>(
+    return this.http.patch<Temario>(
       `${this.baseUrl}/temario/${temario.id}`,
       temario
     );
   }
+
+  /*
+  eliminarTemario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/temario/${id}`);
+  }
+  */
+
 }
