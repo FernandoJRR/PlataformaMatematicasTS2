@@ -44,6 +44,7 @@ import { InformacionTemaComponent } from './pages/informacion-tema/informacion-t
 
     //Componente de dialogo inyectado dentro de "editar-tema.component.ts"
     EditarTemaDialog, 
+    EditarEjercicioComponent,
     /* Demas dialogs */ 
 
   ],
