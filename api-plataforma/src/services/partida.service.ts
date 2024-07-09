@@ -44,16 +44,17 @@ export async function storePartida(input: any) {
 
   const trx = await Partida.startTransaction();
   try {
-    const partida = await Partida.query()
+    const partida = await Partida.query(trx)
     .insert(input);
       
     for (const ejercicio of ejercicios_partida) {
       ejercicio.id_partida = partida.id;
-      await EjercicioPartida.query()
+      await EjercicioPartida.query(trx)
       .insert(ejercicio)
     }
 
     //Aqui se verifica si se le daran logros al jugador
+    verificarLogros(partida, trx);
     
     await trx.commit();
     return partida;
@@ -63,33 +64,33 @@ export async function storePartida(input: any) {
   }
 }
 
-async function verificarLogros(partida: Partida) {
-  const partidasJugador = await Partida.query()
+async function verificarLogros(partida: Partida, trx: any) {
+  const partidasJugador = await Partida.query(trx)
   .where('username_jugador', partida.username_jugador!);
 
   //Se verifica si es la primer partida jugada del jugador
   if (partidasJugador.length === 1) {
     //Si lo es se le da el logro Primer Partida
-    await LogroUsuario.query()
+    await LogroUsuario.query(trx)
     .insert({id_logro: 1, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
   }
 
   //Se verifica si es la primer victoria del jugador (60% o mas por primera vez)
-  if (partida.puntaje! >= 0.6) {
+  if (partida.puntaje! >= 60) {
     //Se verifica que el jugador no tenga el logro
     if (!verificarPosesionLogro(2, partida.username_jugador!)) {
       //Si no lo tiene se le da
-      await LogroUsuario.query()
+      await LogroUsuario.query(trx)
       .insert({id_logro: 2, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
   }
 
   //Se verifica si es la primer partida perfecta del jugador (100%)
-  if (partida.puntaje! >= 1) {
+  if (partida.puntaje! >= 100) {
     //Se verifica que el jugador no tenga el logro
     if (!verificarPosesionLogro(3, partida.username_jugador!)) {
       //Si no lo tiene se le da
-      await LogroUsuario.query()
+      await LogroUsuario.query(trx)
       .insert({id_logro: 3, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
   }
@@ -98,13 +99,13 @@ async function verificarLogros(partida: Partida) {
   //Primero se verifica si lo tiene para optimizar recursos
   if (!verificarPosesionLogro(4, partida.username_jugador!)) {
     //Si no lo tiene se comprueba si se le puede dar
-    const partidasContrarreloj = await Partida.query()
+    const partidasContrarreloj = await Partida.query(trx)
     .where('username_jugador', partida.username_jugador!)
     .where('id_modo_juego', 1);
 
     if (partidasContrarreloj.length === 1) {
       //Si es su primer partida se le da
-      await LogroUsuario.query()
+      await LogroUsuario.query(trx)
       .insert({id_logro: 4, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
 
@@ -120,7 +121,7 @@ async function verificarLogros(partida: Partida) {
 
     if (partidasInvencible.length === 1) {
       //Si es su primer partida se le da
-      await LogroUsuario.query()
+      await LogroUsuario.query(trx)
       .insert({id_logro: 5, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
 
@@ -130,13 +131,13 @@ async function verificarLogros(partida: Partida) {
   //Primero se verifica si lo tiene para optimizar recursos
   if (!verificarPosesionLogro(4, partida.username_jugador!)) {
     //Si no lo tiene se comprueba si se le puede dar
-    const partidasRefuerzo = await Partida.query()
+    const partidasRefuerzo = await Partida.query(trx)
     .where('username_jugador', partida.username_jugador!)
     .where('id_modo_juego', 3);
 
     if (partidasRefuerzo.length === 1) {
       //Si es su primer partida se le da
-      await LogroUsuario.query()
+      await LogroUsuario.query(trx)
       .insert({id_logro: 6, username_usuario: partida.username_jugador!, fecha_conseguido: new Date()});
     }
 
