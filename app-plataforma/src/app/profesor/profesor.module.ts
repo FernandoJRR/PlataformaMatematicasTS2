@@ -43,7 +43,9 @@ import { InformacionTemaComponent } from './pages/informacion-tema/informacion-t
     InformacionTemaComponent,
 
     //Componente de dialogo inyectado dentro de "editar-tema.component.ts"
+    EditarTemarioComponent,
     EditarTemaDialog, 
+    //EditarEjercicioComponent
     /* Demas dialogs */ 
 
   ],
@@ -55,6 +57,6 @@ import { InformacionTemaComponent } from './pages/informacion-tema/informacion-t
     FormsModule,
     ProfesorRoutingModule,
     MatDialogModule //Pinche error (componente dentro de "editar-tema.component.ts")
-  ]
+  ],
 })
 export class ProfesorModule { }

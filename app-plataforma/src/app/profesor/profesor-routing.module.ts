@@ -28,7 +28,6 @@ const routes: Routes = [
         path: 'nuevo-temario', 
         component: TemarioComponent
       },
-
       {
         path: 'editar-temario', 
         component: EditarTemarioComponent
@@ -52,8 +51,7 @@ const routes: Routes = [
       {
         path: '**', 
         component: WelcomeComponent
-      },
-    
+      }, 
     ]
   }
 ];

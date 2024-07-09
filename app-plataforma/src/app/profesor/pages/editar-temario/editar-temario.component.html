@@ -1,0 +1,98 @@
+<div class="crud-tema-container">
+    <h1>Editar Temario</h1>
+  
+    <mat-stepper #stepper orientation="vertical">
+      <!-- Paso 1: Selección de Temario -->
+      <mat-step [stepControl]="temarioFormGroup">
+        <form [formGroup]="temarioFormGroup">
+          <ng-template matStepLabel>Selecciona un Temario</ng-template>
+          <p>Elige un Temario:</p>
+          <mat-form-field>
+            <mat-label>Temario</mat-label>
+            <mat-select [formControl]="temarioControl" placeholder="Selecciona un Temario" required>
+              <mat-option *ngFor="let temario of temarios" [value]="temario">{{ temario.titulo }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="temarioControl.hasError('required')">Debes elegir un Temario.</mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="onTemarioSelect()">Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+  
+      <!-- Paso 2: Crear/Editar Temario -->
+      <mat-step [stepControl]="informacionFormGroup">
+        <form [formGroup]="informacionFormGroup">
+          <ng-template matStepLabel>Crear/Editar Temario</ng-template>
+          <mat-tab-group>
+            <mat-tab label="Crear Temario">
+              <mat-form-field appearance="fill">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="titulo" placeholder="Ingrese el título" required>
+                <mat-error *ngIf="informacionFormGroup.controls['titulo'].hasError('required')">
+                  El título es requerido.
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="descripcion" placeholder="Ingrese la descripción" required></textarea>
+                <mat-error *ngIf="informacionFormGroup.controls['descripcion'].hasError('required')">
+                  La descripción es requerida.
+                </mat-error>
+              </mat-form-field>
+  
+              <div>
+                <button mat-button matStepperPrevious>Anterior</button>
+                <button mat-raised-button color="primary" (click)="guardarTemario()">Guardar</button>
+                <button mat-button (click)="stepper.reset()">Cancelar</button>
+              </div>
+            </mat-tab>
+  
+            <mat-tab label="CRUD Temarios">
+              <div class="container">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                  <!-- id Column -->
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+                  </ng-container>
+  
+                  <!-- Título Column -->
+                  <ng-container matColumnDef="titulo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.titulo }} </td>
+                  </ng-container>
+  
+                  <!-- Descripción Column -->
+                  <ng-container matColumnDef="descripcion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.descripcion }} </td>
+                  </ng-container>
+  
+                  <!-- Acciones Column -->
+                  <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                    <td mat-cell *matCellDef="let element">
+                      <button mat-icon-button color="primary" (click)="editarTemario(element)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <!-- (click)="eliminarTemario(element.id)" -->
+                      <button mat-icon-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+  
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+  
