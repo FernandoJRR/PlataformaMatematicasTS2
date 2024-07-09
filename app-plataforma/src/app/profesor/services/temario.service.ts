@@ -15,7 +15,7 @@ export class TemarioService {
   /* PETICIONES A BACKEND */
   // Enviar Temario
   crearTemario(nuevoTemario: Temario) {
-    return this.http.post(`${this.baseUrl}/temario`, nuevoTemario);
+    return this.http.post(`${this.baseUrl}/temario/`, nuevoTemario);
   }
 
   // Obtener todos los temarios
