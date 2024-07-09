@@ -1,0 +1,46 @@
+<div class="crud-tema-container">
+    <h1>Información del Tema</h1>
+
+    <mat-stepper #stepper orientation="vertical">
+        <!-- Paso 1: Selección de Temario y Tema -->
+        <mat-step [stepControl]="temarioFormGroup">
+            <form [formGroup]="temarioFormGroup">
+                <ng-template matStepLabel>Selecciona un Tema</ng-template>
+                <p>Elige un Tema:</p>
+                <mat-form-field>
+                    <mat-label>Tema</mat-label>
+                    <mat-select [formControl]="temaControl" placeholder="Selecciona un Tema"
+                        (selectionChange)="onTemaChange($event.value)">
+                        <mat-optgroup *ngFor="let temario of temarios" [label]="temario.titulo">
+                            <mat-option *ngFor="let tema of temario.temas" [value]="tema">{{tema.titulo}}</mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                    <mat-error *ngIf="temaControl.hasError('required')">Debes elegir un Tema.</mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- Paso 2: Editar Información del Tema -->
+        <mat-step [stepControl]="informacionFormGroup">
+            <form [formGroup]="informacionFormGroup">
+                <ng-template matStepLabel>Editar Información</ng-template>
+                <p>Edita la información del tema:</p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Información</mat-label>
+                    <textarea matInput formControlName="informacion" placeholder="Ingrese la información"
+                        required></textarea>
+                    <mat-error *ngIf="informacionFormGroup.controls['informacion'].hasError('required')">La información
+                        es requerida.</mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Anterior</button>
+                    <button mat-raised-button color="primary" (click)="guardarInformacion()">Guardar</button>
+                    <button mat-button (click)="stepper.reset()">Cancelar</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+</div>
