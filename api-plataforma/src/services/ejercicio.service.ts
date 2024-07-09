@@ -2,7 +2,7 @@ import { Temario } from "../models/temario";
 import { Tema } from "../models/tema";
 import { Ejercicio } from "../models/ejercicio";
 
-export async function getEjerciciosPartida(tipo: number, dificultad: number, inputTemas: any) {
+export async function getEjerciciosPartida(tipo: number, dificultad: number, modo: number, inputTemas: any) {
   const temas = inputTemas.temas;
   let ejercicios = [];
   if (temas.length === 0) {
@@ -15,6 +15,11 @@ export async function getEjerciciosPartida(tipo: number, dificultad: number, inp
     .where('id_tipo_ejercicio', tipo)
     .where('id_dificultad', dificultad)
     .whereIn('id_tema', temas);
+  }
+
+  if (modo === 3) {
+    ejercicios = await Ejercicio.query()
+    .where('id_dificultad', 3);
   }
     
   return ejercicios;
