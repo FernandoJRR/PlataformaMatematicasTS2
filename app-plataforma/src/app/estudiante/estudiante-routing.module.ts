@@ -9,6 +9,7 @@ import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-j
 import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
 import { ResultadosComponent } from './pages/juegos/resultados/resultados.component';
+import { InformacionTemaEstudianteComponent } from './pages/informacion-tema-estudiante/informacion-tema-estudiante.component';
 
 
 
@@ -38,7 +39,10 @@ const routes: Routes = [
         path: 'resultados', 
         component: ResultadosComponent
       },
-      
+      {
+        path: 'informacion-tema', 
+        component: InformacionTemaEstudianteComponent
+      },
       {
         path: '**', 
         component: WelcomeComponent

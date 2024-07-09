@@ -13,6 +13,8 @@ import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
+import { InformacionTemaEstudianteComponent } from './pages/informacion-tema-estudiante/informacion-tema-estudiante.component';
+import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progres
     JuegoComponent,
     JuegoOpcionMultipleComponent,
     EleccionJuegoComponent,
-    ProgresoEstudianteComponent
+    ProgresoEstudianteComponent,
+    InformacionTemaEstudianteComponent
 
     
   ],
@@ -36,7 +39,8 @@ import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progres
     RouterModule,
     CommonModule, 
     MaterialModule, 
-    FormsModule
+    FormsModule,
+    MarkEditorComponent
   ]
 })
 export class EstudianteModule { }
