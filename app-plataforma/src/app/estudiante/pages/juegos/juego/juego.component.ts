@@ -5,6 +5,8 @@ import { JuegoService } from '../juego.service';
 import { GlobalsService } from '../../../../globals/globals.service';
 import { Partida } from '../../../../interfaces/partida.interface';
 import { PartidaService } from '../../../services/partida.service';
+import Swal from 'sweetalert2';
+
 //import { error } from 'console';
 
 @Component({
@@ -49,8 +51,17 @@ export class JuegoComponent implements OnInit, OnDestroy {
       //this.ejercicios = this.generarDatosSimulados();
       this.ejercicios = this.receivedEjercicios;
     }
-    this.calcularTiempoTotal();
-    this.iniciarJuego();
+    if (this.ejercicios.length>0) {
+      this.calcularTiempoTotal();
+      this.iniciarJuego();
+      
+    }else{
+      alert('No hay juegos disponibles');
+      this.router.navigate(['/estudiante/eleccion-juego']);
+      return;
+    }
+
+    
   }
 
   
@@ -68,6 +79,10 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.modoContrarreloj = false;
       this.modo = 2;
       this.modoSeleccionado='Invencible';
+    }else if (this.modoSeleccionado === '3') {
+      this.modoContrarreloj = false;
+      this.modo = 2;
+      this.modoSeleccionado='Refuerzo';
     }else {
       this.modoContrarreloj = false;
       this.modoSeleccionado='Normal';
@@ -100,7 +115,20 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if (this.modoSeleccionado == 'Invencible') {
       console.log('Modeo seleccionado1'+this.modoSeleccionado+this.juegoService.getCorrecta()!)
       if (this.juegoService.getCorrecta()==false) {
-        alert('¡Modo invensible termindado !');
+        Swal.fire({
+          title: "¡Juego completado!",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff url(/images/trees.png)",
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            left top
+            no-repeat
+          `
+        });
+        
         this.detenerTemporizador();
         this.mostrarResultados();
       }
@@ -109,7 +137,20 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if (this.currentEjercicioIndex < this.ejercicios.length - 1) {
       this.currentEjercicioIndex++;
     } else {
-      alert('¡Juego completado!');
+      //alert('¡Juego completado 1!');
+      Swal.fire({
+        title: "¡Juego completado!",
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
       this.detenerTemporizador();
       this.mostrarResultados();
     }
@@ -127,7 +168,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
         this.tiempoRestante--;
       } else {
         this.detenerTemporizador();
-        alert('¡Se acabó el tiempo!');
+        //alert('¡Se acabó el tiempo!');
+        
         alert(`Resultados:
           Total de preguntas: ${this.ejercicios.length}
           Respuestas correctas: ${this.juegoService.getCorrectas()}
@@ -154,10 +196,30 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if(this.puntaje>100){
       this.puntaje=100;
     }
-    alert(`Resultados:
+    /*alert(`Resultados:
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
-      Puntaje: ${this.puntaje}`);
+      Puntaje: ${this.puntaje}`);*/
+      Swal.fire({
+        title: "¡Juego completado!",
+        width: 600,
+        padding: "3em",
+        text:`Resultados:
+        Total de preguntas: ${this.ejercicios.length}
+        Respuestas correctas: ${this.juegoService.getCorrectas()}
+        Solo contesto: ${
+          this.ejercicios.length - this.juegoService.getCorrectas()
+        }
+        Puntaje: ${this.juegoService.calcularPuntaje()}`,
+        color: "#716add",
+        background: "#fff url(/images/trees.png)",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `
+      });
     
 
     this.router.navigate(['/estudiante/resultados'], {

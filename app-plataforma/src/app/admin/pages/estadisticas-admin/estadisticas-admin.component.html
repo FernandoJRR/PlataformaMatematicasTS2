@@ -1,0 +1,34 @@
+<div class="progreso-estudiante-container">
+    <h2>Estadisticas Administrador</h2>
+    <h3>Total Partidas Jugadas</h3>
+    <h4>{{cantidad_partidas}}</h4>
+    <h3>Total Puntaje Promedio</h3>
+    <h4>{{puntaje_promedio}}</h4>
+
+    <div class="grafico-container">
+      <h3>Promedio Puntaje por Tema</h3>
+      <canvas id="graficoPuntajeTemas"></canvas>
+    </div>
+    <div class="grafico-container">
+      <h3>Partidas Jugadas por Tema</h3>
+      <canvas id="graficoPartidasJugadasTemas"></canvas>
+    </div>
+
+    <div class="grafico-container">
+      <h3>Promedio Puntaje por Temario</h3>
+      <canvas id="graficoPuntajeTemarios"></canvas>
+    </div>
+    <div class="grafico-container">
+      <h3>Partidas Jugadas por Temario</h3>
+      <canvas id="graficoPartidasJugadasTemarios"></canvas>
+    </div>
+    <div *ngFor="let tema of temas">
+        <h3>{{tema.titulo}}</h3>
+        <div *ngFor="let estudiante of tema.top; index as i">
+            <h5>Top Estudiantes</h5>
+            <h6>Username:{{estudiante.username}} Puntaje Promedio: {{estudiante.promedioPuntaje}}</h6>
+        </div>
+    </div>
+  </div>
+  
+

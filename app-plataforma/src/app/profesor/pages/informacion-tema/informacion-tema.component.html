@@ -28,6 +28,7 @@
             <form [formGroup]="informacionFormGroup">
                 <ng-template matStepLabel>Editar Información</ng-template>
                 <p>Edita la información del tema:</p>
+                <!--
                 <mat-form-field appearance="fill">
                     <mat-label>Información</mat-label>
                     <textarea matInput formControlName="informacion" placeholder="Ingrese la información"
@@ -35,6 +36,8 @@
                     <mat-error *ngIf="informacionFormGroup.controls['informacion'].hasError('required')">La información
                         es requerida.</mat-error>
                 </mat-form-field>
+                -->
+                <mark-editor #markEditor [editor]="editor"></mark-editor>
                 <div>
                     <button mat-button matStepperPrevious>Anterior</button>
                     <button mat-raised-button color="primary" (click)="guardarInformacion()">Guardar</button>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, SimpleChanges } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 import { JuegoService } from '../juego.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-juego-unir-parejas',
@@ -81,9 +82,19 @@ export class JuegoUnirParejasComponent implements OnInit {
 
       if (correcta) {
         alert('¡Pareja correcta!');
+        Swal.fire({
+          title: '¡Respuesta correcta!',
+          text: 'Siuu',
+          icon: 'success',
+        });
         //this.juegoService.incrementarUnirParejas(this.parejasDerecha.length);
       } else {
-        alert('Pareja incorrecta. Inténtelo de nuevo.');
+        //alert('Pareja incorrecta ');
+        Swal.fire({
+          title: '¡Respuesta Incorrecta!',
+          text: "Pareja incorrecta. ",
+          icon: 'error',
+        });
         //this.juegoService.incrementarUnirParejasIncorrectas(this.parejasDerecha.length);
       }
       this.calcularPuntaje(correcta);

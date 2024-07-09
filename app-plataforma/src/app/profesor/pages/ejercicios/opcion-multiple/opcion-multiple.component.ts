@@ -11,7 +11,8 @@ let json;
 export class OpcionMultipleComponent {
   @Input() tema!: Tema;
   @Input() newEj!: Ejercicio;
-  json = { pregunta: '', opciones: ['', '', '', ''], correcto: 1 };
+  json = { pregunta: '', opciones: ['', '', '', ''], respuestaCorrecta: '' };
+  respuestaCorrecta!:string;
 
   //Funcion que agrega el ejercicioOpcion-Multiple a la lista de Ejercicios del Tema
   ngOnInit() {
@@ -28,6 +29,11 @@ export class OpcionMultipleComponent {
   }
 
   seleccionarRespuesta(index: number) {
-    this.json.correcto = index;
+    
+    this.json.respuestaCorrecta = this.json.opciones[index];
+  }
+
+  trackByIndex(index: number, item: any): number {
+    return index;
   }
 }

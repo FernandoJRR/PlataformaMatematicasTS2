@@ -7,19 +7,22 @@ import { Ejercicio } from '../../../../interfaces/ejercicio';
   templateUrl: './unir-parejas.component.html',
   styleUrl: './unir-parejas.component.css',
 })
-export class UnirParejasComponent {
+export class UnirParejasComponent{
   @Input() tema!: Tema;
   @Input() newEj!: Ejercicio;
-  parejas: Array<{ izquierda: string; derecha: string }> = [
-    { izquierda: '', derecha: '' },];  
-  json = { datos: this.parejas };
-
-  //Agregar el Ejercicio Unir-Pareja a la lista de Ejercicios del Tema
+  parejas = [
+    { izquierda: '', derecha: '' },
+  ];  
+  
   ngOnInit() {
-    this.newEj.data_json = this.json
-    this.tema.ejercicios.push(this.newEj) //ERROR EN CONSOLA DEL BROWSER
+    const parejasIzquierda = this.parejas.map(p => p.izquierda);
+    const parejasDerecha = this.parejas.map(p => p.derecha);
+    this.newEj.data_json = {
+      parejasIzquierda: parejasIzquierda,
+      parejasDerecha: parejasDerecha
+    };
+    this.tema.ejercicios.push(this.newEj);
   }
-
 
   //Funciones
   agregarPareja() {
@@ -36,5 +39,11 @@ export class UnirParejasComponent {
     valor: string
   ) {
     this.parejas[index][lado] = valor;
+    const parejasIzquierda = this.parejas.map(p => p.izquierda);
+    const parejasDerecha = this.parejas.map(p => p.derecha);
+    this.newEj.data_json = {
+      parejasIzquierda: parejasIzquierda,
+      parejasDerecha: parejasDerecha
+    };
   }
 }

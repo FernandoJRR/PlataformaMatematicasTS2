@@ -20,13 +20,24 @@ export class EstadisticasProfesorComponent {
     ) {}
 
   user: User = this.globalService.getUser()
+  cantidad_partidas: number = 0;
   ngOnInit(): void {
+    this.estadisticaService.obtenerPartidasJugadasProfesor(this.user.username).subscribe(
+      (response) => {
+        this.cantidad_partidas = response.totalPartidas;
+      },
+      (error) => {
+        console.error('Error al obtener las estadisticas', error);
+        alert('Ocurrió un error al obtener las estadisticas.');
+      }
+    )
     this.estadisticaService.obtenerReportePartidaProfesor(this.user.username).subscribe(
       (response) => {
         console.log(response);
-        let dataset = [];
+        let datasetPuntaje = [];
+        let datasetPartidas = [];
         for (const resultado of response) {
-          dataset.push({
+          datasetPuntaje.push({
               label: resultado.temaTitulo,
               data: [resultado.puntajePromedio],
               backgroundColor: this.generarColor(),
@@ -34,19 +45,8 @@ export class EstadisticasProfesorComponent {
               borderWidth: 1
           });
         }
-        this.generarGrafico(dataset, 'graficoPuntajeTemas');
-      },
-      (error) => {
-        console.error('Error al obtener las estadisticas', error);
-        alert('Ocurrió un error al obtener las estadisticas.');
-      }
-    );
-    this.estadisticaService.obtenerReportePartidaProfesor(this.user.username).subscribe(
-      (response) => {
-        console.log(response);
-        let dataset = [];
         for (const resultado of response) {
-          dataset.push({
+          datasetPartidas.push({
               label: resultado.temaTitulo,
               data: [resultado.totalPartidas],
               backgroundColor: this.generarColor(),
@@ -54,7 +54,8 @@ export class EstadisticasProfesorComponent {
               borderWidth: 1
           });
         }
-        this.generarGrafico(dataset, 'graficoPartidasJugadasTemas');
+        this.generarGrafico(datasetPuntaje, 'graficoPuntajeTemas');
+        this.generarGrafico(datasetPartidas, 'graficoPartidasJugadasTemas');
       },
       (error) => {
         console.error('Error al obtener las estadisticas', error);

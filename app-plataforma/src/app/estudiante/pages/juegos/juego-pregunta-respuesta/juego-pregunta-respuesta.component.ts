@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 import { JuegoService } from '../juego.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-juego-pregunta-respuesta',
@@ -43,13 +44,23 @@ export class JuegoPreguntaRespuestaComponent {
       
     
     if (correcta) {
-      alert('¡Respuesta correcta!');
+      //alert('¡Respuesta correcta!');
+      Swal.fire({
+        title: '¡Respuesta correcta!',
+        text: 'Siuu',
+        icon: 'success',
+      });
       this.esCorrecta=true;
       this.ejercicio.id;
       this.juegoService.incrementarCorrectas(this.ejercicio.id);
       //this.ejercicio.
     } else {
-      alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
+      //alert('Respuesta incorrecta. La respuesta correcta es: ' + this.respuestaCorrecta);
+      Swal.fire({
+        title: '¡Respuesta Incorrecta!',
+        text: `La respuesta correcta es: ${this.respuestaCorrecta}`,
+        icon: 'error',
+      });
       this.esCorrecta=false;
       this.juegoService.incrementarIncorrectas(this.ejercicio.id);
     }
