@@ -10,6 +10,7 @@ import { TemarioComponent } from './pages/temario/temario.component';
 import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.component';
 import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
+import { EstadisticasProfesorComponent } from './pages/estadisticas-profesor/estadisticas-profesor.component';
 
 
 
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'editar-ejercicio', 
         component: EditarEjercicioComponent
+      },
+      {
+        path: 'estadisticas', 
+        component: EstadisticasProfesorComponent
       },
       {
         path: '**', 
