@@ -1,0 +1,8 @@
+
+/node_modules
+
+# Dependencias VS Code
+.vscode/*
+
+# Configuracion de Postgres Local
+.env

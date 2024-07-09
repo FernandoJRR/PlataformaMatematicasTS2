@@ -1,0 +1,10 @@
+<div class="editor-container">
+<div *ngIf="editor">
+  <h3>Editor</h3>
+  <textarea [(ngModel)]="markdownContent" rows="20" class="responsive-textarea"></textarea>
+</div>
+<div>
+  <h3 *ngIf="editor">Previsualizacion</h3>
+  <markdown [data]="markdownContent"></markdown>
+</div>
+</div>

@@ -1,0 +1,63 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar>
+            <span class="tool-menu-span">Menu</span>
+
+            <button mat-button class="nav-button" (click)="sidenav.toggle()">
+                <mat-icon style="margin: 4px; font-size: 26px;">arrow_back</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a routerLink="./" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span class="nav-text">Home</span>
+            </a>
+            <a routerLink="./nuevo-temario" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add_box</mat-icon>
+                <span class="nav-text">Temario</span>
+            </a>
+
+            <a routerLink="./editar-temario" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>book</mat-icon>
+                <span class="nav-text">Temarios</span>
+            </a>
+            <a routerLink="./editar-tema" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>description</mat-icon>
+                <span class="nav-text">Temas</span>
+            </a>
+            <a routerLink="./informacion-tema" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+                <span class="nav-text">Informacion / Blogs</span>
+            </a>
+            <a routerLink="./editar-ejercicio" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>dashboard</mat-icon>
+                <span class="nav-text">Ejercicios</span>
+            </a>
+            <a routerLink="./estadisticas" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon>insert_chart_outlined</mat-icon>
+                <span class="nav-text">Estadisticas</span>
+            </a>
+            <a routerLink="./perfil-profesor" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>face</mat-icon>
+                <span class="nav-text">Mi perfil</span>
+            </a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-toolbar class="mat-toolbar mat-toolbar-single-row">
+        <button mat-button class="nav-button" (click)="sidenav.toggle()">
+            <mat-icon style="margin: 4px; font-size: 26px;">menu</mat-icon>
+        </button>
+        <span class=" spacer"></span>
+        <mat-icon mat-list-icon>supervisor_account</mat-icon>
+        <span class="username-span">Username | Profesor</span>
+        <button mat-button class="nav-button" (click)="logout()">
+            <mat-icon style="margin: 4px; font-size: 26px;">logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

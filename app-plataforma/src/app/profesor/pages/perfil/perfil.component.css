@@ -1,0 +1,19 @@
+.profile-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  mat-card-header {
+    text-align: center;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  

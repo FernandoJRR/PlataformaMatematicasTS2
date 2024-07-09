@@ -1,0 +1,10 @@
+<div class="welcome-container">
+  <h1>{{ title }}</h1>
+</div>
+
+<button (click)="showMarkdownContent()">Show Markdown Content</button>
+<button (click)="setMarkdownContent()">Set Markdown Content</button>
+<button (click)="showEditor()">Show Editor</button>
+
+<!-- <mark-editor #markEditor [markdownContent]="markdownContent" [editor]="editor"></mark-editor> -->
+<mark-editor #markEditor [editor]="editor"></mark-editor>

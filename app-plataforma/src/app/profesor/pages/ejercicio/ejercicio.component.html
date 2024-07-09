@@ -1,0 +1,47 @@
+<div class="ejercicio-container">
+  <div class="header">
+    <button type="button" class="close-button" (click)="eliminarEjercicio()">x</button>
+    <h5 class="main-title">Ejercicio</h5>
+  </div>
+
+  <form class="form">
+    <div class="select-group">
+      <label for="dificultad-ejercicio">Dificultad:</label>
+      <select id="dificultad-ejercicio" [(ngModel)]="newEj.id_dificultad" name="id-dificultad"
+        (change)="seleccionarDificultad($event)">
+        <option disabled selected>Seleccione la Dificultad</option>
+        <option value="1">Facil</option>
+        <option value="2">Intermedio</option>
+        <option value="3">Avanzado</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label for="tipo-ejercicio">Tipo:</label>
+      <select id="tipo-ejercicio" [(ngModel)]="tipoEjercicio" name="tipoEjercicio" (change)="seleccionarTipo($event)">
+        <option disabled selected>Seleccione un tipo de ejercicio</option>
+        <option value="opcion-multiple">Opción Múltiple</option>
+        <option value="pregunta-respuesta">Pregunta y Respuesta</option>
+        <option value="unir-parejas">Unir Parejas</option>
+      </select>
+    </div>
+
+    <div class="select-group">
+      <label for="anotacion">Anotación:</label>
+      <input type="text" [(ngModel)]="newEj.anotacion" id="anotacion"  name="anotacion" placeholder="Anotación (opcional)">
+    </div>
+  </form>
+
+  <!-- Cards/Components Tipos de Ejercicios -->
+  <div class="ejercicio-card" *ngIf="tipoEjercicio === 'opcion-multiple'">
+    <app-opcion-multiple [tema]="tema" [newEj]="newEj"></app-opcion-multiple>
+  </div>
+
+  <div class="ejercicio-card" *ngIf="tipoEjercicio === 'pregunta-respuesta'">
+    <app-pregunta-respuesta [tema]="tema"  [newEj]="newEj"></app-pregunta-respuesta>
+  </div>
+
+  <div class="ejercicio-card" *ngIf="tipoEjercicio === 'unir-parejas'">
+    <app-unir-parejas [tema]="tema" [newEj]="newEj"></app-unir-parejas>
+  </div>
+</div>

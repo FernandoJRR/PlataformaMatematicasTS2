@@ -1,0 +1,40 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar>
+            <span class="tool-menu-span">Menu</span>
+            <button mat-button class="nav-button" (click)="sidenav.toggle()">
+                <mat-icon style="margin: 4px; font-size: 26px;">arrow_back</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a routerLink="./" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>home</mat-icon>
+                <span class="nav-text">Home</span>
+            </a>
+            <a routerLink="./estadisticas" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>insert_chart</mat-icon>
+                <span class="nav-text">Estadísticas</span>
+            </a>
+            <a routerLink="./perfil-admin" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>face</mat-icon>
+                <span class="nav-text">Mi perfil</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-toolbar class="mat-toolbar mat-toolbar-single-row">
+        <button mat-button class="nav-button" (click)="sidenav.toggle()">
+            <mat-icon style="margin: 4px; font-size: 26px;">menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+        <span class="username-span">Username | Administrador</span>
+        <button mat-button class="nav-button" (click)="logout()">
+            <mat-icon style="margin: 4px; font-size: 26px;">logout</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

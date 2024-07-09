@@ -1,0 +1,27 @@
+
+<div class="logros-container">
+  <h2>Logros</h2>
+  
+  <div class="jugador-container">
+    <h3>Jugador: {{ user.nombre  }}</h3>
+  </div>
+
+  <div *ngIf="logros.length > 0; else noLogros">
+    <ul class="logros-list">
+      <li *ngFor="let logro of logros" class="logro-item">
+        <div class="logro-icon">
+          <i class="fas fa-trophy"></i> <!-- Puedes cambiar este ícono según el logro -->
+        </div>
+        <div class="logro-text">
+          <h3>{{ logro.titulo }}</h3>
+          <p>{{ logro.descripcion }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noLogros>
+    <p class="no-logros">Usuario aún no tiene logros</p>
+  </ng-template>
+</div>
+

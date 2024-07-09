@@ -1,0 +1,17 @@
+<div class="resultados-container">
+  <h2>Resultados del Juego</h2>
+  <p>Modo de Juego: {{ modoJuego }}</p>
+  <p>Preguntas Correctas: {{ correctas }}</p>
+  <p>Preguntas Incorrectas: {{ incorrectas }}</p>
+  <p>Puntaje: {{ puntaje }} / 100</p>
+  
+  <h3>Resumen de Ejercicios</h3>
+  <p>Total de Ejercicios: {{ totalEjercicios }}</p>
+  <ul>
+    <li>Pregunta-Respuesta: {{ tipoEjercicioCount['preguntaRespuesta'] }}</li>
+    <li>Unir-Parejas: {{ tipoEjercicioCount['unirParejas'] }}</li>
+    <li>Opción-Múltiple: {{ tipoEjercicioCount['opcionMultiple'] }}</li>
+  </ul>
+
+  <button (click)="irAEleccionJuegos()">Volver a Juegos</button>
+</div>

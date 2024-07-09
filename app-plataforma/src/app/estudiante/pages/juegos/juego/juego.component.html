@@ -1,0 +1,24 @@
+
+
+<div *ngIf="juegoIniciado" class="juego-container">
+  <h1>{{this.modoSeleccionado }}</h1>
+  <div *ngIf="modoContrarreloj">
+    <p>Tiempo restante: {{ tiempoRestante }}s</p>
+  </div>
+  <ng-container *ngIf="currentEjercicio">
+    <div *ngIf="currentEjercicio.id_tipo_ejercicio === 1">
+      <app-juego-pregunta-respuesta [ejercicio]="currentEjercicio" [esCorrecta]="esCorrecta" (next)="siguienteEjercicio()"></app-juego-pregunta-respuesta>
+    </div>
+    <div *ngIf="currentEjercicio.id_tipo_ejercicio === 2">
+      <app-juego-unir-parejas [ejercicio]="currentEjercicio" [correctas]="correctas" (next)="siguienteEjercicio()"></app-juego-unir-parejas>
+    </div>
+    <div *ngIf="currentEjercicio.id_tipo_ejercicio === 3">
+      <app-juego-opcion-multiple [ejercicio]="currentEjercicio" [correctas]="correctas"  (next)="siguienteEjercicio()"></app-juego-opcion-multiple>
+    </div>
+  </ng-container>
+  <button (click)="anteriorEjercicio()" [disabled]="currentEjercicioIndex === 0">Anterior</button>
+  <button (click)="siguienteEjercicio()" [disabled]="currentEjercicioIndex === ejercicios.length - 1">Siguiente</button>
+</div>
+<div *ngIf="!juegoIniciado && (!ejercicios || ejercicios.length === 0)">
+  <p>No hay ejercicios disponibles.</p>
+</div>
