@@ -15,9 +15,10 @@ import { OpcionMultipleComponent } from './pages/ejercicios/opcion-multiple/opci
 import { UnirParejasComponent } from './pages/ejercicios/unir-parejas/unir-parejas.component';
 
 import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.component';
-import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
+import { EditarTemaDialog, EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
 import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -36,7 +37,11 @@ import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor
 
     EditarTemarioComponent,
     EditarTemaComponent,
-    EditarEjercicioComponent
+    EditarEjercicioComponent,
+
+    //Componente de dialogo inyectado dentro de "editar-tema.component.ts"
+    EditarTemaDialog, 
+    /* Demas dialogs */ 
 
   ],
   imports: [
@@ -45,7 +50,8 @@ import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor
     MaterialModule,
     RouterModule,
     FormsModule,
-    ProfesorRoutingModule
+    ProfesorRoutingModule,
+    MatDialogModule //Pinche error (componente dentro de "editar-tema.component.ts")
   ]
 })
 export class ProfesorModule { }

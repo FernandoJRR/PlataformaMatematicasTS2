@@ -7,6 +7,7 @@ export class Tema extends Model {
     id?: number;
     titulo?: string;
     descripcion?: string;
+    informacion?: string;
     id_temario?: number;
     id_tema_previo?: number;
     fecha_creacion?: Date;

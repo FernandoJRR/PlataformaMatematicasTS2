@@ -4,6 +4,16 @@
 
 .div-mat-tab {
   padding: 0.5rem;
-  width: 75%;
-  margin: auto;
+  /* width: 30rem; */
+  /*margin: auto;*/
+}
+
+.mat-column-descripcion {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.crear-tema-container{
+  display: grid;
 }

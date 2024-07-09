@@ -65,9 +65,29 @@ export class TemarioComponent {
   crearTemario() {
     if (!this.titulo || !this.descripcion) {
       // Validar que el título y la descripción no estén vacíos
-      alert('El título y la descripción son obligatorios.');
+      alert('Complete todos los campos del Temario.');
       return;
     }
+    
+    //Validar que los Temas no esten vacios
+    for (const tema of this.newTemario.temas) {
+      if (!tema.titulo || !tema.descripcion) {
+        alert('Por favor, complete los campos obligatorios de cada Tema.');
+        return;
+      }
+
+      //validar que los ejercicios no esten vacios
+      for (const ejercicio of tema.ejercicios) {
+        console.log('Ejercicio:', ejercicio);
+
+        if (ejercicio.id_dificultad == -1 || ejercicio.id_tipo_ejercicio == -1 || ejercicio.data_json == '') {
+          alert('Por favor, complete todos los campos de cada ejercicio.');
+          return;
+        }
+      }
+    }
+
+    console.log('Temario sin procesar:', this.newTemario);
 
     this.newTemario.titulo = this.titulo;
     this.newTemario.descripcion = this.descripcion;
@@ -78,17 +98,21 @@ export class TemarioComponent {
         (item): item is Ejercicio => item !== undefined
       );
     });
-    console.log(this.newTemario);
-    /*
+
+    //
+
+    console.log('Temario procesado:', this.newTemario);
+    
+    //Enviamos el Objeto a la ruta para crear Temario (Backend)
     this.temarioService.crearTemario(this.newTemario).subscribe(
       (response) => {
         alert('Temario creado con éxito');
-        this.router.navigate(['/']);
+        this.router.navigate(['/profe']);
       },
       (error) => {
         console.error('Error al crear el temario', error);
         alert('Ocurrió un error al crear el temario.');
       }
-    );*/
+    );
   }
 }
