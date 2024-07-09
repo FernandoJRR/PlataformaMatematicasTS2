@@ -1,15 +1,17 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { EstadisticasService } from '../../services/estadisticas.service';
 import { GlobalsService } from '../../../globals/globals.service';
 import { User } from '../../../interfaces/user.interface';
 
 @Component({
-  selector: 'app-progreso-estudiante',
-  templateUrl: './progreso-estudiante.component.html',
-  styleUrls: ['./progreso-estudiante.component.css']
+  selector: 'app-estadisticas-profesor',
+  standalone: true,
+  imports: [],
+  templateUrl: './estadisticas-profesor.component.html',
+  styleUrl: './estadisticas-profesor.component.css'
 })
-export class ProgresoEstudianteComponent implements OnInit {
+export class EstadisticasProfesorComponent {
   // Datos simulados del progreso del estudiante
   constructor(
     private elementRef: ElementRef,
@@ -18,21 +20,42 @@ export class ProgresoEstudianteComponent implements OnInit {
     ) {}
 
   user: User = this.globalService.getUser()
+  cantidad_partidas: number = 0;
   ngOnInit(): void {
-    this.estadisticaService.obtenerReportePartidasPromedio(this.user.username).subscribe(
+    this.estadisticaService.obtenerPartidasJugadasProfesor(this.user.username).subscribe(
+      (response) => {
+        this.cantidad_partidas = response.totalPartidas;
+      },
+      (error) => {
+        console.error('Error al obtener las estadisticas', error);
+        alert('Ocurrió un error al obtener las estadisticas.');
+      }
+    )
+    this.estadisticaService.obtenerReportePartidaProfesor(this.user.username).subscribe(
       (response) => {
         console.log(response);
-        let dataset = [];
+        let datasetPuntaje = [];
+        let datasetPartidas = [];
         for (const resultado of response) {
-          dataset.push({
-              label: resultado.tema,
-              data: [resultado.promedioPuntaje],
+          datasetPuntaje.push({
+              label: resultado.temaTitulo,
+              data: [resultado.puntajePromedio],
               backgroundColor: this.generarColor(),
               borderColor: this.generarColor(),
               borderWidth: 1
           });
         }
-        this.generarGrafico(dataset, 'graficoPromedioPuntaje');
+        for (const resultado of response) {
+          datasetPartidas.push({
+              label: resultado.temaTitulo,
+              data: [resultado.totalPartidas],
+              backgroundColor: this.generarColor(),
+              borderColor: this.generarColor(),
+              borderWidth: 1
+          });
+        }
+        this.generarGrafico(datasetPuntaje, 'graficoPuntajeTemas');
+        this.generarGrafico(datasetPartidas, 'graficoPartidasJugadasTemas');
       },
       (error) => {
         console.error('Error al obtener las estadisticas', error);

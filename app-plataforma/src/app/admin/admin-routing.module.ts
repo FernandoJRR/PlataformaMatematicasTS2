@@ -5,6 +5,7 @@ import { HomeAdminComponent } from './pages/home-admin/home-admin.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { PerfilAdminComponent } from './pages/perfil-admin/perfil-admin.component';
+import { EstadisticasAdminComponent } from './pages/estadisticas-admin/estadisticas-admin.component';
 
 
 
@@ -17,7 +18,10 @@ const routes: Routes = [
         path: 'perfil-admin', 
         component: PerfilAdminComponent
       },
-      
+      {
+        path: 'estadisticas', 
+        component: EstadisticasAdminComponent
+      },
       {
         path: '**', 
         component: WelcomeComponent

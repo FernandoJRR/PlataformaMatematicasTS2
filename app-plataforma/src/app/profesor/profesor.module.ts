@@ -19,6 +19,7 @@ import { EditarTemaDialog, EditarTemaComponent } from './pages/editar-tema/edita
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
 import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { InformacionTemaComponent } from './pages/informacion-tema/informacion-tema.component';
 
 
 
@@ -38,6 +39,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     EditarTemarioComponent,
     EditarTemaComponent,
     EditarEjercicioComponent,
+
+    InformacionTemaComponent,
 
     //Componente de dialogo inyectado dentro de "editar-tema.component.ts"
     EditarTemaDialog, 

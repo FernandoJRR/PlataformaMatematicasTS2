@@ -198,7 +198,7 @@ export async function updateTemario(idTemario: number, input: any) {
 }
 
 export async function updateTema(idTema: number, input: any) {
-  const tema = await Temario.query()
+  const tema = await Tema.query()
     .findById(idTema);
 
   if (tema === undefined) {
