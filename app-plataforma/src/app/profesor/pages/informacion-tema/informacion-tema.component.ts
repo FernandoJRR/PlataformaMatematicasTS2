@@ -66,7 +66,7 @@ export class InformacionTemaComponent implements OnInit {
     if (tema.informacion === null) {
       this.markEditor.setMarkdownContent('');
     } else {
-      const contentProcesado = tema.informacion!.replace('<br>', '\n');
+      const contentProcesado = tema.informacion!.replaceAll('<br>', '\n');
       this.markEditor.setMarkdownContent(contentProcesado);
     }
   }
