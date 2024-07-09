@@ -6,21 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EstadisticasService {
+
   constructor(private http: HttpClient) {}
 
   private baseUrl: string = 'http://localhost:3000';
 
   /* PETICIONES A BACKEND */
   // Obtener reporte partida de un profesor
-  obtenerReportePartidaProfesor(username_profesor: string): Observable<any> {
+  obtenerReportePartidasPromedio(username_jugador: string): Observable<any> {
     return this.http.get<any>(
-      `${this.baseUrl}/reporte/reportePartidaProfesor/${username_profesor}`
+      `${this.baseUrl}/reporte/temaUsuario/${username_jugador}`
     );
   }
 
-  obtenerPartidasJugadasProfesor(username_profesor: string): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/reporte/temarioProfesor/${username_profesor}`
-    );
-  }
 }

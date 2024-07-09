@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { EstadisticasService } from '../../services/estadisticas.service';
+import { GlobalsService } from '../../../globals/globals.service';
+import { User } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-progreso-estudiante',
@@ -8,51 +11,43 @@ import { Chart } from 'chart.js/auto';
 })
 export class ProgresoEstudianteComponent implements OnInit {
   // Datos simulados del progreso del estudiante
-  progreso: any = {
-    normal: {
-      preguntaRespuesta: { correctas: 80, incorrectas: 20 },
-      opcionMultiple: { correctas: 70, incorrectas: 30 },
-      unirParejas: { correctas: 60, incorrectas: 40 }
-    },
-    contrarreloj: {
-      preguntaRespuesta: { correctas: 50, incorrectas: 50 },
-      opcionMultiple: { correctas: 40, incorrectas: 60 },
-      unirParejas: { correctas: 30, incorrectas: 70 }
-    }
-  };
+  constructor(
+    private elementRef: ElementRef,
+    private estadisticaService: EstadisticasService,
+    private globalService: GlobalsService
+    ) {}
 
-  constructor() {}
-
+  user: User = this.globalService.getUser()
   ngOnInit(): void {
-    this.generarGrafico('preguntaRespuesta', 'graficoPreguntaRespuesta');
-    this.generarGrafico('opcionMultiple', 'graficoOpcionMultiple');
-    this.generarGrafico('unirParejas', 'graficoUnirParejas');
+    this.estadisticaService.obtenerReportePartidasPromedio(this.user.username).subscribe(
+      (response) => {
+        console.log(response);
+        let dataset = [];
+        for (const resultado of response) {
+          dataset.push({
+              label: resultado.tema,
+              data: [resultado.promedioPuntaje],
+              backgroundColor: this.generarColor(),
+              borderColor: this.generarColor(),
+              borderWidth: 1
+          });
+        }
+        this.generarGrafico(dataset, 'graficoPromedioPuntaje');
+      },
+      (error) => {
+        console.error('Error al obtener las estadisticas', error);
+        alert('Ocurrió un error al obtener las estadisticas.');
+      }
+    );
   }
 
-  generarGrafico(tipoJuego: string, idCanvas: string) {
-    const datosNormal = this.progreso.normal[tipoJuego];
-    const datosContrarreloj = this.progreso.contrarreloj[tipoJuego];
-
-    new Chart(idCanvas, {
+  generarGrafico(input: any, idCanvas: string) {
+    let htmlRef = this.elementRef.nativeElement.querySelector('#'+idCanvas);
+    new Chart(htmlRef, {
       type: 'bar',
       data: {
-        labels: ['Correctas', 'Incorrectas'],
-        datasets: [
-          {
-            label: 'Modo Normal',
-            data: [datosNormal.correctas, datosNormal.incorrectas],
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-          },
-          {
-            label: 'Modo Contrarreloj',
-            data: [datosContrarreloj.correctas, datosContrarreloj.incorrectas],
-            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-          }
-        ]
+        labels: ['Temas'],
+        datasets: input
       },
       options: {
         scales: {
@@ -62,5 +57,9 @@ export class ProgresoEstudianteComponent implements OnInit {
         }
       }
     });
+  }
+
+  generarColor(){
+    return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
   }
 }
