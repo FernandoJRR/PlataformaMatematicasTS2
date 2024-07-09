@@ -118,11 +118,8 @@ export class EleccionJuegoComponent implements OnInit {
 
   // Filtrar ejercicios por dificultad y tipo
   filtrarEjercicios(ejercicios: Ejercicio[]): Ejercicio[] {
-    //console.log('Dificultad seleccionada:', this.dificultadEjercicio);
     return ejercicios.filter(ejercicio => {
-      console.log(`Comparando dificultad: ${ejercicio.id_dificultad} con ${this.dificultadEjercicio}`);
       const dificultadCoincide = this.dificultadEjercicio ? ejercicio.id_dificultad === this.dificultadEjercicio : true;
-      //const dificultadCoincide = this.dificultadEjercicio ? ejercicio.id_dificultad === this.dificultadEjercicio : true;
       const tipoCoincide = (this.tipoEjercicios['preguntaRespuesta'] && ejercicio.id_tipo_ejercicio === 1) ||
                            (this.tipoEjercicios['unirParejas'] && ejercicio.id_tipo_ejercicio === 2) ||
                            (this.tipoEjercicios['opcionMultiple'] && ejercicio.id_tipo_ejercicio === 3);

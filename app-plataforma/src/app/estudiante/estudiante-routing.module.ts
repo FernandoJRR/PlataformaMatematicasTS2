@@ -10,6 +10,7 @@ import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
 import { ResultadosComponent } from './pages/juegos/resultados/resultados.component';
 import { LogrosComponent } from './pages/logros/logros.component';
+import { RefuerzoComponent } from './pages/juegos/refuerzo/refuerzo.component';
 
 
 
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'logros', 
         component: LogrosComponent
+      },
+      {
+        path: 'refuerzo', 
+        component: RefuerzoComponent
       },
       
       {

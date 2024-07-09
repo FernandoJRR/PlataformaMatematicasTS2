@@ -57,7 +57,7 @@ export class JuegoComponent implements OnInit, OnDestroy {
       
     }else{
       alert('No hay juegos disponibles');
-      this.router.navigate(['/estudiante/resultados']);
+      this.router.navigate(['/estudiante/eleccion-juego']);
       return;
     }
 
@@ -79,6 +79,10 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.modoContrarreloj = false;
       this.modo = 2;
       this.modoSeleccionado='Invencible';
+    }else if (this.modoSeleccionado === '3') {
+      this.modoContrarreloj = false;
+      this.modo = 2;
+      this.modoSeleccionado='Refuerzo';
     }else {
       this.modoContrarreloj = false;
       this.modoSeleccionado='Normal';
