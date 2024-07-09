@@ -13,6 +13,8 @@ import { JuegoComponent } from './pages/juegos/juego/juego.component';
 import { JuegoOpcionMultipleComponent } from './pages/juegos/juego-opcion-multiple/juego-opcion-multiple.component';
 import { EleccionJuegoComponent } from './pages/juegos/eleccion-juego/eleccion-juego.component';
 import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progreso-estudiante.component';
+import { LogrosComponent } from './pages/logros/logros.component';
+import { RefuerzoComponent } from './pages/juegos/refuerzo/refuerzo.component';
 import { InformacionTemaEstudianteComponent } from './pages/informacion-tema-estudiante/informacion-tema-estudiante.component';
 import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor.component';
 
@@ -29,6 +31,8 @@ import { MarkEditorComponent } from '../components/pages/mark-editor/mark-editor
     JuegoOpcionMultipleComponent,
     EleccionJuegoComponent,
     ProgresoEstudianteComponent,
+    LogrosComponent,
+    RefuerzoComponent,
     InformacionTemaEstudianteComponent
 
     

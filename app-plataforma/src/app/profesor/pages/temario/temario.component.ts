@@ -70,14 +70,14 @@ export class TemarioComponent {
     }
     
     //Validar que los Temas no esten vacios
-    for (const tema of this.newTemario.temas) {
+    /*for (const tema of this.newTemario.temas) {
       if (!tema.titulo || !tema.descripcion) {
         alert('Por favor, complete los campos obligatorios de cada Tema.');
         return;
-      }
+      }*/
 
       //validar que los ejercicios no esten vacios
-      for (const ejercicio of tema.ejercicios) {
+      /*for (const ejercicio of tema.ejercicios) {
         console.log('Ejercicio:', ejercicio);
 
         if (ejercicio.id_dificultad == -1 || ejercicio.id_tipo_ejercicio == -1 || ejercicio.data_json == '') {
@@ -85,7 +85,7 @@ export class TemarioComponent {
           return;
         }
       }
-    }
+    }*/
 
     console.log('Temario sin procesar:', this.newTemario);
 

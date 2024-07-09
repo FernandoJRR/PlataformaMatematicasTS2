@@ -7,8 +7,8 @@
         <mat-label>Modo de Juego</mat-label>
         <mat-select [(ngModel)]="modoJuego" name="modoJuego">
           <mat-option value="contrarreloj">Contrarreloj</mat-option>
-          <mat-option value="refuerzo">Refuerzo</mat-option>
           <mat-option value="invencible">Invencible</mat-option>
+          <mat-option value="refuerzo">Normal</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,9 +26,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Dificultad de Ejercicios</mat-label>
         <mat-select [(ngModel)]="dificultadEjercicio" name="dificultadEjercicio">
-          <mat-option value="1">Fácil</mat-option>
-          <mat-option value="2">Intermedio</mat-option>
-          <mat-option value="3">Avanzado</mat-option>
+          <mat-option [value]="1">Fácil</mat-option>
+          <mat-option [value]="2">Intermedio</mat-option>
+          <mat-option [value]="3">Avanzado</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

@@ -124,6 +124,9 @@ export class EleccionJuegoComponent implements OnInit {
                            (this.tipoEjercicios['unirParejas'] && ejercicio.id_tipo_ejercicio === 2) ||
                            (this.tipoEjercicios['opcionMultiple'] && ejercicio.id_tipo_ejercicio === 3);
 
+  console.log(`Ejercicio ${ejercicio.id}: Dificultad coincide: ${dificultadCoincide}, Tipo coincide: ${tipoCoincide}`);
+
+
       return dificultadCoincide && tipoCoincide;
     });
   }
