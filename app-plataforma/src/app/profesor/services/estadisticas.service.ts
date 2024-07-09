@@ -17,4 +17,10 @@ export class EstadisticasService {
       `${this.baseUrl}/reporte/reportePartidaProfesor/${username_profesor}`
     );
   }
+
+  obtenerPartidasJugadasProfesor(username_profesor: string): Observable<any> {
+    return this.http.get<any>(
+      `${this.baseUrl}/reporte/temarioProfesor/${username_profesor}`
+    );
+  }
 }
