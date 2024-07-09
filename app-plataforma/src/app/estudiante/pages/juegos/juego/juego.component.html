@@ -1,11 +1,4 @@
-<div *ngIf="!juegoIniciado" class="seleccion-modo-container">
-  <h2>Selecciona el modo de juego</h2>
-  <select [(ngModel)]="modoSeleccionado">
-    <option value="normal">Modo Normal</option>
-    <option value="contrarreloj">Modo Contrarreloj</option>
-  </select>
-  <button (click)="iniciarJuego()">Comenzar</button>
-</div>
+
 
 <div *ngIf="juegoIniciado" class="juego-container">
   <h1>{{this.modoSeleccionado }}</h1>

@@ -8,11 +8,11 @@
 
   <div class="input-group">
     <label>Opciones:</label>
-    <div class="opciones-container" *ngFor="let opcion of json.opciones; let i = index">
-      <input class="option" type="radio" name="respuestaCorrecta" [value]="i" [(ngModel)]="json.correcto"
+    <div class="opciones-container" *ngFor="let opcion of json.opciones; let i = index; trackBy: trackByIndex">
+      <input class="option" type="radio" name="respuestaCorrecta" [value]="i" [(ngModel)]="json.respuestaCorrecta"
         (change)="seleccionarRespuesta(i)">
-      <input class="input" type="text" [(ngModel)]="json.opciones[i]"
-        (input)="agregarOpcion(i, $any($event.target).value)" placeholder="Opción {{i + 1}}" required>
+      <input class="input" type="text" [(ngModel)]="json.opciones[i]" (ngModelChange)="agregarOpcion(i, $event)" 
+        placeholder="Opción {{i + 1}}" required>
     </div>
   </div>
 
