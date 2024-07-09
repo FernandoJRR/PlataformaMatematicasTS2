@@ -19,3 +19,12 @@ export const getPartidaTema: RequestHandler = async(req,res,next) =>{
     res.status(400).json(error.message);
    }
 };
+export const getPartidaProfesor: RequestHandler = async(req,res,next) =>{
+  try{
+    const username_profesor = req.params.username;
+   const response = await reporteService.getReportePartidaPorTemaProfesor1(username_profesor);
+   res.status(200).json(response);
+  }catch(error: any){
+   res.status(400).json(error.message);
+  }
+};

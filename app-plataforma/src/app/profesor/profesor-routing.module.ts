@@ -11,7 +11,7 @@ import { EditarTemarioComponent } from './pages/editar-temario/editar-temario.co
 import { EditarTemaComponent } from './pages/editar-tema/editar-tema.component';
 import { EditarEjercicioComponent } from './pages/editar-ejercicio/editar-ejercicio.component';
 import { InformacionTemaComponent } from './pages/informacion-tema/informacion-tema.component';
-
+import { EstadisticasProfesorComponent } from './pages/estadisticas-profesor/estadisticas-profesor.component';
 
 
 
@@ -44,6 +44,10 @@ const routes: Routes = [
       {
         path: 'informacion-tema', 
         component: InformacionTemaComponent
+      },
+      {
+        path: 'estadisticas', 
+        component: EstadisticasProfesorComponent
       },
       {
         path: '**', 

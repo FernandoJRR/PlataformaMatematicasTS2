@@ -7,6 +7,7 @@ import partidaRoutes from "./routes/partida";
 import temarioRoutes from "./routes/temario";
 import logroRoutes from "./routes/logro";
 import reporteRoutes from "./routes/reporte";
+import ejercicioRoutes from "./routes/ejercicio";
 
 import * as Knex from "knex";
 import { Model } from "objection";
@@ -44,6 +45,7 @@ app.use('/temario', temarioRoutes);
 app.use('/partida', partidaRoutes);
 app.use('/logro', logroRoutes);
 app.use('/reporte', reporteRoutes);
+app.use('/ejercicio', ejercicioRoutes);
 
 
 app.listen(port, () => {
