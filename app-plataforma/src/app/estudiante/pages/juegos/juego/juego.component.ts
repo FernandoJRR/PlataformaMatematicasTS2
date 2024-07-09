@@ -56,7 +56,9 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.iniciarJuego();
       
     }else{
-      alert('No hay juegos disponibles')
+      alert('No hay juegos disponibles');
+      this.router.navigate(['/estudiante/resultados']);
+      return;
     }
 
     
@@ -190,10 +192,10 @@ export class JuegoComponent implements OnInit, OnDestroy {
     if(this.puntaje>100){
       this.puntaje=100;
     }
-    alert(`Resultados:
+    /*alert(`Resultados:
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
-      Puntaje: ${this.puntaje}`);
+      Puntaje: ${this.puntaje}`);*/
       Swal.fire({
         title: "¡Juego completado!",
         width: 600,

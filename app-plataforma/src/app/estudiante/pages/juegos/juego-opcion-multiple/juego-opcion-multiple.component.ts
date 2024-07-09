@@ -75,7 +75,7 @@ export class JuegoOpcionMultipleComponent {
     const correcta = this.respuestaSeleccionada === this.respuestaCorrecta;
 
     if (this.ejercicio.id) {
-      alert('¡Respuesta correcta xd!' + correcta);
+      //alert('¡Respuesta correcta xd!' + correcta);
       if (correcta) {
         //alert('¡Respuesta correcta! xxxd');
         Swal.fire({
