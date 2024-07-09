@@ -54,7 +54,7 @@ export async function storePartida(input: any) {
     }
 
     //Aqui se verifica si se le daran logros al jugador
-    verificarLogros(partida, trx);
+    //verificarLogros(partida, trx);
     
     await trx.commit();
     return partida;
