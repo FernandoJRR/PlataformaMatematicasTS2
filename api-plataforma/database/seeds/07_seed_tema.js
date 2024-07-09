@@ -140,10 +140,10 @@ exports.seed = async function (knex) {
       descripcion: 'Modelado de funciones y su interpretación con dos o más variables.',
       informacion: 'El modelado de funciones matemáticas implica el proceso de seleccionar y ajustar funciones específicas para representar y  <br>###describir datos numéricos o fenómenos matemáticos. Este enfoque permite interpretar y predecir  <br>###comportamientos basados en relaciones matemáticas, facilitando análisis y toma de decisiones en diversas  <br>###disciplinas científicas y aplicadas.',
       id_temario: 5,
-      id_tema_previo: 15,
+      id_tema_previo: 16,
       fecha_creacion: new Date().toISOString(),
     },
-    {//17
+    {//18
       titulo: 'Números Primos - Teoría de Números',
       descripcion: ' Concepto de números primos, criba de Eratóstenes, propiedades básicas de los números primos.',
       informacion: 'Los números primos son números enteros mayores que 1 que tienen <br>###exactamente dos divisores positivos: 1 y ellos mismos. <br>### Por ejemplo, 2, 3, 5, 7 son números primos. Los números primos son <br>### fundamentales en matemáticas y tienen aplicaciones en criptografía, <br>### teoría de números y otros campos donde la seguridad y la eficiencia <br>### computacional son importantes.',
@@ -151,20 +151,20 @@ exports.seed = async function (knex) {
       id_tema_previo: null,
       fecha_creacion: new Date().toISOString(),
     },
-    {//18
+    {//19
       titulo: 'Divisibilidad y Múltiplos - Teoría de Números',
       descripcion: ' Reglas de divisibilidad, MCD (Máximo Común Divisor), MCM (Mínimo Común Múltiplo).',
       informacion: ' La divisibilidad se refiere a la propiedad por la cual un número <br>###puede dividirse exactamente por otro sin dejar residuo. Los <br>###múltiplos son números que resultan de multiplicar un número por otro entero. Esta área es fundamental para entender conceptos como los <br>###números primos, los números compuestos y el máximo común divisor (MCD), entre otros.',
       id_temario: 6,
-      id_tema_previo: 17,
+      id_tema_previo: 18,
       fecha_creacion: new Date().toISOString(),
     },
-    {//18
+    {//20
       titulo: 'Teorema Fundamental de la Aritmética - Teoría de Números',
       descripcion: 'Descomposición de números en factores primos, unicidad de la factorización..',
       informacion: 'El Teorema Fundamental de la Aritmética establece que todo número entero <br>###positivo mayor que 1 puede descomponerse de manera única en un producto de números <br>###primos. Esta descomposición se conoce como la factorización prima de un número. Es uno de los <br>###pilares fundamentales de la teoría de números y tiene aplicaciones importantes en campos como <br>###la criptografía y la informática teórica.',
       id_temario: 6,
-      id_tema_previo: 17,
+      id_tema_previo: 19,
       fecha_creacion: new Date().toISOString(),
     },
   ]);
