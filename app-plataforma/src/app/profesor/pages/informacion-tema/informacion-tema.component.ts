@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Temario } from '../../../interfaces/temario.interface';
@@ -6,20 +6,25 @@ import { Tema } from '../../../interfaces/tema.interface';
 import { TemarioService } from '../../services/temario.service';
 import { TemaService } from '../../services/tema.service';
 import { GlobalsService } from '../../../globals/globals.service';
+import { MarkEditorComponent } from '../../../components/pages/mark-editor/mark-editor.component';
 
 @Component({
   selector: 'app-informacion-tema',
   templateUrl: './informacion-tema.component.html',
-  styleUrls: ['./informacion-tema.component.css']
+  styleUrls: ['./informacion-tema.component.css'],
 })
 export class InformacionTemaComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
+  @ViewChild('markEditor') markEditor!: MarkEditorComponent;
 
   temarioFormGroup: FormGroup;
   informacionFormGroup: FormGroup;
   temarios: Temario[] = [];
   temaControl = new FormControl<Tema | null>(null, Validators.required);
   temaSeleccionado!: Tema;
+
+  markdownContent: string = '';
+  editor: boolean = true;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -57,6 +62,13 @@ export class InformacionTemaComponent implements OnInit {
     this.informacionFormGroup.patchValue({
       informacion: tema.informacion || ''  // Asigna un valor vacío si 'informacion' es null
     });
+
+    if (tema.informacion === null) {
+      this.markEditor.setMarkdownContent('');
+    } else {
+      const contentProcesado = tema.informacion!.replace('<br>', '\n');
+      this.markEditor.setMarkdownContent(contentProcesado);
+    }
   }
   
 
@@ -66,7 +78,7 @@ export class InformacionTemaComponent implements OnInit {
       return;
     }
   
-    const informacionActualizada = this.informacionFormGroup.value.informacion || '';  // Asigna un valor vacío si es null
+    const informacionActualizada = this.markEditor.getMarkdownContent() || ''; //Se convierte en vacio si es null
     const temaActualizado = {
       ...this.temaSeleccionado,
       informacion: informacionActualizada

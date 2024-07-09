@@ -1,17 +1,14 @@
 .editor-container {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  padding-bottom: 40px;
 }
 
 .responsive-textarea {
-  width: 1300px;
+  width: 800px;
   max-width: 90%;
   box-sizing: border-box;
   padding: 10px; /* Ajusta el padding según sea necesario */
   font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
-  background-color: #8a2be2;
+  background-color: #3f4948 ;
   border-color: black;
   border-radius: 5px;
   color: white;
