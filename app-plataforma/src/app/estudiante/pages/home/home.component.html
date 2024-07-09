@@ -12,7 +12,10 @@
                 <mat-icon mat-list-icon>home</mat-icon>
                 <span class="nav-text">Home</span>
             </a>
-
+            <a routerLink="./informacion-tema" mat-list-item (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+                <span class="nav-text">Informacion / Blogs</span>
+            </a>
             <a routerLink="./eleccion-juego" mat-list-item (click)="sidenav.toggle()">
                 <mat-icon mat-list-icon>add</mat-icon>
                 <span class="nav-text">Partida/Juego</span>

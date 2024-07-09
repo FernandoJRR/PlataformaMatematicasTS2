@@ -4,7 +4,7 @@
   <textarea [(ngModel)]="markdownContent" rows="20" class="responsive-textarea"></textarea>
 </div>
 <div>
-  <h3>Previsualizacion</h3>
+  <h3 *ngIf="editor">Previsualizacion</h3>
   <markdown [data]="markdownContent"></markdown>
 </div>
 </div>

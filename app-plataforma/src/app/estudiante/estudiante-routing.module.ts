@@ -11,6 +11,7 @@ import { ProgresoEstudianteComponent } from './pages/progreso-estudiante/progres
 import { ResultadosComponent } from './pages/juegos/resultados/resultados.component';
 import { LogrosComponent } from './pages/logros/logros.component';
 import { RefuerzoComponent } from './pages/juegos/refuerzo/refuerzo.component';
+import { InformacionTemaEstudianteComponent } from './pages/informacion-tema-estudiante/informacion-tema-estudiante.component';
 
 
 
@@ -49,7 +50,10 @@ const routes: Routes = [
         path: 'refuerzo', 
         component: RefuerzoComponent
       },
-      
+      {
+        path: 'informacion-tema', 
+        component: InformacionTemaEstudianteComponent
+      },
       {
         path: '**', 
         component: WelcomeComponent

@@ -1,19 +1,18 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 import { Temario } from '../../../interfaces/temario.interface';
 import { Tema } from '../../../interfaces/tema.interface';
 import { TemarioService } from '../../services/temario.service';
 import { TemaService } from '../../services/tema.service';
-import { GlobalsService } from '../../../globals/globals.service';
 import { MarkEditorComponent } from '../../../components/pages/mark-editor/mark-editor.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-informacion-tema',
-  templateUrl: './informacion-tema.component.html',
-  styleUrls: ['./informacion-tema.component.css'],
+  selector: 'app-informacion-tema-estudiante',
+  templateUrl: './informacion-tema-estudiante.component.html',
+  styleUrl: './informacion-tema-estudiante.component.css'
 })
-export class InformacionTemaComponent implements OnInit {
+export class InformacionTemaEstudianteComponent implements OnInit {
   @ViewChild('stepper') stepper!: MatStepper;
   @ViewChild('markEditor') markEditor!: MarkEditorComponent;
 
@@ -24,13 +23,12 @@ export class InformacionTemaComponent implements OnInit {
   temaSeleccionado!: Tema;
 
   markdownContent: string = '';
-  editor: boolean = true;
+  editor: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
     private temarioService: TemarioService,
     private temaService: TemaService,
-    private globalsService: GlobalsService
   ) {
     this.temarioFormGroup = this._formBuilder.group({
       tema: this.temaControl
@@ -46,9 +44,8 @@ export class InformacionTemaComponent implements OnInit {
   }
 
   cargarTemarios() {
-    const profesor: string = this.globalsService.getUser().username;
-    this.temarioService.obtenerListaTemariosProfesor(profesor).subscribe({
-      next: (response: Temario[]) => {
+    this.temarioService.listarTemarios().subscribe({
+      next: (response: any) => {
         this.temarios = response;
       },
       error: (error) => {
@@ -95,3 +92,4 @@ export class InformacionTemaComponent implements OnInit {
     });
   }
 }
+
