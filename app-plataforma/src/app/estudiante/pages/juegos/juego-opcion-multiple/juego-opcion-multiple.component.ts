@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Ejercicio } from '../../../../interfaces/ejercicio';
 import { JuegoService } from '../juego.service';
+
 
 @Component({
   selector: 'app-juego-opcion-multiple',
@@ -11,6 +12,7 @@ export class JuegoOpcionMultipleComponent {
   @Input() ejercicio!: Ejercicio;
   @Input() correctas!: number;
   @Output() next = new EventEmitter<{ correcta: boolean }>();
+  ejercicio1!:Ejercicio;
 
   pregunta: string = '';
   opciones: string[] = [];
@@ -19,6 +21,20 @@ export class JuegoOpcionMultipleComponent {
   colores: string[] = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50'];
   constructor(private juegoService:JuegoService){}
   ngOnInit() {
+    console.log('Recibiendo ejrcicio -'+this.ejercicio.id)
+    this.actualizarEjercicio();
+    
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['ejercicio']) {
+      this.actualizarEjercicio();
+    }
+  }
+
+  actualizarEjercicio() {
+    this.ejercicio1 = this.ejercicio;
+    console.log('Recibiendo ejrcicio1 -'+this.ejercicio1.id)
+    this.ejercicio = this.ejercicio1;
     if (this.ejercicio.data_json) {
       this.pregunta = this.ejercicio.data_json.pregunta;
       this.opciones = this.shuffleArray([...this.ejercicio.data_json.opciones]);

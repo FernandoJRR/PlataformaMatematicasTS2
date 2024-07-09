@@ -10,6 +10,15 @@ exports.seed = async function(knex) {
       id_tema: 1,
       id_dificultad: 1,
       anotacion: 'Anotacion para el ejercicio',
+      data_json: { pregunta: '¿Cuanto es 8*4?', respuesta: '32' },
+      fecha_creacion: new Date().toISOString(),
+      fecha_modificacion: new Date().toISOString(),
+    },
+    {
+      id_tipo_ejercicio: 1,
+      id_tema: 1,
+      id_dificultad: 1,
+      anotacion: 'Anotacion para el ejercicio',
       data_json: { pregunta: '¿Cuanto es 10/5?', respuesta: '2' },
       fecha_creacion: new Date().toISOString(),
       fecha_modificacion: new Date().toISOString(),
@@ -22,6 +31,18 @@ exports.seed = async function(knex) {
       data_json: {
         parejasIzquierda: ['5*5*+5', 'El orden de los factores no altera el producto', '1+1'],
         parejasDerecha: ['30', 'Suma/multiplicacion', '2']
+      },
+      fecha_creacion: new Date().toISOString(),
+      fecha_modificacion: new Date().toISOString(),
+    },
+    {
+      id_tipo_ejercicio: 2,
+      id_tema: 2,
+      id_dificultad: 3,
+      anotacion: 'Anotacion para el ejercicio',
+      data_json: {
+        parejasIzquierda: ['5*6*3', '2.75', '4+1'],
+        parejasDerecha: ['90', '1.5+1.25', '5']
       },
       fecha_creacion: new Date().toISOString(),
       fecha_modificacion: new Date().toISOString(),
@@ -44,14 +65,14 @@ exports.seed = async function(knex) {
       id_tema: 4,
       id_dificultad: 1,
       anotacion: 'Anotacion para el ejercicio',
-      data_json: {data_json: {
+      data_json: {
         pregunta: '¿Que animal dice miu?',
         opciones: ['Loro', 'Gato', 'Perro', 'Vaca'],
         respuestaCorrecta: 'Gato'
-      },
       },
       fecha_creacion: new Date().toISOString(),
       fecha_modificacion: new Date().toISOString(),
     },
   ]);
 };
+

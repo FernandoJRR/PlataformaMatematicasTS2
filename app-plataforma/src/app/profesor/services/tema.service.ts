@@ -30,7 +30,7 @@ export class TemaService {
   // Actualizar un tema
   actualizarTema(tema: Tema): Observable<Tema> {
     return this.http.patch<Tema>(`${this.baseUrl}/temario/tema/${tema.id}`, tema);
-  }
+  }  
 
   // Eliminar un tema
   // eliminarTema(temaId: number) {

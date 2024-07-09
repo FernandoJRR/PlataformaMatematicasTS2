@@ -51,4 +51,8 @@ export class ResultadosComponent implements OnInit {
       }
     });
   }
+
+  irAEleccionJuegos() {
+    this.router.navigate(['/estudiante/eleccion-juego']);
+  }
 }

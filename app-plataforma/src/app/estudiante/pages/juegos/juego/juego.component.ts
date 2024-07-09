@@ -66,11 +66,12 @@ export class JuegoComponent implements OnInit, OnDestroy {
       this.modoSeleccionado='Contra-Reloj';
     } else if (this.modoSeleccionado === 'invencible') {
       this.modoContrarreloj = false;
-      this.modo = 1;
+      this.modo = 2;
       this.modoSeleccionado='Invencible';
     }else {
       this.modoContrarreloj = false;
       this.modoSeleccionado='Normal';
+      this.modo=4;
     }
   }
 
@@ -95,8 +96,10 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
   siguienteEjercicio(event?: { correcta: boolean }) {
     //en este metodo podemos saber si la pregunta es correcta o incorrecta
-    if (this.modoSeleccionado == 'invencible') {
-      if (this.juegoService.getCorrecta()!) {
+    console.log('Modeo seleccionado'+this.modoSeleccionado)
+    if (this.modoSeleccionado == 'Invencible') {
+      console.log('Modeo seleccionado1'+this.modoSeleccionado+this.juegoService.getCorrecta()!)
+      if (this.juegoService.getCorrecta()==false) {
         alert('¡Modo invensible termindado !');
         this.detenerTemporizador();
         this.mostrarResultados();
@@ -147,12 +150,15 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
   mostrarResultados() {
     const totalPreguntas = this.ejercicios.length;
-    this.puntaje = Math.round((this.correctas / totalPreguntas) * 100);
+    this.puntaje = this.juegoService.calcularPuntaje();
+    if(this.puntaje>100){
+      this.puntaje=100;
+    }
     alert(`Resultados:
       Respuestas correctas: ${this.juegoService.getCorrectas()}
       Respuestas incorrectas: ${this.juegoService.getInCorrectas()}
-      Puntaje: ${this.juegoService.calcularPuntaje()}`);
-    this.puntaje = this.juegoService.calcularPuntaje();
+      Puntaje: ${this.puntaje}`);
+    
 
     this.router.navigate(['/estudiante/resultados'], {
       state: {
@@ -174,12 +180,13 @@ export class JuegoComponent implements OnInit, OnDestroy {
       ejercicio_partida: this.juegoService.getEjerciciosPartida(),
     };
     this.juegoService.resetearEstadisticas();
+    console.log(this.partida)
     //llamar a servico de partidas, y el metodo guardar partida (aun falta xd)
     this.partidaService.guardarPartida(this.partida)
     .subscribe((data) => {
       console.log('partida guardada');
     }, (error)=>{
-      console.log('partida guardada');
+      console.log('partida no guardada');
     });
   }
 
